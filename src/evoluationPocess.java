@@ -137,9 +137,17 @@ public class evoluationPocess extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Subject (Catergory)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
+
+        jTextField1.setEditable(false);
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 31, 291, -1));
+
+        jTextField2.setEditable(false);
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 62, 200, -1));
+
+        jTextField3.setEditable(false);
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 93, 270, -1));
+
+        jTextField4.setEditable(false);
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 360, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -148,6 +156,8 @@ public class evoluationPocess extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Manuscript Type");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
+        jTextField6.setEditable(false);
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -177,25 +187,25 @@ public class evoluationPocess extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1150, 190));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Sent To");
+        jLabel16.setText("* Sent To");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 70, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 170, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Sent By");
+        jLabel17.setText("* Sent By");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 70, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, 170, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Sent Date");
+        jLabel11.setText("* Sent Date");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 490, 90, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Recieved Date");
+        jLabel18.setText("* Recieved Date");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 490, 110, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Sent Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
