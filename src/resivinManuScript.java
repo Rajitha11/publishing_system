@@ -55,6 +55,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -239,14 +240,17 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
         jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
+        buttonGroup2.add(jCheckBox3);
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox3.setText("Hard Copy");
         jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 190, -1, -1));
 
+        buttonGroup2.add(jCheckBox4);
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox4.setText("CD/CVD");
         jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, -1, -1));
 
+        buttonGroup2.add(jCheckBox5);
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox5.setText("USB");
         jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 190, -1, -1));
@@ -408,6 +412,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
