@@ -114,6 +114,10 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jCheckBox9 = new javax.swing.JCheckBox();
         jTextField16 = new javax.swing.JTextField();
         jTextField17 = new javax.swing.JTextField();
+        jLabel53 = new javax.swing.JLabel();
+        jCheckBox10 = new javax.swing.JCheckBox();
+        jCheckBox11 = new javax.swing.JCheckBox();
+        jLabel54 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -484,8 +488,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel51.setText("* Positives");
-        jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jLabel51.setText("* Images");
+        jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox7.setText("B & W");
@@ -507,7 +511,33 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jPanel15.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 150, -1));
         jPanel15.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 150, -1));
 
-        jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 440, 80));
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel53.setText("* Positives");
+        jPanel15.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox10.setText("have");
+        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox10ActionPerformed(evt);
+            }
+        });
+        jPanel15.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+
+        jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox11.setText("have");
+        jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox11ActionPerformed(evt);
+            }
+        });
+        jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel54.setText("* Shades");
+        jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, -1));
+
+        jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 660, 80));
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 820, 260));
 
@@ -671,6 +701,14 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox9ActionPerformed
 
+    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox10ActionPerformed
+
+    private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -717,6 +755,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox10;
+    private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
@@ -774,6 +814,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -454,11 +454,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Quotations"/>
+                <Property name="text" type="java.lang.String" value="Costing"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="490" y="10" width="160" height="58"/>
+                  <AbsoluteConstraints x="530" y="10" width="130" height="58"/>
                 </Constraint>
               </Constraints>
             </Component>
