@@ -401,7 +401,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Book Title", "Proof Step 1", "Proof Step 2", "Proof Step 3", "Proof Reader", "Remark", "Date Returned"
+                "Book Title", "Proof Step ", "Proof Reader", "Remark", "Sent Date", "Date Returned"
             }
         ));
         jScrollPane4.setViewportView(jTable2);
