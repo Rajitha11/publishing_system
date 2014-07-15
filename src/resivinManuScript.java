@@ -25,13 +25,14 @@ public class resivinManuScript extends javax.swing.JFrame {
 
     public resivinManuScript() {
         initComponents();
+        //translation panel hide
         jPanel2.setVisible(false);
+        //call set date & time method
         dateMethod();
     }
 
     void dateMethod() {
-        
-
+        //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
         d2 = new SimpleDateFormat("  hh:mm aaa");
         t = new Timer(100, new ActionListener() {
@@ -118,6 +119,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
         jTextField18 = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -168,38 +171,38 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Last Name");
+        jLabel2.setText("* Last Name");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Contact Number");
+        jLabel6.setText("* Contact Number");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 62, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Email");
+        jLabel8.setText("* Email");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("Name Of The Manuscript");
+        jLabel10.setText("* Name Of The Manuscript");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 124, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Subject (Catergory)");
+        jLabel9.setText("* Subject (Catergory)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 62, 200, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 93, 270, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 124, 270, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 270, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 206, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 206, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Nature Of The Manuscript");
+        jLabel11.setText("* Media Of The Manuscript");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Current Address");
+        jLabel7.setText("* Current Address");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 62, -1, -1));
 
         jTextArea1.setColumns(20);
@@ -210,14 +213,14 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 62, 360, 82));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Received No ");
+        jLabel4.setText("* Received No ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
 
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Manuscript Type");
+        jLabel13.setText("* Manuscript Type");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         buttonGroup1.add(jCheckBox1);
@@ -228,7 +231,7 @@ public class resivinManuScript extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         buttonGroup1.add(jCheckBox2);
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -238,7 +241,7 @@ public class resivinManuScript extends javax.swing.JFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         buttonGroup2.add(jCheckBox3);
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -256,14 +259,14 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 190, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setText("Qulification");
+        jLabel15.setText("* Qulification");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, -1, -1));
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 360, -1));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel31.setText("Authour First Name");
+        jLabel31.setText("* Authour First Name");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
-        jPanel1.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 31, 200, -1));
+        jPanel1.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 1090, 230));
 
@@ -271,72 +274,74 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Original Book Title");
+        jLabel16.setText("* Original Book Title");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, -1, -1));
         jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 28, 291, -1));
         jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 59, 291, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Publisher/Copyright Agency");
+        jLabel17.setText("* Publisher/Copyright Agency");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 90, -1, -1));
         jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(769, 28, 291, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Sinhala Title Of The Book");
+        jLabel18.setText("* Sinhala Title Of The Book");
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 28, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setText("Advance Royality Payment");
+        jLabel19.setText("* Advance Royality Payment");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 124, -1, -1));
         jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(769, 59, 291, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel20.setText("Translator Name");
+        jLabel20.setText("* Translator Name");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 59, -1, -1));
         jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 90, 291, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel21.setText("Country");
+        jLabel21.setText("* Country");
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 155, -1, -1));
         jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 214, 291, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel22.setText("Original Author");
+        jLabel22.setText("* Original Author");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 59, -1, -1));
         jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 121, 291, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel23.setText("Expiring Date");
+        jLabel23.setText("* Expiring Date");
         jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 90, -1, -1));
         jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 152, 291, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel24.setText("Issue Date");
+        jLabel24.setText("* Issue Date");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 121, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel25.setText("Contact Person/Agency");
+        jLabel25.setText("* Contact Person/Agency");
         jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 186, -1, -1));
         jPanel2.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 152, 291, -1));
         jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 183, 291, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("Phone");
+        jLabel26.setText("* Phone");
         jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 155, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel27.setText("Address");
+        jLabel27.setText("* Address");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 214, -1, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel28.setText("Email");
+        jLabel28.setText("* Email");
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 183, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel29.setText("Web Site");
+        jLabel29.setText("* Web Site");
         jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 211, -1, -1));
         jPanel2.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 184, 291, -1));
         jPanel2.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 215, 291, -1));
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+        jPanel2.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 200, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 1080, 270));
 
@@ -422,6 +427,8 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JComboBox jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
