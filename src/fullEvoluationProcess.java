@@ -163,8 +163,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Sending The Manuscript");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 308, 58));
+        jLabel1.setText("Evaluvation Of The Manuscript");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 380, 58));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Date ");
@@ -311,7 +311,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 810, 108, 45));
         jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 200, -1));
 
-        jTabbedPane5.addTab("Sending The Manuscript", jPanel1);
+        jTabbedPane5.addTab("Evaluvation Of The Manuscript", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -326,8 +326,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel19.setText("Approve Manuscript");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 308, 58));
+        jLabel19.setText("Approval of the Manuscript");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 10, 350, 58));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Sent Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -363,7 +363,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 62, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel23.setText("Email");
+        jLabel23.setText("Email Address ");
         jPanel8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -512,7 +512,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 820, 108, 45));
 
-        jTabbedPane5.addTab("Approve Manuscript", jPanel2);
+        jTabbedPane5.addTab("Approval of the Manuscript", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -530,7 +530,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel3.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 110, 30));
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Resived Approved Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Received Approved Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel12.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
@@ -552,7 +552,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1110, 200));
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Resived Rijected Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Received Rijected Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel13.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
@@ -652,17 +652,17 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel14.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 110, -1));
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel58.setText("* Affter Reconcideration The Manuscript ");
+        jLabel58.setText("* Affter The Reconsideration of Manuscript ");
         jPanel14.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, 30));
 
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox5.setText("Approve");
+        jCheckBox5.setText("  Approve The Manuscript");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, -1, -1));
+        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, 220, -1));
         jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 200, -1));
 
         jPanel3.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 1090, 250));

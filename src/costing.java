@@ -38,7 +38,6 @@ public class costing extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -47,6 +46,7 @@ public class costing extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel9 = new javax.swing.JPanel();
         jTextField12 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -158,9 +158,8 @@ public class costing extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("* Company");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 290, -1));
+        jLabel2.setText("* Company Name");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 140, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("* Quoted Price");
@@ -187,6 +186,9 @@ public class costing extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("ISBN");
         jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sarasvi Printers", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 290, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 1060, 160));
 
@@ -270,7 +272,7 @@ public class costing extends javax.swing.JFrame {
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1130, 180));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Quotation", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quoted Book  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -301,7 +303,7 @@ public class costing extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
         jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 290, -1));
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Quotation Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quotation Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -319,27 +321,27 @@ public class costing extends javax.swing.JFrame {
         jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, 450, 160));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("* Typesetting");
+        jLabel7.setText("* Typesetting Fees");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
         jPanel2.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 290, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("* Proof Reading");
+        jLabel8.setText("* Proof Reading Fees");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
         jPanel2.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 290, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("* Cover Designing");
+        jLabel9.setText("* Cover Designing Fees");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
         jPanel2.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 290, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("* Tracings");
+        jLabel10.setText("* Tracings Cost");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
         jPanel2.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 290, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("* Positives");
+        jLabel11.setText("* Positives Cost");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
         jPanel2.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 290, -1));
 
@@ -366,19 +368,19 @@ public class costing extends javax.swing.JFrame {
         jLabel27.setText("-----------------------------------------------------------------------------");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 710, 310, -1));
 
-        jLabel28.setText("jLabel28");
+        jLabel28.setText("Total Cost Auto Sum");
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 680, -1, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel32.setText("jLabel32");
-        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+        jLabel32.setText("Unit Price Auto Cal");
+        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 30, 120, -1));
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, 330, 80));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel29.setText("* Printing");
+        jLabel29.setText("* Printing Cost");
         jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -512,12 +514,11 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -589,7 +590,6 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;

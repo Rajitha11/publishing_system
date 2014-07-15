@@ -259,7 +259,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 190, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setText("* Qulification");
+        jLabel15.setText("* Qulifications ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, -1, -1));
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 360, -1));
 

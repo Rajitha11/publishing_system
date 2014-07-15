@@ -54,6 +54,7 @@ public class Planner extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
@@ -90,7 +91,7 @@ public class Planner extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Works", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,7 +99,7 @@ public class Planner extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Dade Laine"
+                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Deadline"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -165,7 +166,7 @@ public class Planner extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Dade Laine"
+                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Deadline"
             }
         ));
         jScrollPane3.setViewportView(jTable2);
@@ -179,7 +180,7 @@ public class Planner extends javax.swing.JFrame {
 
         getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 680, 270));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Layout Plan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Layout Planning ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,9 +190,12 @@ public class Planner extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 30, 180, 30));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 290, 90));
+        jLabel1.setText("     DD-MMM-YYYY");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 130, 30));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 340, 120));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Save");
@@ -209,7 +213,7 @@ public class Planner extends javax.swing.JFrame {
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel51.setText("* Images");
+        jLabel51.setText(" Images");
         jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -237,7 +241,7 @@ public class Planner extends javax.swing.JFrame {
         jPanel15.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 150, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel53.setText("* Positives");
+        jLabel53.setText(" Positives");
         jPanel15.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -259,7 +263,7 @@ public class Planner extends javax.swing.JFrame {
         jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
 
         jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel54.setText("* Shades");
+        jLabel54.setText(" Shades");
         jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 70, -1));
 
         getContentPane().add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 580, 80));
@@ -356,6 +360,7 @@ public class Planner extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;

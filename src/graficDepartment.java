@@ -149,7 +149,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Works", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -250,7 +250,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("* Dead Line");
+        jLabel13.setText("* Deadline");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
         jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
@@ -267,7 +267,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 206, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("* Dead Line");
+        jLabel10.setText("* Deadline");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
         jPanel5.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
@@ -304,7 +304,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Other Job No", "Reciving Date", "Disigner Name", "Complete Date", "Remark"
+                "Other Job No", "Receiving Date", "Designer Name", "Complete Date", "Remark"
             }
         ));
         jScrollPane3.setViewportView(jTable2);
@@ -335,7 +335,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("* Reciving Date");
+        jLabel5.setText("* Receiving Date");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -358,7 +358,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("* Disigner");
+        jLabel8.setText("* Designer");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
         jPanel3.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 290, -1));
         jPanel3.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, 200, -1));
@@ -392,7 +392,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Complete Disiging", "Complete Palaning"
+                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Complete Desiging", "Complete Palaning"
             }
         ));
         jScrollPane4.setViewportView(jTable3);

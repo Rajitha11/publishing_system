@@ -68,7 +68,7 @@ public class Menu extends javax.swing.JFrame {
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusable(false);
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/workl1.png"))); // NOI18N
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 90, 66));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Process");
@@ -99,7 +99,7 @@ public class Menu extends javax.swing.JFrame {
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusable(false);
         jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/catlo0g1.png"))); // NOI18N
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, 90, 66));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Costing");
@@ -147,8 +147,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel11.setText("Printing");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 780, -1, -1));
 
-        jLabel9.setText("jLabel9");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
+        jLabel9.setText("DATE");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 10, 220, 50));
 
         jLabel12.setText("jLabel12");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 860, -1, -1));
