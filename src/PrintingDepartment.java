@@ -74,6 +74,10 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
         jTextField17 = new javax.swing.JTextField();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setEnabled(false);
@@ -270,6 +274,10 @@ public class PrintingDepartment extends javax.swing.JFrame {
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 770, -1, -1));
         getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 770, 290, -1));
         getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 740, 270, -1));
+        getContentPane().add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 200, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 770, 200, -1));
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 740, 200, -1));
+        getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 800, 200, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -314,6 +322,10 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

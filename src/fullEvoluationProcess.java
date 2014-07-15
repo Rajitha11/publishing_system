@@ -64,6 +64,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -151,6 +152,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jCheckBox5 = new javax.swing.JCheckBox();
+        jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
@@ -307,6 +309,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 810, 108, 45));
+        jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 200, -1));
 
         jTabbedPane5.addTab("Sending The Manuscript", jPanel1);
 
@@ -660,6 +663,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             }
         });
         jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, -1, -1));
+        jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 200, -1));
 
         jPanel3.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 1090, 250));
 
@@ -772,6 +776,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox7;
     private javax.swing.JComboBox jComboBox8;
     private javax.swing.JComboBox jComboBox9;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
+    private com.toedter.calendar.JDateChooser jDateChooser5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

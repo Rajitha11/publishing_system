@@ -46,6 +46,7 @@ public class Disigner extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -137,6 +138,7 @@ public class Disigner extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
         jPanel10.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+        jPanel10.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
 
         getContentPane().add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 1050, 140));
 
@@ -240,6 +242,7 @@ public class Disigner extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;

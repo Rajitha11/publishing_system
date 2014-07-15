@@ -46,6 +46,7 @@ public class Planner extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -152,6 +153,7 @@ public class Planner extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
         jPanel10.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+        jPanel10.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 170, -1));
 
         getContentPane().add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 1050, 140));
 
@@ -353,6 +355,7 @@ public class Planner extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox9;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;

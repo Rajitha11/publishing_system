@@ -97,6 +97,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -135,6 +136,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox();
         jButton12 = new javax.swing.JButton();
+        jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -442,6 +445,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
         jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+        jPanel9.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 1070, 150));
 
@@ -611,6 +615,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             }
         });
         jPanel14.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 80, 30));
+        jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, 160, -1));
+        jPanel14.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 200, -1));
 
         jPanel12.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 1040, 220));
 
@@ -770,6 +776,9 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox7;
     private javax.swing.JComboBox jComboBox8;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
+    private com.toedter.calendar.JDateChooser jDateChooser5;
+    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

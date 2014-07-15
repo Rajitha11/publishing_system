@@ -48,6 +48,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -55,10 +56,12 @@ public class graficDepartment extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -82,6 +85,8 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -108,6 +113,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
         jTextField18 = new javax.swing.JTextField();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jPanel7 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jCheckBox6 = new javax.swing.JCheckBox();
@@ -206,6 +212,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
         jPanel10.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+        jPanel10.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
 
         jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 1050, 140));
 
@@ -245,6 +252,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("* Dead Line");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 370, 130));
 
@@ -261,6 +269,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("* Dead Line");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanel5.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 370, 130));
 
@@ -352,6 +361,8 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel8.setText("* Disigner");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
         jPanel3.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 290, -1));
+        jPanel3.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, 200, -1));
+        jPanel3.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 1060, 220));
 
@@ -450,6 +461,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jTextField18.setEditable(false);
         jPanel12.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 250, -1));
+        jPanel12.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
 
         jPanel6.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 1050, 160));
 
@@ -623,13 +635,18 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
+    private com.toedter.calendar.JDateChooser jDateChooser5;
+    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
