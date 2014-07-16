@@ -32,6 +32,8 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         //call set date & time method
         dateMethod();
+        
+        
     }
 
     void dateMethod() {
@@ -49,22 +51,17 @@ public class resivinManuScript extends javax.swing.JFrame {
         t.start();
     }
 
-    void maxRecivingNo() {
-        try {
-            // set the reciving No auto
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from reseving_manuscript where (select MAX(idm) from reseving_manuscript)");
-
-            while (rs.next()) {
-                String n = rs.getString("idm");
-                int a = Integer.parseInt(n);
-                int b = a + 1;
-                jLabel3.setText(b + "");
-                System.out.println(n);
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+    public String maxid(String columname, String table, int columno) throws Exception {
+        int i2 = 0;
+        ResultSet sr = ConnectionSet1.getInstance().getResult("SELECT * from " + table + " WHERE(SELECT Max(" + columname + ")FROM " + table + ")");
+        while (sr.next()) {
+            String id = sr.getString(columno);
+            int i = Integer.parseInt(id);
+            i2 = i + 1;
         }
+        String fm = "abc";
+        int s = Integer.parseInt(fm);
+        return i2 + "".toString();
     }
 
     void save() {
@@ -87,20 +84,10 @@ public class resivinManuScript extends javax.swing.JFrame {
                 mediaty = "USB";
             }
             System.out.println("aaaaaaaaaa");
-            //
-            ConnectionSet1.getInstance().setResult("insert into author values ('" + fn.getText() + "','" + ln.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
+            //ownerid.setText(maxid("oid", "owner", 1));
+            ConnectionSet1.getInstance().setResult("insert into author values ('"+maxid("idauthor", "author", 1)+"','" + fname.getText() + "','" + fname.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
             System.out.println("bbbbbbbb");
-            int idauthor = 0;
-            System.out.println("cccccccccccccc");
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author where idauthor='" + idauthor + "'");
-            while (rs.next()) {
-                int idauthor1 = rs.getInt(idauthor);
-            }
-            System.out.println("ddddddddddd");
-            idauthor++;
-            System.out.println("eeeeeeeeeee");
-            ConnectionSet1.getInstance().setResult("insert into reseving_manuscript values ('" + nme_manuscript.getText() + "','" + catag.getSelectedItem() + "','" + sub_catag.getSelectedItem() + "','" + langu.getSelectedItem() + "','" + qulifi.getText() + "','" + mtype + "','" + mediaty + "','" + new Date() + "','" + idauthor + "')");
-            System.out.println("ffffffffffff");
+            
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -132,7 +119,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        ln = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
         contct = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         nme_manuscript = new javax.swing.JTextField();
@@ -151,12 +138,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         usb = new javax.swing.JCheckBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        fn = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         langu = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         qulifi = new javax.swing.JTextField();
         sub_catag = new javax.swing.JComboBox();
+        ln1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -230,7 +217,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("* Subject (Catergory)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
+        jPanel1.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
         jPanel1.add(contct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
         jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
         jPanel1.add(nme_manuscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 270, -1));
@@ -296,7 +283,6 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("* Authour First Name");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
-        jPanel1.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("* Sub Catergory");
@@ -312,6 +298,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         sub_catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(sub_catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 206, -1));
+        jPanel1.add(ln1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 1090, 290));
 
@@ -379,7 +366,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JCheckBox cd;
     private javax.swing.JTextField contct;
     private javax.swing.JTextField email;
-    private javax.swing.JTextField fn;
+    private javax.swing.JTextField fname;
     private javax.swing.JCheckBox hardc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -409,7 +396,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox langu;
-    private javax.swing.JTextField ln;
+    private javax.swing.JTextField ln1;
     private javax.swing.JTextField nme_manuscript;
     private javax.swing.JCheckBox own;
     private javax.swing.JTextField qulifi;
