@@ -123,7 +123,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
-        jLabel51 = new javax.swing.JLabel();
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox9 = new javax.swing.JCheckBox();
         jTextField16 = new javax.swing.JTextField();
@@ -132,6 +131,9 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox11 = new javax.swing.JCheckBox();
         jLabel54 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
@@ -552,10 +554,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel51.setText("* Images");
-        jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
-
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox7.setText("B & W");
         jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
@@ -587,7 +585,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 jCheckBox10ActionPerformed(evt);
             }
         });
-        jPanel15.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jPanel15.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCheckBox11.setText("  have");
@@ -596,11 +594,23 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 jCheckBox11ActionPerformed(evt);
             }
         });
-        jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+        jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, -1));
 
         jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel54.setText("* Shades");
-        jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, -1));
+        jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 70, -1));
+
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel70.setText("* Images");
+        jPanel15.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel51.setText("* NO of Pages");
+        jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel71.setText("* NO of Pages");
+        jPanel15.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
         jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 660, 80));
 
@@ -827,6 +837,8 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
