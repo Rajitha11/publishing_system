@@ -585,7 +585,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 jCheckBox10ActionPerformed(evt);
             }
         });
-        jPanel15.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
+        jPanel15.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jCheckBox11.setText("  have");
@@ -594,21 +594,21 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 jCheckBox11ActionPerformed(evt);
             }
         });
-        jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, -1));
+        jPanel15.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, -1));
 
         jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel54.setText("* Shades");
-        jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 70, -1));
+        jPanel15.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 70, -1));
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel70.setText("* Images");
-        jPanel15.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        jPanel15.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel51.setText("* NO of Pages");
         jPanel15.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
-        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel71.setText("* NO of Pages");
         jPanel15.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
