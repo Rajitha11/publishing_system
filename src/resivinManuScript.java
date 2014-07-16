@@ -1,8 +1,12 @@
 
+import com.org.DB.ConnectionSet1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /*
@@ -13,7 +17,6 @@ import javax.swing.Timer;
  *
  * @author tuan
  */
-
 //  1st step
 public class resivinManuScript extends javax.swing.JFrame {
 
@@ -26,7 +29,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     public resivinManuScript() {
         initComponents();
         //translation panel hide
-        
+
         //call set date & time method
         dateMethod();
     }
@@ -44,6 +47,64 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
         });
         t.start();
+    }
+
+    void maxRecivingNo() {
+        try {
+            // set the reciving No auto
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from reseving_manuscript where (select MAX(idm) from reseving_manuscript)");
+
+            while (rs.next()) {
+                String n = rs.getString("idm");
+                int a = Integer.parseInt(n);
+                int b = a + 1;
+                jLabel3.setText(b + "");
+                System.out.println(n);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void save() {
+        try {
+            // save the content of resiving manuscript
+            String mtype;
+            String mediaty;
+            //
+            if (own.isSelected()) {
+                mtype = "Own";
+            } else {
+                mtype = "Translation";
+            }
+            //
+            if (hardc.isSelected()) {
+                mediaty = "Hard Copy";
+            } else if (cd.isSelected()) {
+                mediaty = "CD/DVD";
+            } else {
+                mediaty = "USB";
+            }
+            System.out.println("aaaaaaaaaa");
+            //
+            ConnectionSet1.getInstance().setResult("insert into author values ('" + fn.getText() + "','" + ln.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
+            System.out.println("bbbbbbbb");
+            int idauthor = 0;
+            System.out.println("cccccccccccccc");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author where idauthor='" + idauthor + "'");
+            while (rs.next()) {
+                int idauthor1 = rs.getInt(idauthor);
+            }
+            System.out.println("ddddddddddd");
+            idauthor++;
+            System.out.println("eeeeeeeeeee");
+            ConnectionSet1.getInstance().setResult("insert into reseving_manuscript values ('" + nme_manuscript.getText() + "','" + catag.getSelectedItem() + "','" + sub_catag.getSelectedItem() + "','" + langu.getSelectedItem() + "','" + qulifi.getText() + "','" + mtype + "','" + mediaty + "','" + new Date() + "','" + idauthor + "')");
+            System.out.println("ffffffffffff");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -71,31 +132,31 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        ln = new javax.swing.JTextField();
+        contct = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        nme_manuscript = new javax.swing.JTextField();
+        catag = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        addres = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        own = new javax.swing.JCheckBox();
+        trans = new javax.swing.JCheckBox();
+        hardc = new javax.swing.JCheckBox();
+        cd = new javax.swing.JCheckBox();
+        usb = new javax.swing.JCheckBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        fn = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        langu = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox();
+        qulifi = new javax.swing.JTextField();
+        sub_catag = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -128,6 +189,11 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 800, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -164,13 +230,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("* Subject (Catergory)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 270, -1));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
+        jPanel1.add(contct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
+        jPanel1.add(nme_manuscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 270, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 206, -1));
+        catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 206, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("* Media Of The Manuscript");
@@ -180,10 +246,10 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel7.setText("* Current Address");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 62, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("\n\n\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        addres.setColumns(20);
+        addres.setRows(5);
+        addres.setText("\n\n\n");
+        jScrollPane1.setViewportView(addres);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 62, 360, 82));
 
@@ -198,40 +264,30 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel13.setText("* Manuscript Type");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox1.setText("Own Write");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
+        buttonGroup1.add(own);
+        own.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        own.setText("Own Write");
+        jPanel1.add(own, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
 
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox2.setText("Translation");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
+        buttonGroup1.add(trans);
+        trans.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        trans.setText("Translation");
+        jPanel1.add(trans, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
-        buttonGroup2.add(jCheckBox3);
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox3.setText("Hard Copy");
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, -1, -1));
+        buttonGroup2.add(hardc);
+        hardc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        hardc.setText("Hard Copy");
+        jPanel1.add(hardc, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, -1, -1));
 
-        buttonGroup2.add(jCheckBox4);
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox4.setText("CD/CVD");
-        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, -1, -1));
+        buttonGroup2.add(cd);
+        cd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cd.setText("CD/CVD");
+        jPanel1.add(cd, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, -1, -1));
 
-        buttonGroup2.add(jCheckBox5);
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox5.setText("USB");
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 240, -1, -1));
+        buttonGroup2.add(usb);
+        usb.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        usb.setText("USB");
+        jPanel1.add(usb, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 240, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("* Language ");
@@ -240,22 +296,22 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("* Authour First Name");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
-        jPanel1.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
+        jPanel1.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("* Sub Catergory");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 206, -1));
+        langu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(langu, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 206, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("* Qulifications ");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 120, -1));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 350, -1));
+        jPanel1.add(qulifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 350, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 206, -1));
+        sub_catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(sub_catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 206, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 1090, 290));
 
@@ -273,19 +329,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//        show translationBox
-        
+        // insert to the database
+        save();
 
 
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-        // show translationBox
-        
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,19 +372,18 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea addres;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox catag;
+    private javax.swing.JCheckBox cd;
+    private javax.swing.JTextField contct;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField fn;
+    private javax.swing.JCheckBox hardc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -358,13 +407,14 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JComboBox langu;
+    private javax.swing.JTextField ln;
+    private javax.swing.JTextField nme_manuscript;
+    private javax.swing.JCheckBox own;
+    private javax.swing.JTextField qulifi;
+    private javax.swing.JComboBox sub_catag;
+    private javax.swing.JCheckBox trans;
+    private javax.swing.JCheckBox usb;
     // End of variables declaration//GEN-END:variables
 }
