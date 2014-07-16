@@ -84,7 +84,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
             System.out.println("aaaaaaaaaa");
             //ownerid.setText(maxid("oid", "owner", 1));
-            ConnectionSet1.getInstance().setResult("insert into author values ('"+maxid("idauthor", "author", 1)+"','" + fname.getText() + "','" + fname.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
+            ConnectionSet1.getInstance().setResult("insert into author values ('"+maxid("idauthor", "author", 1)+"','" + fname.getText() + "','" + ln.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
             System.out.println("bbbbbbbb");
             
 
@@ -142,7 +142,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         qulifi = new javax.swing.JTextField();
         sub_catag = new javax.swing.JComboBox();
-        ln1 = new javax.swing.JTextField();
+        ln = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -297,7 +297,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         sub_catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(sub_catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 206, -1));
-        jPanel1.add(ln1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 1090, 290));
 
@@ -395,7 +395,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox langu;
-    private javax.swing.JTextField ln1;
+    private javax.swing.JTextField ln;
     private javax.swing.JTextField nme_manuscript;
     private javax.swing.JCheckBox own;
     private javax.swing.JTextField qulifi;
