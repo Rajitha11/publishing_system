@@ -59,8 +59,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             int i = Integer.parseInt(id);
             i2 = i + 1;
         }
-        String fm = "abc";
-        int s = Integer.parseInt(fm);
+        
         return i2 + "".toString();
     }
 
