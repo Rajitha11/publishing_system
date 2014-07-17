@@ -176,7 +176,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField5 = new javax.swing.JTextField();
+        mscript_serch = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -241,7 +241,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1110, 160));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 295, -1));
+
+        mscript_serch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mscript_serchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(mscript_serch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 295, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Search");
@@ -496,6 +502,21 @@ public class resivinManuScript extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jList1KeyPressed
 
+    private void mscript_serchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mscript_serchKeyReleased
+        try {
+            // TODO add your handling code here:
+            // manuscript Search
+            tablemodel1.fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor where fname like('" + mscript_serch.getText() + "%%" + "') or manuscript_name like('" + mscript_serch.getText() + "%%%" + "')", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_mscript_serchKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -573,9 +594,9 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox langu;
     private javax.swing.JTextField ln;
+    private javax.swing.JTextField mscript_serch;
     private javax.swing.JTextField nme_manuscript;
     private javax.swing.JCheckBox own;
     private javax.swing.JTextField qulifi;
