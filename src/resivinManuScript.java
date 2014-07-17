@@ -112,7 +112,7 @@ public class resivinManuScript extends javax.swing.JFrame {
                 System.out.println("bbbbbbbb");
 
                 int author = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author order by idauthor limit 1");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author where fname='"+fname.getText()+"' order by idauthor limit 1");
                 System.out.println("ccccccc");
                 if (rs.first()) {
                     author = rs.getInt("idauthor");
