@@ -59,7 +59,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
         t.start();
     }
-
+///////////////////////////////////////////////////
     void tableLoad(){
         try {
             new tablemodel1().fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor", jTable1);
