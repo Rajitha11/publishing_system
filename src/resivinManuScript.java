@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,6 +44,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.setVisible(false);
         // load data from the table
         tableLoad();
+        //author id hide
+        jTextField1.setVisible(false);
 
     }
 
@@ -61,12 +64,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         t.start();
     }
 ///////////////////////////////////////////////////
-    void tableLoad(){
+
+    void tableLoad() {
         try {
             new tablemodel1().fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor", jTable1);
-            new tablemodel1().fillTable("Select manuscript_name,catergory,sub_catergory,language,qulification,ms_type,media_type from reseving_manuscript", jTable3);
-            new tablemodel1().fillTable("Select fname,lname,contact_no,address,email from author", jTable2);
-            
+            new tablemodel1().fillTable("Select idrm,manuscript_name,catergory,sub_catergory,language,qulification,ms_type,media_type from reseving_manuscript", jTable3);
+            new tablemodel1().fillTable("Select * from author", jTable2);
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -74,7 +78,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 //    public String maxid(String columname, String table, int columno) throws Exception {
 //        int i2 = 0;
@@ -88,6 +92,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 //        return i2 + "".toString();
 //    }
     //ownerid.setText(maxid("oid", "owner", 1));
+
     void save() {
         try {
             // save the content of resiving manuscript
@@ -115,7 +120,7 @@ public class resivinManuScript extends javax.swing.JFrame {
                 System.out.println("bbbbbbbb");
 
                 int author = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author where fname='"+fname.getText()+"' order by idauthor limit 1");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idauthor from author where fname='" + fname.getText() + "' order by idauthor limit 1");
                 System.out.println("ccccccc");
                 if (rs.first()) {
                     author = rs.getInt("idauthor");
@@ -148,10 +153,9 @@ public class resivinManuScript extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    void clear(){
+    void clear() {
         //clear values
         jCheckBox1.setText("");
         aname.setText("");
@@ -162,7 +166,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         contct.setText("");
         addres.setText("");
         email.setText("");
-        
+
     }
 
     /**
@@ -189,8 +193,6 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         mscript_serch = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel32 = new javax.swing.JLabel();
-        aname = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         own = new javax.swing.JCheckBox();
@@ -209,8 +211,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         langu = new javax.swing.JComboBox();
         nme_manuscript = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -225,9 +227,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         ln = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        aname = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -250,8 +256,10 @@ public class resivinManuScript extends javax.swing.JFrame {
         econtct = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         eaddress = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -284,6 +292,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         emnu_name = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -314,11 +324,6 @@ public class resivinManuScript extends javax.swing.JFrame {
                 "Recive No", "Authour Name", "Contact No", "Address", "Email", "Script Name", "Catergory", "Script Type"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(jTable1);
 
         jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1110, 160));
@@ -335,103 +340,88 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel4.add(mscript_serch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 295, -1));
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox1.setText("* New Author");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel32.setText("* Author Name");
-        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
-
-        aname.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                anameKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                anameKeyReleased(evt);
-            }
-        });
-        jPanel4.add(aname, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 350, -1));
+        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, 40));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Manuscript Details"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("* Manuscript Type");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         buttonGroup1.add(own);
         own.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         own.setText("Own Write");
-        jPanel2.add(own, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
+        jPanel2.add(own, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
         buttonGroup1.add(trans);
         trans.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         trans.setText("Translation");
-        jPanel2.add(trans, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+        jPanel2.add(trans, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("* Media Of The Manuscript");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, -1, -1));
 
         buttonGroup2.add(hardc);
         hardc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         hardc.setText("Hard Copy");
-        jPanel2.add(hardc, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
+        jPanel2.add(hardc, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, -1, -1));
 
         buttonGroup2.add(cd);
         cd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cd.setText("CD/CVD");
-        jPanel2.add(cd, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, -1, -1));
+        jPanel2.add(cd, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, -1, -1));
 
         buttonGroup2.add(usb);
         usb.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         usb.setText("USB");
-        jPanel2.add(usb, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 140, -1, -1));
-        jPanel2.add(qulifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, 350, -1));
+        jPanel2.add(usb, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, -1, -1));
+        jPanel2.add(qulifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 350, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("* Qulifications ");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 120, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 120, -1));
 
         sub_catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(sub_catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 206, -1));
+        jPanel2.add(sub_catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 206, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("* Sub Catergory");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("* Subject (Catergory)");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         catag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 206, -1));
+        jPanel2.add(catag, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 206, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("* Language ");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 120, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 120, -1));
 
         langu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(langu, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 206, -1));
-        jPanel2.add(nme_manuscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 270, -1));
+        jPanel2.add(langu, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 206, -1));
+        jPanel2.add(nme_manuscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 270, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("* Name Of The Manuscript");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("* Received No ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, -1, -1));
 
-        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 1080, 190));
+        jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel45.setText("* Received No ");
+        jPanel2.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
+
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 1080, 200));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Author Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -447,8 +437,26 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("* Email");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
+
+        fname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fnameActionPerformed(evt);
+            }
+        });
         jPanel1.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 200, -1));
+
+        contct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contctActionPerformed(evt);
+            }
+        });
         jPanel1.add(contct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
+
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
         jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -465,6 +473,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("* Author First Name");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
+
+        ln.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lnActionPerformed(evt);
+            }
+        });
         jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 200, -1));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, 1090, 160));
@@ -484,10 +498,22 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton3.setText("Clear");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 810, 108, 45));
+
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jList1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jList1KeyPressed(evt);
@@ -497,7 +523,27 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 50));
 
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 380, 50));
+        jPanel11.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 380, -1));
+
+        aname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                anameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                anameKeyReleased(evt);
+            }
+        });
+        jPanel11.add(aname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 350, -1));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel32.setText("* Author Name");
+        jPanel11.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel4.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 550, 100));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("* New Author");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
         jTabbedPane1.addTab("Reserving Manuscript", jPanel4);
 
@@ -511,9 +557,23 @@ public class resivinManuScript extends javax.swing.JFrame {
 
             },
             new String [] {
-                "fname", "lname", "Contact No", "Addres", "Email"
+                "id", "fname", "lname", "Contact No", "Addres", "Email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable2);
 
         jPanel7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1130, 210));
@@ -577,6 +637,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jScrollPane6.setViewportView(eaddress);
 
         jPanel8.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 360, -1));
+        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 0));
 
         jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 1090, 180));
 
@@ -584,6 +645,11 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton4.setText("Update");
         jButton4.setBorder(null);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -591,6 +657,17 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 690, 108, 45));
+
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton7.setText("Clear");
+        jButton7.setBorder(null);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 690, 108, 45));
 
         jTabbedPane1.addTab("Author Details", jPanel5);
 
@@ -604,14 +681,25 @@ public class resivinManuScript extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Manuscript Name", "Catergory", "Sub Catergory", "Language", "Qulification", "Script Type", "Media Type"
+                "ID", "Manuscript Name", "Catergory", "Sub Catergory", "Language", "Qulification", "Script Type", "Media Type"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable3);
 
         jPanel9.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1130, 200));
 
         jPanel6.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1150, 240));
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
         jPanel6.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 76, 295, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -668,7 +756,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel10.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         jLabel44.setText("jLabel3");
-        jPanel10.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+        jPanel10.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 50, 20));
         jPanel10.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 250, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -712,6 +800,11 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton5.setText("Update");
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 700, 108, 45));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -719,6 +812,18 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 700, 108, 45));
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton8.setText("Clear");
+        jButton8.setBorder(null);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 700, 108, 45));
+        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 0, 0));
 
         jTabbedPane1.addTab("Reserving Manuscript Details", jPanel6);
 
@@ -742,33 +847,35 @@ public class resivinManuScript extends javax.swing.JFrame {
         //select new author
         if (jCheckBox1.isSelected()) {
             jPanel1.setVisible(true);
+            jPanel11.setVisible(false);
         } else {
             jPanel1.setVisible(false);
+            jPanel11.setVisible(true);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void anameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anameKeyReleased
         // TODO add your handling code here:
         // get result author names
-        if(!aname.getText().isEmpty()){
-            
+        if (!aname.getText().isEmpty()) {
+
             try {
-                
+
                 jPanel3.setVisible(true);
                 ResultSet rs = ConnectionSet1.getInstance().getResult("select * from author where fname like('" + aname.getText() + "%%%%%" + "')");
-                
+
                 Vector v = new Vector();
-                while(rs.next()){
+                while (rs.next()) {
                     v.add(rs.getString("fname"));
                 }
-                
+
                 jList1.setListData(v);
-                
-                
+
+
             } catch (Exception ex) {
                 Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             jPanel3.setVisible(false);
         }
     }//GEN-LAST:event_anameKeyReleased
@@ -776,7 +883,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private void anameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anameKeyPressed
         // TODO add your handling code here:
         //select the name
-        if(evt.getKeyCode()== 40){
+        if (evt.getKeyCode() == 40) {
             jList1.requestFocus();
         }
     }//GEN-LAST:event_anameKeyPressed
@@ -784,10 +891,10 @@ public class resivinManuScript extends javax.swing.JFrame {
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
         // TODO add your handling code here:
         // set author name for the textfeild
-        if(evt.getKeyCode() == 10){
+        if (evt.getKeyCode() == 10) {
             String an = jList1.getSelectedValue().toString();
             aname.setText(an);
-            
+
             jPanel3.setVisible(false);
         }
     }//GEN-LAST:event_jList1KeyPressed
@@ -804,20 +911,218 @@ public class resivinManuScript extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_mscript_serchKeyReleased
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        // set data select the table row
-        
-        
-    }//GEN-LAST:event_jTable1MouseClicked
-
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            // author serch
+            new tablemodel1().fillTable("Select * from author where fname like('" + jTextField5.getText() + "%%" + "') or lname like('" + jTextField5.getText() + "%%%" + "')", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        try {
+            // TODO add your handling code here:
+            // manuscript serch
+            new tablemodel1().fillTable("Select idrm,manuscript_name,catergory,sub_catergory,language,qulification,ms_type,media_type from reseving_manuscript where manuscript_name like('" + jTextField6.getText() + "%%" + "')", jTable3);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField6KeyReleased
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        // select a row & set value in the field author Frame
+        DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+        int i = jTable2.getSelectedRow();
+        Vector v = new Vector();
+        String s = dtm.getValueAt(i, 0).toString();
+        String s1 = dtm.getValueAt(i, 1).toString();
+        String s2 = dtm.getValueAt(i, 2).toString();
+        String s3 = dtm.getValueAt(i, 3).toString();
+        String s4 = dtm.getValueAt(i, 4).toString();
+        String s5 = dtm.getValueAt(i, 5).toString();
+
+        jTextField1.setText(s);
+        efn.setText(s1);
+        eln.setText(s2);
+        econtct.setText(s3);
+        eaddress.setText(s4);
+        eemail.setText(s5);
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        // clear all
+        clear();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        // clear all
+        jTextField1.setText("");
+        efn.setText("");
+        eln.setText("");
+        econtct.setText("");
+        eaddress.setText("");
+        eemail.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        // clear all
+        jTextField2.setText("");
+        emnu_name.setText("");
+        jTextField7.setText("");
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+        // select a row & set value in the field reserving manuscript Frame
+        DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+        int i = jTable3.getSelectedRow();
+        Vector v = new Vector();
+        Vector v1 = new Vector();
+        Vector v2 = new Vector();
+        String s = dtm.getValueAt(i, 0).toString();
+        String s1 = dtm.getValueAt(i, 1).toString();
+        String s2 = dtm.getValueAt(i, 2).toString();
+        String s3 = dtm.getValueAt(i, 3).toString();
+        String s4 = dtm.getValueAt(i, 4).toString();
+        String s5 = dtm.getValueAt(i, 5).toString();
+        String s6 = dtm.getValueAt(i, 6).toString();
+        String s7 = dtm.getValueAt(i, 7).toString();
+
+        jTextField2.setText(s);
+        emnu_name.setText(s1);
+
+        v.add(s2);
+        ecatag.setModel(new DefaultComboBoxModel(v));
+
+        v1.add(s3);
+        esub_catag.setModel(new DefaultComboBoxModel(v1));
+
+        v2.add(s4);
+        jComboBox1.setModel(new DefaultComboBoxModel(v2));
+
+        jTextField7.setText(s5);
+
+        if (s6.equals("Own")) {
+            eown.setSelected(true);
+        } else {
+            etrans.setSelected(true);
+        }
+
+        if (s7.equals("Hard Copy")) {
+            ehard.setSelected(true);
+        } else if (s7.equals("CD/DVD")) {
+            ecd.setSelected(true);
+        } else {
+            eusb.setSelected(true);
+        }
+
+
+    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update author
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
+            dtm.setRowCount(0);
+            jTextField1.setText("");
+            efn.setText("");
+            eln.setText("");
+            econtct.setText("");
+            eaddress.setText("");
+            eemail.setText("");
+            tableLoad();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update anuscript
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+
+            String ctg = ecatag.getSelectedItem().toString();
+            String scatg = esub_catag.getSelectedItem().toString();
+            String lagu = jComboBox1.getSelectedItem().toString();
+
+            String mtype;
+            String mediaty;
+            //
+            if (eown.isSelected()) {
+                mtype = "Own";
+            } else {
+                mtype = "Translation";
+            }
+            //
+            if (ehard.isSelected()) {
+                mediaty = "Hard Copy";
+            } else if (ecd.isSelected()) {
+                mediaty = "CD/DVD";
+            } else {
+                mediaty = "USB";
+            }
+
+            ConnectionSet1.getInstance().setResult("update reseving_manuscript set manuscript_name='" + emnu_name.getText() + "',catergory='" + ctg + "',sub_catergory='" + scatg + "',language='" + lagu + "',qulification='" + jTextField7.getText() + "',ms_type='" + mtype + "',media_type='" + mediaty + "' where idrm='" + jTextField2.getText() + "' ");
+            jTextField2.setText("");
+            emnu_name.setText("");
+            jTextField7.setText("");
+            tableLoad();
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        //select the author name
+        String an = jList1.getSelectedValue().toString();
+        aname.setText(an);
+
+        jPanel3.setVisible(false);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameActionPerformed
+        // TODO add your handling code here:
+        ln.grabFocus();
+    }//GEN-LAST:event_fnameActionPerformed
+
+    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
+        // TODO add your handling code here:
+        contct.grabFocus();
+    }//GEN-LAST:event_lnActionPerformed
+
+    private void contctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contctActionPerformed
+        // TODO add your handling code here:
+        email.grabFocus();
+    }//GEN-LAST:event_contctActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+        addres.grabFocus();
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -885,6 +1190,8 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -926,6 +1233,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -934,6 +1242,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -952,6 +1261,8 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
