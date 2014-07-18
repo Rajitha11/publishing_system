@@ -382,6 +382,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         usb.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         usb.setText("USB");
         jPanel2.add(usb, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, -1, -1));
+
+        qulifi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qulifiActionPerformed(evt);
+            }
+        });
         jPanel2.add(qulifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 350, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -408,6 +414,12 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         langu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(langu, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 206, -1));
+
+        nme_manuscript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nme_manuscriptActionPerformed(evt);
+            }
+        });
         jPanel2.add(nme_manuscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 270, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1123,6 +1135,15 @@ public class resivinManuScript extends javax.swing.JFrame {
         // TODO add your handling code here:
         addres.grabFocus();
     }//GEN-LAST:event_emailActionPerformed
+
+    private void nme_manuscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nme_manuscriptActionPerformed
+        // TODO add your handling code here:
+        catag.grabFocus();
+    }//GEN-LAST:event_nme_manuscriptActionPerformed
+
+    private void qulifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qulifiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_qulifiActionPerformed
 
     /**
      * @param args the command line arguments
