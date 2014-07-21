@@ -47,6 +47,13 @@ public class resivinManuScript extends javax.swing.JFrame {
         //author id hide
         jTextField1.setVisible(false);
 
+
+        try {
+            jLabel3.setText(maxid("idrm", "reseving_manuscript", 1));
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     void dateMethod() {
@@ -80,18 +87,18 @@ public class resivinManuScript extends javax.swing.JFrame {
         }
 
     }
-//    public String maxid(String columname, String table, int columno) throws Exception {
-//        int i2 = 0;
-//        ResultSet sr = ConnectionSet1.getInstance().getResult("SELECT * from " + table + " WHERE(SELECT Max(" + columname + ")FROM " + table + ")");
-//        while (sr.next()) {
-//            String id = sr.getString(columno);
-//            int i = Integer.parseInt(id);
-//            i2 = i + 1;
-//        }
-//        
-//        return i2 + "".toString();
-//    }
-    //ownerid.setText(maxid("oid", "owner", 1));
+
+    public String maxid(String columname, String table, int columno) throws Exception {
+        int i2 = 0;
+        ResultSet sr = ConnectionSet1.getInstance().getResult("SELECT * from " + table + " WHERE(SELECT Max(" + columname + ")FROM " + table + ")");
+        while (sr.next()) {
+            String id = sr.getString(columno);
+            int i = Integer.parseInt(id);
+            i2 = i + 1;
+        }
+
+        return i2 + "".toString();
+    }
 
     void save() {
         try {
@@ -425,9 +432,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("* Name Of The Manuscript");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
-        jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 70, 20));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel45.setText("* Received No ");
@@ -766,9 +771,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("* Received No ");
         jPanel10.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
-
-        jLabel44.setText("jLabel3");
-        jPanel10.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 50, 20));
+        jPanel10.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 70, 20));
         jPanel10.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 250, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -835,7 +838,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 700, 108, 45));
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 0, 0));
+        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 0, -1));
 
         jTabbedPane1.addTab("Reserving Manuscript Details", jPanel6);
 
@@ -848,6 +851,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         // insert to the database
+
         save();
         clear();
         tableLoad();
@@ -1019,6 +1023,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         String s6 = dtm.getValueAt(i, 6).toString();
         String s7 = dtm.getValueAt(i, 7).toString();
 
+        jLabel44.setText(s);
         jTextField2.setText(s);
         emnu_name.setText(s1);
 
