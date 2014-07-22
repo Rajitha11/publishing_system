@@ -35,10 +35,13 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
     void tableLoad() {
         try {
-            new tablemodel1().fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor", jTable2);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor ORDER BY idrm DESC", jTable2);
             new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable3);
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable4);
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Pending'", jTable4);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Approve'", jTable5);
+
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Approve'", jTable6);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Reject'", jTable7);
 
 
         } catch (ClassNotFoundException ex) {
@@ -110,6 +113,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        jButton11 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -159,6 +163,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -199,8 +204,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jLabel58 = new javax.swing.JLabel();
         jCheckBox5 = new javax.swing.JCheckBox();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -381,11 +389,22 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 810, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Delete");
+        jButton2.setText("Clear");
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 810, 108, 45));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 810, 108, 45));
         jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 200, -1));
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton11.setText("Delete");
+        jButton11.setBorder(null);
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 810, 108, 45));
 
         jTabbedPane5.addTab("Evaluvation Of The Manuscript", jPanel1);
 
@@ -424,7 +443,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date"
+                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Decision"
             }
         ));
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -614,10 +633,21 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 820, 108, 45));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setText("Delete");
+        jButton6.setText("Clear");
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 820, 108, 45));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 820, 108, 45));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Delete");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 820, 108, 45));
 
         jTabbedPane5.addTab("Approval of the Manuscript", jPanel2);
 
@@ -639,6 +669,12 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Received Approved Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField15KeyReleased(evt);
+            }
+        });
         jPanel12.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -650,12 +686,17 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent Date", "Recieved Date"
+                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Recieved Date", "Decision"
             }
         ));
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable6MouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(jTable6);
 
-        jPanel12.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1060, 130));
+        jPanel12.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1090, 130));
 
         jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1110, 200));
 
@@ -672,12 +713,17 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent Date", "Recieved Date"
+                "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Recieved Date", "Decision"
             }
         ));
+        jTable7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable7MouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(jTable7);
 
-        jPanel13.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1060, 140));
+        jPanel13.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1090, 140));
 
         jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 1110, 220));
 
@@ -725,9 +771,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jTextField21.setEditable(false);
         jPanel14.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 100, -1));
-
-        jLabel51.setText("jLabel3");
-        jPanel14.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, -1, -1));
+        jPanel14.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 20, 80, 30));
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel52.setText("Sent To");
@@ -750,9 +794,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jLabel55.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel55.setText("Received No ");
         jPanel14.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, -1, -1));
-
-        jLabel56.setText("jLabel20");
-        jPanel14.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 130, -1, -1));
+        jPanel14.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 120, 140, 40));
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel57.setText("Recieved Date");
@@ -760,7 +802,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel58.setText("* Affter The Reconsideration of Manuscript ");
-        jPanel14.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, 30));
+        jPanel14.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, 30));
 
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox5.setText("  Approve The Manuscript");
@@ -769,22 +811,43 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, 220, -1));
+        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 220, -1));
         jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 200, -1));
 
-        jPanel3.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 1090, 250));
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel59.setText("Decision");
+        jPanel14.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 90, -1));
+        jPanel14.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 140, 40));
+
+        jPanel3.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 1090, 260));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setText("Update");
+        jButton7.setText("Clear");
         jButton7.setBorder(null);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 108, 45));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 810, 108, 45));
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton8.setText("Delete");
         jButton8.setBorder(null);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 810, 108, 45));
+
+        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton9.setText("Update");
+        jButton9.setBorder(null);
+        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 108, 45));
 
         jTabbedPane5.addTab("Approved / Rejected Manuscript", jPanel3);
 
@@ -879,7 +942,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             String sntto = jComboBox3.getSelectedItem().toString();
             String sntby = jComboBox4.getSelectedItem().toString();
             String sntdat = datechosser(jDateChooser4);
-            ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "')");
+            ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm,decision) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "','Pending')");
 
             jLabel3.setText("");
             jTextField1.setText("");
@@ -978,7 +1041,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             // serch data
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "')", jTable4);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or decision like('" + jTextField8.getText() + "%%%" + "')", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1125,29 +1188,199 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
             // TODO add your handling code here:
-            //save approvel manu script
-                String resdat = datechosser(jDateChooser1);
-                String aprow;
-                if (jCheckBox3.isSelected()) {
-                    aprow = "Approve";
-                } else {
-                    aprow = "Reject";
-                }
+            //update approvel manu script
+            String resdat = datechosser(jDateChooser1);
+            String aprow;
+            if (jCheckBox3.isSelected()) {
+                aprow = "Approve";
+            } else {
+                aprow = "Reject";
+            }
 
-                ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
-                jLabel27.setText("");
-                jTextField9.setText("");
-                jTextField10.setText("");
-                jTextField11.setText("");
-                jTextField12.setText("");
-                jTextField13.setText("");
-                jLabel34.setText("");
-                jTextArea1.setText("");
-                tableLoad();
+            ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
+            jLabel27.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
+            jTextField13.setText("");
+            jLabel34.setText("");
+            jTextArea1.setText("");
+            tableLoad();
         } catch (Exception ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        // TODO add your handling code here:
+        // set value from the all sent manu script table
+        DefaultTableModel dtm = (DefaultTableModel) jTable6.getModel();
+        int i = jTable6.getSelectedRow();
+        Vector v = new Vector();
+        Vector v1 = new Vector();
+        Vector v2 = new Vector();
+
+        String s = dtm.getValueAt(i, 0).toString();
+        String s1 = dtm.getValueAt(i, 1).toString();
+        String s2 = dtm.getValueAt(i, 2).toString();
+        String s3 = dtm.getValueAt(i, 3).toString();
+        String s4 = dtm.getValueAt(i, 4).toString();
+        String s5 = dtm.getValueAt(i, 5).toString();
+        String s6 = dtm.getValueAt(i, 6).toString();
+        String s7 = dtm.getValueAt(i, 7).toString();
+        String s8 = dtm.getValueAt(i, 8).toString();
+        String s9 = dtm.getValueAt(i, 9).toString();
+        String s10 = dtm.getValueAt(i, 10).toString();
+        String s11 = dtm.getValueAt(i, 11).toString();
+
+        jLabel51.setText(s);
+        jTextField17.setText(s1);
+        jTextField18.setText(s2);
+        jTextField19.setText(s3);
+        jTextField20.setText(s4);
+
+        v.add(s5);
+        jComboBox7.setModel(new DefaultComboBoxModel(v));
+
+        jTextField21.setText(s6);
+
+        v1.add(s7);
+        jComboBox8.setModel(new DefaultComboBoxModel(v1));
+
+        v2.add(s8);
+        jComboBox9.setModel(new DefaultComboBoxModel(v2));
+
+        jLabel56.setText(s9);
+
+        Date d1 = new Date(s10);
+        d1.getDate();
+        jDateChooser5.setDate(d1);
+
+        jLabel60.setText(s11);
+    }//GEN-LAST:event_jTable6MouseClicked
+
+    private void jTable7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable7MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) jTable7.getModel();
+        int i = jTable7.getSelectedRow();
+        Vector v = new Vector();
+        Vector v1 = new Vector();
+        Vector v2 = new Vector();
+
+        String s = dtm.getValueAt(i, 0).toString();
+        String s1 = dtm.getValueAt(i, 1).toString();
+        String s2 = dtm.getValueAt(i, 2).toString();
+        String s3 = dtm.getValueAt(i, 3).toString();
+        String s4 = dtm.getValueAt(i, 4).toString();
+        String s5 = dtm.getValueAt(i, 5).toString();
+        String s6 = dtm.getValueAt(i, 6).toString();
+        String s7 = dtm.getValueAt(i, 7).toString();
+        String s8 = dtm.getValueAt(i, 8).toString();
+        String s9 = dtm.getValueAt(i, 9).toString();
+        String s10 = dtm.getValueAt(i, 10).toString();
+        String s11 = dtm.getValueAt(i, 11).toString();
+
+        jLabel51.setText(s);
+        jTextField17.setText(s1);
+        jTextField18.setText(s2);
+        jTextField19.setText(s3);
+        jTextField20.setText(s4);
+
+        v.add(s5);
+        jComboBox7.setModel(new DefaultComboBoxModel(v));
+
+        jTextField21.setText(s6);
+
+        v1.add(s7);
+        jComboBox8.setModel(new DefaultComboBoxModel(v1));
+
+        v2.add(s8);
+        jComboBox9.setModel(new DefaultComboBoxModel(v2));
+
+        jLabel56.setText(s9);
+
+        Date d1 = new Date(s10);
+        d1.getDate();
+        jDateChooser5.setDate(d1);
+
+        jLabel60.setText(s11);
+    }//GEN-LAST:event_jTable7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        // clera all
+        jLabel51.setText("");
+        jTextField17.setText("");
+        jTextField18.setText("");
+        jTextField19.setText("");
+        jTextField20.setText("");
+        jTextField21.setText("");
+        jLabel56.setText("");
+        jLabel60.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        //clear all
+        jLabel27.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+        jTextField12.setText("");
+        jTextField13.setText("");
+        jLabel34.setText("");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // clear all
+        jLabel3.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField6.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update approvel manu script
+            String resdat = datechosser(jDateChooser5);
+            String aprow1 = null;
+            if (jCheckBox5.isSelected()) {
+                aprow1 = "Approve";
+            }
+
+            ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow1 + "' where reseving_manuscript_idrm='" + jLabel51.getText() + "'");
+            jLabel51.setText("");
+            jTextField17.setText("");
+            jTextField18.setText("");
+            jTextField19.setText("");
+            jTextField20.setText("");
+            jTextField21.setText("");
+            jLabel56.setText("");
+            jLabel60.setText("");
+            tableLoad();
+        } catch (Exception ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTextField15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyReleased
+        try {
+            // TODO add your handling code here:
+            // serch data
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField15.getText() + "%%" + "') or manuscript_name like('" + jTextField15.getText() + "%%%" + "') or decision like('" + jTextField15.getText() + "%%%" + "')", jTable6);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField15KeyReleased
 
     /**
      * @param args the command line arguments
@@ -1186,6 +1419,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1193,6 +1428,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
@@ -1262,7 +1498,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
