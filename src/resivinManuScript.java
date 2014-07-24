@@ -66,6 +66,12 @@ public class resivinManuScript extends javax.swing.JFrame {
                 Date d = new Date();
                 jLabel14.setText(d1.format(d));
                 jLabel30.setText(d2.format(d));
+                
+                jLabel21.setText(d1.format(d));
+                jLabel33.setText(d2.format(d));
+                
+                jLabel29.setText(d1.format(d));
+                jLabel35.setText(d2.format(d));
             }
         });
         t.start();
@@ -74,8 +80,8 @@ public class resivinManuScript extends javax.swing.JFrame {
 
     void tableLoad() {
         try {
-            new tablemodel1().fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor", jTable1);
-            new tablemodel1().fillTable("Select idrm,manuscript_name,catergory,sub_catergory,language,qulification,ms_type,media_type from reseving_manuscript", jTable3);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,contact_land,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor ORDER BY idrm DESC", jTable1);
+            new tablemodel1().fillTable("Select idrm,manuscript_name,catergory,sub_catergory,language,qulification,ms_type,media_type from reseving_manuscript ORDER BY idrm DESC", jTable3);
             new tablemodel1().fillTable("Select * from author", jTable2);
 
         } catch (ClassNotFoundException ex) {
@@ -123,7 +129,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             if (jCheckBox1.isSelected()) {
                 System.out.println("aaaaaaaaaa");
 
-                ConnectionSet1.getInstance().setResult("insert into author(`author`.`fname`, `author`.`lname`, `author`.`contact_no`, `author`.`address`, `author`.`email`) values ('" + fname.getText() + "','" + ln.getText() + "','" + contct.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
+                ConnectionSet1.getInstance().setResult("insert into author(`author`.`fname`, `author`.`lname`, `author`.`contact_no`, `author`.`contact_land`, `author`.`address`, `author`.`email`) values ('" + fname.getText() + "','" + ln.getText() + "','" + contct.getText() + "','"+jTextField3.getText()+"','" + addres.getText() + "','" + email.getText() + "')");
                 System.out.println("bbbbbbbb");
 
                 int author = 0;
@@ -232,6 +238,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         addres = new javax.swing.JTextArea();
         jLabel31 = new javax.swing.JLabel();
         ln = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel46 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -264,6 +272,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         eaddress = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -328,7 +337,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Recive No", "Authour Name", "Contact No", "Address", "Email", "Script Name", "Catergory", "Script Type"
+                "Recive No", "Authour Name", "Mobile", "Fixed", "Address", "Email", "Script Name", "Catergory", "Script Type"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -448,12 +457,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("* Contact Number");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 62, -1, -1));
+        jLabel6.setText("(Fixed)");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("* Email");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         fname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,7 +483,7 @@ public class resivinManuScript extends javax.swing.JFrame {
                 emailActionPerformed(evt);
             }
         });
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 270, -1));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 270, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("* Current Address");
@@ -497,6 +506,11 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 200, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 200, -1));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel46.setText("* Contact Number (Mobile)");
+        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 62, -1, -1));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, 1090, 160));
 
@@ -574,11 +588,11 @@ public class resivinManuScript extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "fname", "lname", "Contact No", "Addres", "Email"
+                "id", "fname", "lname", "Mobile", "Fixed", "Addres", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -635,7 +649,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel24.setText("* Email");
-        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 93, -1, -1));
+        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setText("* Current Address");
@@ -644,7 +658,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel34.setText("* Author First Name");
         jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
-        jPanel8.add(eemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, -1));
+        jPanel8.add(eemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 240, -1));
         jPanel8.add(efn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 240, -1));
         jPanel8.add(eln, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 240, -1));
         jPanel8.add(econtct, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 240, -1));
@@ -655,6 +669,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jPanel8.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 360, -1));
         jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 0));
+        jPanel8.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, -1));
 
         jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 1090, 180));
 
@@ -970,13 +985,15 @@ public class resivinManuScript extends javax.swing.JFrame {
         String s3 = dtm.getValueAt(i, 3).toString();
         String s4 = dtm.getValueAt(i, 4).toString();
         String s5 = dtm.getValueAt(i, 5).toString();
+        String s6 = dtm.getValueAt(i, 6).toString();
 
         jTextField1.setText(s);
         efn.setText(s1);
         eln.setText(s2);
         econtct.setText(s3);
-        eaddress.setText(s4);
-        eemail.setText(s5);
+        jTextField4.setText(s4);
+        eaddress.setText(s5);
+        eemail.setText(s6);
 
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -1260,6 +1277,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1289,6 +1307,8 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;

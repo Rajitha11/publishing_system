@@ -2,6 +2,8 @@
 import com.org.DB.ConnectionSet1;
 import com.org.clz.tablemodel1;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -10,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -25,11 +28,16 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     /**
      * Creates new form fullEvoluationProcess
      */
+    
+    SimpleDateFormat d1, d2;
+    Timer t;
+    
     public fullEvoluationProcess() {
         initComponents();
         //
         jPanel10.setVisible(false);
         //
+        dateMethod();
         tableLoad();
     }
 
@@ -61,6 +69,27 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         System.out.println(date);
         return date;
 
+    }
+    
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel14.setText(d1.format(d));
+                jLabel30.setText(d2.format(d));
+                
+                jLabel18.setText(d1.format(d));
+                jLabel31.setText(d2.format(d));
+                
+                jLabel41.setText(d1.format(d));
+                jLabel42.setText(d2.format(d));
+            }
+        });
+        t.start();
     }
 
     /**
@@ -662,10 +691,10 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel3.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel3.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 210, 52));
+        jPanel3.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 210, 52));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel3.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 110, 30));
+        jPanel3.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 50, 110, 30));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Received Approved Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -868,6 +897,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
         // aprove or reject manuscript
+        if (jCheckBox3.isSelected()) {
+            jPanel10.setVisible(false);
+        } else {
+            jPanel10.setVisible(true);
+        }
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
