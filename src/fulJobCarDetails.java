@@ -313,6 +313,11 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jButton3.setText("Update");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 810, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -684,7 +689,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
 
             int i = jTable3.getSelectedRow();
             String coln = dtm.getValueAt(i, 0).toString();
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn,type_setter,remark from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reseving_manuscript_idrm='" + coln + "'");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn_apply,isbn,type_setter,remark,agrmt_sign,agrmt_type,agrmt_sign_date,pm_aprove,md_aprove from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reseving_manuscript_idrm='" + coln + "'");
 
             if (rs.next()) {
 
@@ -718,30 +723,51 @@ public class fulJobCarDetails extends javax.swing.JFrame {
                 String s8 = rs.getString("isbn");
                 isbn.setText(s8);
 
-//                String s9 = rs.getString("isbn_apply");
-//                if (s9.equals("Yes")) {
-//                    aprvisbn.setSelected(true);
-//                } else{}
-                
+                String s9 = rs.getString("isbn_apply");
+                if (s9.equals("Yes")) {
+                    aprvisbn.setSelected(true);
+                } else {
+                    aprvisbn.setSelected(false);
+                }
+
                 String s10 = rs.getString("type_setter");
                 Vector v3 = new Vector();
                 v3.add(s10);
                 typstr.setModel(new DefaultComboBoxModel(v3));
-                
+
                 String s11 = rs.getString("remark");
                 rmrk.setText(s11);
-                
-//                String s12 = rs.getString("agrmt_sign");
-//                if(s12.equals("Yes")){
-//                    ay.setSelected(true);
-//                }else{
-//                    an.setSelected(true);
-//                }
-                
+
+                String s12 = rs.getString("agrmt_sign");
+                if (s12.equals("Yes")) {
+                    ay.setSelected(true);
+                } else {
+                    an.setSelected(true);
+                }
+
                 String s13 = rs.getString("agrmt_type");
                 Vector v4 = new Vector();
                 v4.add(s13);
                 agmtty.setModel(new DefaultComboBoxModel(v4));
+
+                String s14 = rs.getString("agrmt_sign_date");
+                Date d1 = new Date(s14);
+                d1.getDate();
+                agmtdte.setDate(d1);
+
+                String s15 = rs.getString("pm_aprove");
+                if (s15.equals("Yes")) {
+                    pmy.setSelected(true);
+                } else {
+                    pmn.setSelected(true);
+                }
+
+                String s16 = rs.getString("md_aprove");
+                if (s16.equals("Yes")) {
+                    dy.setSelected(true);
+                } else {
+                    dn.setSelected(true);
+                }
 
             }
 
@@ -750,6 +776,56 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            // update a job card
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+            
+            String isbnsjnt;
+            if (aprvisbn.isSelected()) {
+                isbnsjnt = "Yes";
+            } else {
+                isbnsjnt = "No";
+            }
+
+            String isb = isbn.getText();
+            String typs = typstr.getSelectedItem().toString();
+            String rmk = rmrk.getText();
+
+            String agsing;
+            if (ay.isSelected()) {
+                agsing = "Yes";
+            } else {
+                agsing = "No";
+            }
+
+            String agtyp = agmtty.getSelectedItem().toString();
+            String resdat = datechosser(agmtdte);
+
+            String pmarv;
+            if (pmy.isSelected()) {
+                pmarv = "Yes";
+            } else {
+                pmarv = "No";
+            }
+
+            String mdaprv;
+            if (dy.isSelected()) {
+                mdaprv = "Yes";
+            } else {
+                mdaprv = "No";
+            }
+            
+            ConnectionSet1.getInstance().setResult("update job_card set isbn_apply='"+isbnsjnt+"',isbn='"+isb+"',type_setter='"+typs+"',remark='"+rmk+"',agrmt_sign='"+agsing+"',agrmt_type='"+agtyp+"',agrmt_sign_date='"+resdat+"',pm_aprove='"+pmarv+"',md_aprove='"+mdaprv+"' where idjob_card='"+jcno.getText()+"'");
+            clear();
+            tableLoad();
+        } catch (Exception ex) {
+            Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
