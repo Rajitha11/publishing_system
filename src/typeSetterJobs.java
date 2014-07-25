@@ -2,12 +2,15 @@
 import com.org.DB.ConnectionSet1;
 import com.org.clz.tablemodel1;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -23,10 +26,16 @@ public class typeSetterJobs extends javax.swing.JFrame {
     /**
      * Creates new form typeSetterJobs
      */
+    
+    SimpleDateFormat d1, d2;
+    Timer t;
+    
     public typeSetterJobs() {
         initComponents();
 
         tableLoad();
+        
+        dateMethod();
     }
 
     void tableLoad() {
@@ -43,6 +52,31 @@ public class typeSetterJobs extends javax.swing.JFrame {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel14.setText(d1.format(d));
+                jLabel30.setText(d2.format(d));
+
+                jLabel38.setText(d1.format(d));
+                jLabel39.setText(d2.format(d));
+                
+                jLabel25.setText(d1.format(d));
+                jLabel32.setText(d2.format(d));
+
+                jLabel66.setText(d1.format(d));
+                jLabel67.setText(d2.format(d));
+
+            }
+        });
+        t.start();
     }
 
     public static String datechosser(JDateChooser jd) {
