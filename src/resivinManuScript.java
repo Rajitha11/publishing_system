@@ -934,7 +934,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             // manuscript Search
-            tablemodel1.fillTable("select idrm,fname,contact_no,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor where fname like('" + mscript_serch.getText() + "%%" + "') or manuscript_name like('" + mscript_serch.getText() + "%%%" + "')", jTable1);
+            tablemodel1.fillTable("select idrm,fname,contact_no,contact_land,address,email,manuscript_name,catergory,ms_type from reseving_manuscript r1 inner join author t2 on r1.author_idauthor = t2.idauthor where fname like('" + mscript_serch.getText() + "%%" + "') or manuscript_name like('" + mscript_serch.getText() + "%%%" + "')", jTable1);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

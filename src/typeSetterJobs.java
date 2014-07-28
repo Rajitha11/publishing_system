@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -26,15 +27,17 @@ public class typeSetterJobs extends javax.swing.JFrame {
     /**
      * Creates new form typeSetterJobs
      */
-    
     SimpleDateFormat d1, d2;
     Timer t;
-    
+
     public typeSetterJobs() {
         initComponents();
 
+        //hide the jlist
+        jPanel5.setVisible(false);
+
         tableLoad();
-        
+
         dateMethod();
     }
 
@@ -43,6 +46,8 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
             tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable4);
             tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
+            tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remark,sent_date,resive_date from proof_details", jTable2);
+            
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,7 +58,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         }
 
     }
-    
+
     void dateMethod() {
         //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
@@ -67,7 +72,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
                 jLabel38.setText(d1.format(d));
                 jLabel39.setText(d2.format(d));
-                
+
                 jLabel25.setText(d1.format(d));
                 jLabel32.setText(d2.format(d));
 
@@ -97,6 +102,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -137,21 +143,23 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jLabel49 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox();
         jButton12 = new javax.swing.JButton();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton10 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -161,6 +169,10 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jButton9 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -394,69 +406,96 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("* Proof Step");
-        jPanel14.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel14.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel45.setText("* Remark");
-        jPanel14.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
-        jPanel14.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 290, -1));
-
-        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel46.setText("* Date Returned");
-        jPanel14.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        jPanel14.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        jPanel14.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 290, -1));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel47.setText("* Sent Date ");
-        jPanel14.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        jPanel14.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel48.setText("* Proof Reader");
+        jLabel48.setText("Job Card No");
         jPanel14.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane7.setViewportView(jTextArea3);
 
-        jPanel14.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 420, 60));
-
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Delete");
-        jButton8.setBorder(null);
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel14.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 200, 80, 30));
-
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton9.setText("Update");
-        jButton9.setBorder(null);
-        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel14.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 200, 80, 30));
+        jPanel14.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 420, 60));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel49.setText("* Book Title");
         jPanel14.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 100, -1));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel14.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 200, -1));
-
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton12.setText("Save");
         jButton12.setBorder(null);
         jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         jPanel14.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 200, 80, 30));
-        jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 200, -1));
-        jPanel14.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 200, -1));
+        jPanel14.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 200, -1));
 
+        buttonGroup1.add(jCheckBox3);
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox3.setText("3 rd  Proof");
-        jPanel14.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        jPanel14.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
+        buttonGroup1.add(jCheckBox5);
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox5.setText("1 st Proof");
-        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
+        jPanel14.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
+        buttonGroup1.add(jCheckBox6);
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox6.setText("2 nd  Proof");
-        jPanel14.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+        jPanel14.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+        jPanel14.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 260, -1));
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 260, 70));
+
+        jPanel14.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 280, 80));
+
+        jLabel73.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel73.setText("* Proof Reader");
+        jPanel14.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
+        jPanel14.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 100, 30));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Delete");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel14.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 80, 30));
 
         jPanel12.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 1040, 250));
 
@@ -468,14 +507,19 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Book Title", "Proof Step ", "Proof Reader", "Remark", "Sent Date", "Date Returned"
+                "Job Card No", "Book Title", "Proof Step ", "Proof Reader", "Remark", "Sent Date", "Date Returned"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable2);
 
-        jPanel11.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 980, 220));
+        jPanel11.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 1000, 220));
 
-        jPanel12.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 1020, 270));
+        jPanel12.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 1040, 270));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel26.setText("Proof Details");
@@ -490,11 +534,44 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel12.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 110, 30));
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel12.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 295, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("Search");
         jPanel12.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 55, -1));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel46.setText("* Date Returned");
+        jPanel12.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 730, -1, -1));
+        jPanel12.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 730, 200, -1));
+
+        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton9.setText("Update");
+        jButton9.setBorder(null);
+        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 720, 80, 30));
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton8.setText("Clear");
+        jButton8.setBorder(null);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 720, 80, 30));
 
         jTabbedPane1.addTab("Proof Details", jPanel12);
 
@@ -544,17 +621,17 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("Job No ");
-        jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
         jLabel29.setText("jLabel3");
-        jPanel9.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, -1));
+        jPanel9.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
 
         jTextField9.setEditable(false);
-        jPanel9.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 250, -1));
+        jPanel9.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 250, -1));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel33.setText("ISBN");
-        jPanel9.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
+        jPanel9.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, -1));
 
         jTextField10.setEditable(false);
         jPanel9.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 290, -1));
@@ -572,16 +649,16 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
-        jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+        jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, -1));
 
-        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 1070, 150));
+        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 1010, 150));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Complete Work", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Save");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 90, 30));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 100, 40));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -659,7 +736,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 660, 80));
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 820, 260));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 820, 260));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("Date ");
@@ -824,7 +901,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
             // TODO add your handling code here:
             //approve the job typesetter
             tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where  fname like('" + jTextField23.getText() + "%%" + "') or manuscript_name like('" + jTextField23.getText() + "%%%" + "') or isbn like('" + jTextField23.getText() + "%%%" + "')", jTable5);
-        
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -832,8 +909,191 @@ public class typeSetterJobs extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }//GEN-LAST:event_jTextField23KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        //get the manuscriptname
+        if (!jTextField1.getText().isEmpty()) {
+            try {
+                jPanel5.setVisible(true);
+
+                //ResultSet rs = ConnectionSet1.getInstance().getResult("select * from reseving_manuscript where manuscript_name like('" + jTextField1.getText() + "%%%%%" + "')");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select manuscript_name,idjob_card from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm where manuscript_name like('" + jTextField1.getText() + "%%%%%" + "')");
+                Vector v = new Vector();
+                //Vector v1 = new Vector();
+
+                while (rs.next()) {
+                    v.add(rs.getString("manuscript_name"));
+                    //v1.add(rs.getString("idjob_card"));
+                    jLabel2.setText(rs.getString("idjob_card"));
+                }
+
+                jList1.setListData(v);
+
+            } catch (Exception ex) {
+                Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jPanel5.setVisible(false);
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        //select the name in arrov keys
+        if (evt.getKeyCode() == 40) {
+            jList1.requestFocus();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+        // TODO add your handling code here:
+        //set value for the textfeild to click the enter button
+        if (evt.getKeyCode() == 10) {
+            String mname = jList1.getSelectedValue().toString();
+            jTextField1.setText(mname);
+            jPanel5.setVisible(false);
+        }
+    }//GEN-LAST:event_jList1KeyPressed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        //set value for the textfeild
+        String mname = jList1.getSelectedValue().toString();
+        jTextField1.setText(mname);
+        jPanel5.setVisible(false);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //save the proof details
+
+            String proof;
+            if (jCheckBox5.isSelected()) {
+                proof = "1 st Proof";
+            } else if (jCheckBox6.isSelected()) {
+                proof = "2 nd Proof";
+            } else {
+                proof = "3 rd Proof";
+            }
+
+            String sdte = datechosser(jDateChooser5);
+            //String dtertn = datechosser(jDateChooser6);
+
+            ConnectionSet1.getInstance().setResult("insert into proof_details(`proof_details`.`b_title`, `proof_details`.`p_step`, `proof_details`.`p_reader`, `proof_details`.`sent_date`,`proof_details`.`remark`, `proof_details`.`job_card_idjob_card`) values"
+                    + "('" + jTextField1.getText() + "','" + proof + "','" + jTextField13.getText() + "','" + sdte + "','" + jTextArea3.getText() + "','" + jLabel2.getText() + "')");
+
+            jTextField1.setText("");
+            jTextField13.setText("");
+            jTextArea3.setText("");
+            jLabel2.setText("");
+            tableLoad();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update proof details
+            String proof;
+            if (jCheckBox5.isSelected()) {
+                proof = "1 st Proof";
+            } else if (jCheckBox6.isSelected()) {
+                proof = "2 nd Proof";
+            } else {
+                proof = "3 rd Proof";
+            }
+
+            String sdte = datechosser(jDateChooser5);
+            String dtertn = datechosser(jDateChooser6);
+
+            ConnectionSet1.getInstance().setResult("Update proof_details set b_title='"+jTextField1.getText()+"',p_reader='"+jTextField13.getText()+"',sent_date='"+sdte+"',resive_date='"+dtertn+"',remark='"+jTextArea3.getText()+"' where p_step='"+proof+"'");
+            jTextField1.setText("");
+            jTextField13.setText("");
+            jTextArea3.setText("");
+            jLabel2.setText("");
+            tableLoad();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //proof details search
+            tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remark,sent_date,resive_date from proof_details where b_title like('" + jTextField12.getText() + "%%%" + "') or job_card_idjob_card like('" + jTextField12.getText() + "%%" + "') or p_step like('" + jTextField12.getText() + "%%" + "')", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField12KeyReleased
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try {
+            // TODO add your handling code here:
+            //set data from the proof details
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+
+            String s1 = dtm.getValueAt(i, 0).toString();
+            jLabel2.setText(s1);
+
+            String s2 = dtm.getValueAt(i, 1).toString();
+            jTextField1.setText(s2);
+
+            String prof = dtm.getValueAt(i, 2).toString();
+            if (prof.equals("1 st Proof")) {
+                jCheckBox5.setSelected(true);
+            } else if (prof.equals("2 nd Proof")) {
+                jCheckBox6.setSelected(true);
+            } else {
+                jCheckBox3.setSelected(true);
+            }
+
+            String s4 = dtm.getValueAt(i, 3).toString();
+            jTextField13.setText(s4);
+
+            String s5 = dtm.getValueAt(i, 4).toString();
+            jTextArea3.setText(s5);
+
+            String s6 = dtm.getValueAt(i, 5).toString();
+            Date d1 = new Date(s6);
+            d1.getDate();
+            jDateChooser5.setDate(d1);
+
+            String s7 = dtm.getValueAt(i, 6).toString();
+            Date d2 = new Date(s7);
+            d2.getDate();
+            jDateChooser6.setDate(d2);
+
+
+
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        //claer all
+        jTextField1.setText("");
+        jTextField13.setText("");
+        jTextArea3.setText("");
+        jLabel2.setText("");
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -870,7 +1130,9 @@ public class typeSetterJobs extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -885,13 +1147,13 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox jComboBox8;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -945,6 +1207,8 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -959,9 +1223,11 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -977,6 +1243,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
