@@ -731,6 +731,12 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Received Rijected Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField16KeyReleased(evt);
+            }
+        });
         jPanel13.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1072,10 +1078,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
-        try {
+        
+            try {
             // TODO add your handling code here:
             // serch data
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or decision like('" + jTextField8.getText() + "%%%" + "')", jTable4);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Pending' and (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or decision like('" + jTextField8.getText() + "%%%" + "'))", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1083,6 +1090,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+        
+        
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -1153,10 +1163,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyReleased
+        
         try {
             // TODO add your handling code here:
             // serch data
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField14.getText() + "%%" + "') or manuscript_name like('" + jTextField14.getText() + "%%%" + "') or decision like('" + jTextField14.getText() + "%%%" + "')", jTable5);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Approve' AND (fname like('" + jTextField14.getText() + "%%" + "') or manuscript_name like('" + jTextField14.getText() + "%%%" + "') or decision like('" + jTextField14.getText() + "%%%" + "'))", jTable5);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1164,6 +1175,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_jTextField14KeyReleased
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
@@ -1406,7 +1418,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             // serch data
-            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField15.getText() + "%%" + "') or manuscript_name like('" + jTextField15.getText() + "%%%" + "') or decision like('" + jTextField15.getText() + "%%%" + "')", jTable6);
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Approve'"
+                    + "AND (fname like('" + jTextField15.getText() + "%%" + "') or manuscript_name like('" + jTextField15.getText() + "%%%" + "') or decision like('" + jTextField15.getText() + "%%%" + "'))", jTable6);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1415,6 +1428,21 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextField15KeyReleased
+
+    private void jTextField16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch reject manuscript
+            new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,recive_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor"
+                    + " where decision='Reject' AND (fname like('" + jTextField16.getText() + "%%" + "') or manuscript_name like('" + jTextField16.getText() + "%%%" + "') or decision like('" + jTextField16.getText() + "%%%" + "'))", jTable7);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField16KeyReleased
 
     /**
      * @param args the command line arguments

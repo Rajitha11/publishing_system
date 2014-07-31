@@ -47,7 +47,8 @@ public class typeSetterJobs extends javax.swing.JFrame {
             tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable4);
             tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
             tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remark,sent_date,resive_date from proof_details", jTable2);
-            
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof'", jTable1);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from typesetter_fil t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complete='Yes'", jTable3);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,6 +195,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -598,9 +600,20 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 "Job No", "Date", "Title", "Author", "ISBN", "Language"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1060, 200));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -622,9 +635,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("Job No ");
         jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
-
-        jLabel29.setText("jLabel3");
-        jPanel9.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
+        jPanel9.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 90, 30));
 
         jTextField9.setEditable(false);
         jPanel9.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 250, -1));
@@ -650,6 +661,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel36.setText("Date ");
         jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, -1));
+        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 100, 30));
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 1010, 150));
 
@@ -658,6 +670,11 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Save");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 100, 40));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -736,7 +753,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 660, 80));
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 820, 260));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 800, 260));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("Date ");
@@ -746,7 +763,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Completedobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Completed Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -759,7 +776,13 @@ public class typeSetterJobs extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTable3);
 
-        jPanel18.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 1040, 200));
+        jPanel18.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1060, 200));
+
+        jTextField24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField24KeyReleased(evt);
+            }
+        });
         jPanel18.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 295, -1));
 
         jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -782,7 +805,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel67.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel4.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Completedobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ongoing Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
@@ -795,7 +818,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         ));
         jScrollPane8.setViewportView(jTable6);
 
-        jPanel19.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 1040, 200));
+        jPanel19.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1060, 200));
         jPanel19.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 295, -1));
 
         jLabel68.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -937,6 +960,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
             }
         } else {
             jPanel5.setVisible(false);
+            jLabel2.setText("");
         }
     }//GEN-LAST:event_jTextField1KeyReleased
 
@@ -1013,13 +1037,13 @@ public class typeSetterJobs extends javax.swing.JFrame {
             String sdte = datechosser(jDateChooser5);
             String dtertn = datechosser(jDateChooser6);
 
-            ConnectionSet1.getInstance().setResult("Update proof_details set b_title='"+jTextField1.getText()+"',p_reader='"+jTextField13.getText()+"',sent_date='"+sdte+"',resive_date='"+dtertn+"',remark='"+jTextArea3.getText()+"' where p_step='"+proof+"'");
+            ConnectionSet1.getInstance().setResult("Update proof_details set b_title='" + jTextField1.getText() + "',p_reader='" + jTextField13.getText() + "',sent_date='" + sdte + "',resive_date='" + dtertn + "',remark='" + jTextArea3.getText() + "' where p_step='" + proof + "' and job_card_idjob_card='"+jLabel2.getText()+"'");
             jTextField1.setText("");
             jTextField13.setText("");
             jTextArea3.setText("");
             jLabel2.setText("");
             tableLoad();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1095,6 +1119,136 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel2.setText("");
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch Typesetter details
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof' and (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or isbn like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        // set values from typesetter details
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int i = jTable1.getSelectedRow();
+
+        String s1 = dtm.getValueAt(i, 0).toString();
+        jLabel29.setText(s1);
+
+        String s2 = dtm.getValueAt(i, 1).toString();
+        jLabel3.setText(s2);
+
+        String s3 = dtm.getValueAt(i, 2).toString();
+        jTextField5.setText(s3);
+
+        String s4 = dtm.getValueAt(i, 3).toString();
+        jTextField10.setText(s4);
+
+        String s5 = dtm.getValueAt(i, 4).toString();
+        jTextField9.setText(s5);
+
+        String s6 = dtm.getValueAt(i, 5).toString();
+        jTextField11.setText(s6);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //add typesetter details
+            String cmlwrk;
+            if (jCheckBox8.isSelected()) {
+                cmlwrk = "Yes";
+            } else {
+                cmlwrk = "No";
+            }
+
+            String cmldte = datechosser(jDateChooser1);
+
+            String pstv_clr;
+            if (jCheckBox9.isSelected()) {
+                pstv_clr = "Yes";
+            } else {
+                pstv_clr = "No";
+            }
+
+            String pstv_clr_pge = jTextField16.getText();
+
+            String bw;
+            if (jCheckBox7.isSelected()) {
+                bw = "Yes";
+            } else {
+                bw = "No";
+            }
+
+            String bw_pge = jTextField17.getText();
+            String img;
+            if (jCheckBox10.isSelected()) {
+                img = "Have";
+            } else {
+                img = "No";
+            }
+
+            String shade;
+            if (jCheckBox11.isSelected()) {
+                shade = "Have";
+            } else {
+                shade = "No";
+            }
+            /////////////////////////////////////
+            String psize = jTextField15.getText();
+            String pnfpge = jTextField14.getText();
+
+            int job_crd = 0;
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel29.getText() + "'");
+            if (rs.next()) {
+                job_crd = rs.getInt("idjob_card");
+            }
+            
+            ConnectionSet1.getInstance().setResult("insert into typesetter_fil(`typesetter_fil`.`complete`, `typesetter_fil`.`cmpt_date`, `typesetter_fil`.`psitiv_clr`, `typesetter_fil`.`psitiv_clr_pge`, `typesetter_fil`.`psitiv_bw`, `typesetter_fil`.`psitiv_bw_pge`, `typesetter_fil`.`img`, `typesetter_fil`.`shades`, `typesetter_fil`.`job_card_idjob_card`) "
+                    + "values('"+cmlwrk+"','"+cmldte+"','"+pstv_clr+"','"+pstv_clr_pge+"','"+bw+"','"+bw_pge+"','"+img+"','"+shade+"','"+job_crd+"')");
+            
+            ConnectionSet1.getInstance().setResult("insert into production_description(pduct_sz,nm_pages,job_card_idjob_card) values('"+psize+"','"+pnfpge+"','"+job_crd+"')");
+            
+            jTextField16.setText("");
+            jTextField17.setText("");
+            jTextField15.setText("");
+            jTextField14.setText("");
+            jLabel29.setText("");
+            jLabel3.setText("");
+            jTextField5.setText("");
+            jTextField10.setText("");
+            jTextField9.setText("");
+            jTextField11.setText("");
+            
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField24KeyReleased
+        try {
+            // TODO add your handling code here:
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from typesetter_fil t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor"
+                    + " where complete='Yes' AND (fname like('" + jTextField24.getText() + "%%" + "') or manuscript_name like('" + jTextField24.getText() + "%%%" + "') or isbn like('" + jTextField24.getText() + "%%%" + "'))" , jTable3);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }//GEN-LAST:event_jTextField24KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1164,6 +1318,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;

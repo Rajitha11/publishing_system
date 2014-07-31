@@ -278,7 +278,7 @@ public class Planner extends javax.swing.JFrame {
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel40.setText("umber Of Pages");
+        jLabel40.setText("Number Of Pages");
         jPanel11.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

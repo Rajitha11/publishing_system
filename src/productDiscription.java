@@ -1,8 +1,23 @@
+
+import com.org.DB.ConnectionSet1;
+import com.org.clz.tablemodel1;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -12,8 +27,62 @@ public class productDiscription extends javax.swing.JFrame {
     /**
      * Creates new form productDiscription
      */
+    SimpleDateFormat d1, d2;
+    Timer t;
+
     public productDiscription() {
         initComponents();
+
+        dateMethod();
+        tableLoad();
+        load();
+    }
+
+    void load() {
+        try {
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from proof_details");
+            //Vector v = new Vector();
+            while (rs.next()) {
+                //v.add(rs.getString("b_title"));
+                String s9 = rs.getString("b_title");
+                jComboBox1.addItem(s9);
+//                String name =rs.getString("name");
+//   ComboBox_name.addItem(name);
+            }
+            //jComboBox1.setModel(new DefaultComboBoxModel(v));
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel14.setText(d1.format(d));
+                jLabel30.setText(d2.format(d));
+
+            }
+        });
+        t.start();
+    }
+
+    void tableLoad() {
+        try {
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty,innr_paper_typ,cver_brd_typ,imprint_check,remark_pd from production_description p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable1);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -62,6 +131,8 @@ public class productDiscription extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -91,9 +162,14 @@ public class productDiscription extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Book Title", "Author ", "ISBN", "Product Size", "Number Of Pages", "Print Quantity", "Inner Pages", "Cover", "Imprint Checked", "Remark"
+                "Job No", "Book Title", "Author ", "ISBN", "Product Size", "Number Of Pages", "Print Quantity", "Inner Paper Type", "Cover Board Type", "Imprint Checked", "Remark"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1090, 190));
@@ -129,11 +205,10 @@ public class productDiscription extends javax.swing.JFrame {
         jLabel9.setText("Paper Type");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 230, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("* Innser Pages");
+        jLabel10.setText("* Inner Pages");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -144,7 +219,6 @@ public class productDiscription extends javax.swing.JFrame {
         jLabel12.setText("Board Type");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 230, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -190,16 +264,19 @@ public class productDiscription extends javax.swing.JFrame {
         jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 250, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel21.setText("ISBN");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        jLabel21.setText("Job Card No");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 230, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 230, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 1060, 400));
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel22.setText("ISBN");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 90, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 1070, 400));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Save");
@@ -221,6 +298,74 @@ public class productDiscription extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            // TODO add your handling code here:
+            //set value for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+
+            int i = jTable1.getSelectedRow();
+            String job_card = dtm.getValueAt(i, 0).toString();
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty,innr_paper_typ,cver_brd_typ,imprint_check,remark_pd,innr_paper_gauge,cver_brd_gauge from production_description p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + job_card + "'");
+
+            if (rs.next()) {
+
+                String s1 = rs.getString("idjob_card");
+                jLabel4.setText(s1);
+
+                String s2 = rs.getString("manuscript_name");
+                jTextField9.setText(s2);
+
+                String s3 = rs.getString("fname");
+                jTextField10.setText(s3);
+
+                String s4 = rs.getString("isbn");
+                jTextField11.setText(s4);
+
+                String s5 = rs.getString("pduct_sz");
+                jTextField6.setText(s5);
+
+                String s6 = rs.getString("nm_pages");
+                jTextField4.setText(s6);
+
+                String s7 = rs.getString("print_qty");
+                jTextField7.setText(s7);
+
+                String s8 = rs.getString("innr_paper_typ");
+                Vector v = new Vector();
+                v.add(s8);
+                jComboBox1.setModel(new DefaultComboBoxModel(v));
+
+                String s9 = rs.getString("cver_brd_typ");
+                Vector v1 = new Vector();
+                v1.add(s9);
+                jComboBox2.setModel(new DefaultComboBoxModel(v1));
+
+                String s10 = rs.getString("imprint_check");
+                jTextField2.setText(s10);
+
+                String s11 = rs.getString("remark_pd");
+                jTextArea1.setText(s11);
+
+                String s12 = rs.getString("innr_paper_gauge");
+                Vector v2 = new Vector();
+                v2.add(s12);
+                jComboBox3.setModel(new DefaultComboBoxModel(v2));
+
+                String s13 = rs.getString("cver_brd_gauge");
+                Vector v3 = new Vector();
+                v3.add(s13);
+                jComboBox4.setModel(new DefaultComboBoxModel(v3));
+
+            }
+            load();
+
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -277,8 +422,10 @@ public class productDiscription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

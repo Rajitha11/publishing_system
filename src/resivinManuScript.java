@@ -668,7 +668,9 @@ public class resivinManuScript extends javax.swing.JFrame {
         jScrollPane6.setViewportView(eaddress);
 
         jPanel8.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 360, -1));
-        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 0));
+
+        jTextField1.setEditable(false);
+        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 160, 10, 0));
         jPanel8.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, -1));
 
         jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 1090, 180));
@@ -974,26 +976,50 @@ public class resivinManuScript extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6KeyReleased
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-        // select a row & set value in the field author Frame
-        DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-        int i = jTable2.getSelectedRow();
-        Vector v = new Vector();
-        String s = dtm.getValueAt(i, 0).toString();
-        String s1 = dtm.getValueAt(i, 1).toString();
-        String s2 = dtm.getValueAt(i, 2).toString();
-        String s3 = dtm.getValueAt(i, 3).toString();
-        String s4 = dtm.getValueAt(i, 4).toString();
-        String s5 = dtm.getValueAt(i, 5).toString();
-        String s6 = dtm.getValueAt(i, 6).toString();
+        try {
+            // TODO add your handling code here:
+            // select a row & set value in the field author Frame
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+            String s = dtm.getValueAt(i, 0).toString();
+            ResultSet rs =  ConnectionSet1.getInstance().getResult("select * from author where idauthor='"+s+"'");
+            
+            if(rs.next()){
+                //String s7 = rs.getString("idauthor");
+                jTextField1.setText(s);
+                
+                String s1 = rs .getString("fname");
+                efn.setText(s1);
+                
+                String s2 = rs.getString("lname");
+                eln.setText(s2);
+                
+                String s3 = rs.getString("contact_no");
+                econtct.setText(s3);
+                
+                String s4 = rs.getString("contact_land");
+                jTextField4.setText(s4);
+                
+                String s5 = rs.getString("address");
+                eaddress.setText(s5);
+                
+                String s6 = rs.getString("email");
+                eemail.setText(s6);
+            }
+            //Vector v = new Vector();
+            //String s = dtm.getValueAt(i, 0).toString();
+            // = dtm.getValueAt(i, 1).toString();
+            // = dtm.getValueAt(i, 2).toString();
+            // = dtm.getValueAt(i, 3).toString();
+            //String s4 = dtm.getValueAt(i, 4).toString();
+            // = dtm.getValueAt(i, 5).toString();
+            // dtm.getValueAt(i, 6).toString();
 
-        jTextField1.setText(s);
-        efn.setText(s1);
-        eln.setText(s2);
-        econtct.setText(s3);
-        jTextField4.setText(s4);
-        eaddress.setText(s5);
-        eemail.setText(s6);
+            //jTextField1.setText(s);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -1077,7 +1103,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             // TODO add your handling code here:
             //update author
             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
+            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',contact_land='"+jTextField4.getText()+"',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
             dtm.setRowCount(0);
             jTextField1.setText("");
             efn.setText("");
@@ -1085,6 +1111,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             econtct.setText("");
             eaddress.setText("");
             eemail.setText("");
+            jTextField4.setText("");
             tableLoad();
         } catch (Exception ex) {
             ex.printStackTrace();

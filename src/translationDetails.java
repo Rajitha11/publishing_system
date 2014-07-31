@@ -1,8 +1,23 @@
+
+import com.org.DB.ConnectionSet1;
+import com.org.clz.tablemodel1;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -12,8 +27,55 @@ public class translationDetails extends javax.swing.JFrame {
     /**
      * Creates new form translationDetails
      */
+    SimpleDateFormat d1, d2;
+    Timer t;
+
     public translationDetails() {
         initComponents();
+
+        jPanel1.setVisible(false);
+
+        dateMethod();
+        tableLoad();
+    }
+
+    void tableLoad() {
+        try {
+
+            new tablemodel1().fillTable("select job_card_idjob_card,original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website from translation", jTable1);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel15.setText(d1.format(d));
+                jLabel31.setText(d2.format(d));
+
+            }
+        });
+        t.start();
+    }
+
+    public static String datechosser(JDateChooser jd) {
+        SimpleDateFormat sd = new SimpleDateFormat("dd /MMMM /yyyy");
+        Date d = jd.getDate();
+        String date = sd.format(d);
+        System.out.println(date);
+        return date;
+
     }
 
     /**
@@ -49,11 +111,16 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
         jTextField18 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel32 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -75,75 +142,99 @@ public class translationDetails extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("* Original Book Title");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, -1, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 28, 291, -1));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 59, 291, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 291, -1));
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 291, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("* Publisher/Copyright Agency");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 90, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField9KeyReleased(evt);
+            }
+        });
         jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(769, 28, 291, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("* Sinhala Title Of The Book");
+        jLabel18.setText("* Title Of The Book");
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 28, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("* Advance Royality Payment");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 124, -1, -1));
-        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(769, 59, 291, -1));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, 291, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("* Translator Name");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 59, -1, -1));
-        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 90, 291, -1));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
+        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 291, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("* Country");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 155, -1, -1));
-        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 214, 291, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 291, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("* Original Author");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 59, -1, -1));
-        jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 121, 291, -1));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 291, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("* Expiring Date");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 90, -1, -1));
-        jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 152, 291, -1));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, -1));
+        jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, 291, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel24.setText("* Issue Date");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 121, -1, -1));
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setText("* Contact Person/Agency");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 186, -1, -1));
-        jPanel2.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 152, 291, -1));
-        jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 183, 291, -1));
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        jPanel2.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 291, -1));
+        jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 291, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel26.setText("* Phone");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 155, -1, -1));
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel27.setText("* Address");
-        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 214, -1, -1));
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("* Email");
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 183, -1, -1));
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
+        jPanel2.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 291, -1));
+        jPanel2.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 250, 291, -1));
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+        jPanel2.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, 200, -1));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel32.setText("* Web Site");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 290, 40));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 310, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 100, 40));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel29.setText("* Web Site");
-        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 211, -1, -1));
-        jPanel2.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 184, 291, -1));
-        jPanel2.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 215, 291, -1));
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
-        jPanel2.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 200, -1));
+        jLabel29.setText("Job Card No");
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 1080, 270));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 1080, 290));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,19 +244,30 @@ public class translationDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Original Book Title", "Sinhala Book Title", "Original Author", "Translator Name", "Copyright Agency", "Royality Payment", "Expiring Date", "Issu Date", "Country", "Phone", "Contct Agency", "Email", "Address", "Web Site"
+                "Job Card No", "Original Book Title", "Sinhala Book Title", "Original Author", "Translator Name", "Copyright Agency", "Royality Payment", "Expiring Date", "Issu Date", "Country", "Phone", "Contct Agency", "Email", "Address", "Web Site"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1040, 190));
+        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1110, 190));
+
+        jTextField19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField19KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel30.setText("Search");
         jPanel8.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 55, -1));
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1100, 270));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1130, 270));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Translation Details");
@@ -185,12 +287,22 @@ public class translationDetails extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 730, 108, 45));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Update");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 730, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -201,6 +313,205 @@ public class translationDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
+        // TODO add your handling code here:
+        //serch a author name
+        if (!jTextField9.getText().isEmpty()) {
+            try {
+
+                jPanel1.setVisible(true);
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where manuscript_name like('" + jTextField9.getText() + "%%%%%" + "')");
+
+                Vector v = new Vector();
+                while (rs.next()) {
+                    v.add(rs.getString("manuscript_name"));
+                    jTextField10.setText(rs.getString("fname"));
+                    jLabel1.setText(rs.getString("idjob_card"));
+                }
+
+                jList1.setListData(v);
+
+            } catch (Exception ex) {
+                Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            jPanel1.setVisible(false);
+            jTextField10.setText("");
+            jLabel1.setText("");
+        }
+    }//GEN-LAST:event_jTextField9KeyReleased
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        //set the value in the txet feild from the jlist
+        String mname = jList1.getSelectedValue().toString();
+        jTextField9.setText(mname);
+        jPanel1.setVisible(false);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //save the traslation details
+            String jono = jLabel1.getText();
+            String org_bk = jTextField7.getText();
+            String tran_bk = jTextField9.getText();
+            String org_autr = jTextField8.getText();
+            String cr_agcy = jTextField11.getText();
+            String roylity = jTextField13.getText();
+            String cunty = jTextField15.getText();
+            String cntct_prsn = jTextField16.getText();
+            String adres = jTextField12.getText();
+            String tran_autr = jTextField10.getText();
+            String edte = datechosser(jDateChooser1);
+            String issudte = datechosser(jDateChooser2);
+            String phn = jTextField14.getText();
+            String email = jTextField17.getText();
+            String web = jTextField18.getText();
+
+            ConnectionSet1.getInstance().setResult("insert into translation(original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website,job_card_idjob_card) "
+                    + "values('" + org_bk + "','" + tran_bk + "','" + org_autr + "','" + tran_autr + "','" + cr_agcy + "','" + roylity + "','" + edte + "','" + issudte + "','" + cunty + "','" + phn + "','" + cntct_prsn + "','" + email + "','" + adres + "','" + web + "','" + jono + "')");
+
+            jLabel1.setText("");
+            jTextField7.setText("");
+            jTextField9.setText("");
+            jTextField8.setText("");
+            jTextField11.setText("");
+            jTextField13.setText("");
+            jTextField15.setText("");
+            jTextField16.setText("");
+            jTextField12.setText("");
+            jTextField10.setText("");
+            jTextField14.setText("");
+            jTextField17.setText("");
+            jTextField18.setText("");
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField19KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch translation details
+            new tablemodel1().fillTable("select job_card_idjob_card,original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website from translation where sinhala_bname like('" + jTextField19.getText() + "%%" + "') or translator_name like('" + jTextField19.getText() + "%%" + "') or job_card_idjob_card like('" + jTextField19.getText() + "%%" + "')", jTable1);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField19KeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        //set data to the value from feilds
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int i = jTable1.getSelectedRow();
+
+        String s1 = dtm.getValueAt(i, 0).toString();
+        jLabel1.setText(s1);
+
+        String s2 = dtm.getValueAt(i, 1).toString();
+        jTextField7.setText(s2);
+
+        String s3 = dtm.getValueAt(i, 2).toString();
+        jTextField9.setText(s3);
+
+        String s4 = dtm.getValueAt(i, 3).toString();
+        jTextField8.setText(s4);
+
+        String s5 = dtm.getValueAt(i, 4).toString();
+        jTextField10.setText(s5);
+
+        String s6 = dtm.getValueAt(i, 5).toString();
+        jTextField11.setText(s6);
+
+        String s7 = dtm.getValueAt(i, 6).toString();
+        jTextField13.setText(s7);
+
+        String s8 = dtm.getValueAt(i, 7).toString();
+        Date d1 = new Date(s8);
+        d1.getDate();
+        jDateChooser1.setDate(d1);
+
+        String s9 = dtm.getValueAt(i, 8).toString();
+        Date d = new Date(s9);
+        d.getDate();
+        jDateChooser2.setDate(d);
+
+        String s10 = dtm.getValueAt(i, 9).toString();
+        jTextField15.setText(s10);
+
+        String s11 = dtm.getValueAt(i, 10).toString();
+        jTextField14.setText(s11);
+
+        String s12 = dtm.getValueAt(i, 11).toString();
+        jTextField16.setText(s12);
+
+        String s13 = dtm.getValueAt(i, 12).toString();
+        jTextField17.setText(s13);
+
+        String s14 = dtm.getValueAt(i, 13).toString();
+        jTextField12.setText(s14);
+
+        String s15 = dtm.getValueAt(i, 14).toString();
+        jTextField18.setText(s15);
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update the translation data
+            String jono = jLabel1.getText();
+            String org_bk = jTextField7.getText();
+            String tran_bk = jTextField9.getText();
+            String org_autr = jTextField8.getText();
+            String cr_agcy = jTextField11.getText();
+            String roylity = jTextField13.getText();
+            String cunty = jTextField15.getText();
+            String cntct_prsn = jTextField16.getText();
+            String adres = jTextField12.getText();
+            String tran_autr = jTextField10.getText();
+            String edte = datechosser(jDateChooser1);
+            String issudte = datechosser(jDateChooser2);
+            String phn = jTextField14.getText();
+            String email = jTextField17.getText();
+            String web = jTextField18.getText();
+
+            ConnectionSet1.getInstance().setResult("Update translation set original_bname='"+org_bk+"',sinhala_bname='"+tran_bk+"',original_author='"+org_autr+"',translator_name='"+tran_autr+"',"
+                    + "cp_agency='"+cr_agcy+"',royality_pay='"+roylity+"',ex_date='"+edte+"',issue_date='"+issudte+"',country='"+cunty+"',phone='"+phn+"',contact_agency='"+cntct_prsn+"',"
+                    + "email='"+email+"',address='"+adres+"',website='"+web+"' where job_card_idjob_card='"+jono+"'");
+            
+            jLabel1.setText("");
+            jTextField7.setText("");
+            jTextField9.setText("");
+            jTextField8.setText("");
+            jTextField11.setText("");
+            jTextField13.setText("");
+            jTextField15.setText("");
+            jTextField16.setText("");
+            jTextField12.setText("");
+            jTextField10.setText("");
+            jTextField14.setText("");
+            jTextField17.setText("");
+            jTextField18.setText("");
+            tableLoad();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +553,7 @@ public class translationDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -260,9 +572,13 @@ public class translationDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;

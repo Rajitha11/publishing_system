@@ -544,7 +544,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             // serch all manuscript details
-            tablemodel1.fillTable("select idrm,fname,language,manuscript_name,catergory,sub_catergory from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision = 'Approve' AND fname like('" + jTextField15.getText() + "%%" + "') or manuscript_name like('" + jTextField15.getText() + "%%%" + "')", jTable6);
+            tablemodel1.fillTable("select idrm,fname,language,manuscript_name,catergory,sub_catergory from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision = 'Approve' AND (fname like('" + jTextField15.getText() + "%%" + "') or manuscript_name like('" + jTextField15.getText() + "%%%" + "'))", jTable6);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -655,7 +655,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             // TODO add your handling code here:
             //assinged job card details serch
 
-            tablemodel1.fillTable("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn,type_setter,remark from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField8.getText() + "%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "') or isbn like('" + jTextField8.getText() + "%%" + "') or type_setter like('" + jTextField8.getText() + "%%" + "')", jTable4);
+            tablemodel1.fillTable("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn,type_setter,remark from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField8.getText() + "%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "') or isbn like('" + jTextField8.getText() + "%%" + "') or type_setter like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%" + "')", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
