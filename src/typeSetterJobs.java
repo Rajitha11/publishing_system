@@ -186,7 +186,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
@@ -196,6 +195,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -631,10 +631,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jTextField5.setEditable(false);
         jPanel9.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 291, -1));
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel28.setText("Job No ");
-        jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
         jPanel9.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 90, 30));
 
         jTextField9.setEditable(false);
@@ -662,6 +658,10 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel36.setText("Date ");
         jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, -1));
         jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 100, 30));
+
+        jLabel74.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel74.setText("Job No ");
+        jPanel9.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 1010, 150));
 
@@ -833,7 +833,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Completed & Ongoing Jobs", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1150, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1316,7 +1316,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1363,6 +1362,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

@@ -35,21 +35,56 @@ public class productDiscription extends javax.swing.JFrame {
 
         dateMethod();
         tableLoad();
-        load();
+        loadPaperTyp();
+        loadBoardtp();
+        loadGauge();
     }
 
-    void load() {
+    void loadPaperTyp() {
         try {
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from proof_details");
-            //Vector v = new Vector();
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from paper_type");
+            Vector v = new Vector();
             while (rs.next()) {
-                //v.add(rs.getString("b_title"));
-                String s9 = rs.getString("b_title");
+                //v.add(rs.getString("ptname"));
+                String s9 = rs.getString("ptname");
                 jComboBox1.addItem(s9);
-//                String name =rs.getString("name");
-//   ComboBox_name.addItem(name);
+//                
             }
             //jComboBox1.setModel(new DefaultComboBoxModel(v));
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void loadBoardtp() {
+        try {
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from board_type");
+//            Vector v = new Vector();
+            while (rs.next()) {
+//                v.add(rs.getString("btname"));
+                String s9 = rs.getString("btname");
+                jComboBox2.addItem(s9);
+//                
+            }
+//            jComboBox2.setModel(new DefaultComboBoxModel(v));
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void loadGauge() {
+        try {
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from gauge");
+//            Vector v = new Vector();
+            while (rs.next()) {
+//                v.add(rs.getString("gtyp"));
+                String s9 = rs.getString("gtyp");
+                jComboBox3.addItem(s9);
+                jComboBox4.addItem(s9);
+//                
+            }
+//            jComboBox3.setModel(new DefaultComboBoxModel(v));
+//            jComboBox4.setModel(new DefaultComboBoxModel(v));
         } catch (Exception ex) {
             Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -154,7 +189,7 @@ public class productDiscription extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product Discription", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -282,12 +317,22 @@ public class productDiscription extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 830, 108, 45));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Update");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 830, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -359,13 +404,82 @@ public class productDiscription extends javax.swing.JFrame {
                 jComboBox4.setModel(new DefaultComboBoxModel(v3));
 
             }
-            load();
+            
+            loadPaperTyp();
+            loadBoardtp();
+            loadGauge();
 
         } catch (Exception ex) {
             Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //save the data 
+            String qty = jTextField7.getText();
+            String ptyp = jComboBox1.getSelectedItem().toString();
+            String ptyp_ga = jComboBox3.getSelectedItem().toString();
+            String brtyp = jComboBox2.getSelectedItem().toString();
+            String brtyp_ga = jComboBox4.getSelectedItem().toString();
+            String impnt_check = jTextField2.getText();
+            String remrk = jTextArea1.getText();
+            ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+
+            jTextField7.setText("");
+            jComboBox1.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox4.setSelectedIndex(0);
+            jTextField2.setText("");
+            jTextArea1.setText("");
+            jLabel4.setText("");
+            jTextField11.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField6.setText("");
+            jTextField4.setText("");
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //        update the data product description
+            String qty = jTextField7.getText();
+            String ptyp = jComboBox1.getSelectedItem().toString();
+            String ptyp_ga = jComboBox3.getSelectedItem().toString();
+            String brtyp = jComboBox2.getSelectedItem().toString();
+            String brtyp_ga = jComboBox4.getSelectedItem().toString();
+            String impnt_check = jTextField2.getText();
+            String remrk = jTextArea1.getText();
+            ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+
+            jTextField7.setText("");
+            jComboBox1.setSelectedIndex(0);
+            jComboBox3.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jComboBox4.setSelectedIndex(0);
+            jTextField2.setText("");
+            jTextArea1.setText("");
+            jLabel4.setText("");
+            jTextField11.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField6.setText("");
+            jTextField4.setText("");
+            tableLoad();
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

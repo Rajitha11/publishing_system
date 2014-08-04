@@ -1,3 +1,12 @@
+
+import com.org.clz.tablemodel1;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,8 +21,52 @@ public class graficDepartment extends javax.swing.JFrame {
     /**
      * Creates new form graficDepartment
      */
+    
+    SimpleDateFormat d1, d2;
+    Timer t;
+    
     public graficDepartment() {
         initComponents();
+        
+        dateMethod();
+        
+    }
+    
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel15.setText(d1.format(d));
+                jLabel31.setText(d2.format(d));
+
+                jLabel14.setText(d1.format(d));
+                jLabel30.setText(d2.format(d));
+
+                jLabel16.setText(d1.format(d));
+                jLabel32.setText(d2.format(d));
+
+                
+
+            }
+        });
+        t.start();
+    }
+
+    public static String datechosser(JDateChooser jd) {
+        SimpleDateFormat sd = new SimpleDateFormat("dd /MMMM /yyyy");
+        Date d = jd.getDate();
+        String date = sd.format(d);
+        System.out.println(date);
+        return date;
+
+    }
+    
+    void tableLoad(){
+//        new tablemodel1().fillTable("", jTable1);
     }
 
     /**
@@ -162,7 +215,7 @@ public class graficDepartment extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1040, 150));
+        jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1080, 150));
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -238,11 +291,6 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
         jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 206, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -474,38 +522,18 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox6.setText("Yes");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox7.setText("No");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox8.setText("No");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox9.setText("Yes");
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -518,20 +546,10 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox10.setText("Yes");
-        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox10ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox11.setText("No");
-        jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox11ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 400, 140));
@@ -560,34 +578,6 @@ public class graficDepartment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
-
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
-
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
-
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
-
-    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox10ActionPerformed
-
-    private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox11ActionPerformed
 
     /**
      * @param args the command line arguments
