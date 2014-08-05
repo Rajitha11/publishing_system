@@ -1,14 +1,16 @@
 
 import com.org.DB.ConnectionSet1;
+import com.org.clz.tablemodel1;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -20,17 +22,18 @@ public class test extends javax.swing.JFrame {
      */
     public test() {
         initComponents();
-        
+        table();
+
         jLabel2.setText("00.00");
-        
+
         try {
-            
+
             jLabel1.setText(maxid("id", "test", 1));
         } catch (Exception ex) {
             Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public String maxid(String columname, String table, int columno) throws Exception {
         int i2 = 0;
         ResultSet sr = ConnectionSet1.getInstance().getResult("SELECT * from " + table + " WHERE(SELECT Max(" + columname + ")FROM " + table + ")");
@@ -39,8 +42,20 @@ public class test extends javax.swing.JFrame {
             int i = Integer.parseInt(id);
             i2 = i + 1;
         }
-        
+
         return i2 + "".toString();
+    }
+
+    void table() {
+        try {
+            new tablemodel1().fillTable("select * from gauge", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -59,6 +74,9 @@ public class test extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +107,23 @@ public class test extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "gaugr", "typ"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,12 +139,17 @@ public class test extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                                 .addComponent(jTextField2)
-                                .addComponent(jTextField1)))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                                .addComponent(jTextField1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,8 +167,12 @@ public class test extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(jButton2)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,10 +181,10 @@ public class test extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-            String f= "f";
-            ConnectionSet1.getInstance().setResult("insert into test(id) values ('" + f+""+jLabel1.getText() + "')");
-                    System.out.println("bbbbbbbb");
-                    //jLabel1.setText(maxid("id", "test", 1));
+            String f = "f";
+            ConnectionSet1.getInstance().setResult("insert into test(id) values ('" + f + "" + jLabel1.getText() + "')");
+            System.out.println("bbbbbbbb");
+            //jLabel1.setText(maxid("id", "test", 1));
         } catch (Exception ex) {
             Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -148,67 +192,77 @@ public class test extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-        double total ,cal = 0,cal1=0,cal2=0;
-        if(!jTextField2.getText().isEmpty()){
+        double total, cal = 0, cal1 = 0, cal2 = 0;
+        if (!jTextField2.getText().isEmpty()) {
             cal1 = Double.parseDouble(jTextField2.getText());
         }
-        
-        if(!jTextField1.getText().isEmpty()){
+
+        if (!jTextField1.getText().isEmpty()) {
             cal = Double.parseDouble(jTextField1.getText());
         }
-        
-        if(!jTextField3.getText().isEmpty()){
+
+        if (!jTextField3.getText().isEmpty()) {
             cal2 = Double.parseDouble(jTextField3.getText());
         }
-        
-        
-        
-        total = cal+cal1+cal2;
-        jLabel2.setText(total+"");
-        
+
+
+
+        total = cal + cal1 + cal2;
+        jLabel2.setText(total + "");
+
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         // TODO add your handling code here:
-        double total ,cal = 0,cal1=0,cal2=0;
-        if(!jTextField2.getText().isEmpty()){
+        double total, cal = 0, cal1 = 0, cal2 = 0;
+        if (!jTextField2.getText().isEmpty()) {
             cal1 = Double.parseDouble(jTextField2.getText());
         }
-        
-        if(!jTextField1.getText().isEmpty()){
+
+        if (!jTextField1.getText().isEmpty()) {
             cal = Double.parseDouble(jTextField1.getText());
         }
-        
-        if(!jTextField3.getText().isEmpty()){
+
+        if (!jTextField3.getText().isEmpty()) {
             cal2 = Double.parseDouble(jTextField3.getText());
         }
-        
-        
-        
-        total = cal+cal1+cal2;
-        jLabel2.setText(total+"");
+
+
+
+        total = cal + cal1 + cal2;
+        jLabel2.setText(total + "");
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
-        double total ,cal = 0,cal1=0,cal2=0;
-        if(!jTextField2.getText().isEmpty()){
+        double total, cal = 0, cal1 = 0, cal2 = 0;
+        if (!jTextField2.getText().isEmpty()) {
             cal1 = Double.parseDouble(jTextField2.getText());
         }
-        
-        if(!jTextField1.getText().isEmpty()){
+
+        if (!jTextField1.getText().isEmpty()) {
             cal = Double.parseDouble(jTextField1.getText());
         }
-        
-        if(!jTextField3.getText().isEmpty()){
+
+        if (!jTextField3.getText().isEmpty()) {
             cal2 = Double.parseDouble(jTextField3.getText());
         }
-        
-        
-        
-        total = cal+cal1+cal2;
-        jLabel2.setText(total+"");
+
+
+
+        total = cal + cal1 + cal2;
+        jLabel2.setText(total + "");
     }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+//        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+//        int i = jTable1.getSelectedRow();
+
+        int i = jTable1.getSelectedRow();
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.removeRow(i);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,9 +300,12 @@ public class test extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

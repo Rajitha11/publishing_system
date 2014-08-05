@@ -35,7 +35,8 @@ public class costing extends javax.swing.JFrame {
         tableLoad();
         totalcost.setText("00.00");
         unitPricecal.setText("00.00");
-
+        totalcost1.setText("00.00");
+        unitPricecal1.setText("00.00");
 
 
     }
@@ -54,6 +55,9 @@ public class costing extends javax.swing.JFrame {
                 jLabel15.setText(d1.format(d));
                 jLabel31.setText(d2.format(d));
 
+                jLabel32.setText(d1.format(d));
+                jLabel46.setText(d2.format(d));
+
 
             }
         });
@@ -71,6 +75,9 @@ public class costing extends javax.swing.JFrame {
 
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,print_qty from production_description p1 inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card inner join job_card j1 "
                     + "on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complete='Yes' AND imprint_check IS NOT NULL", jTable3);
+
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,print_qty,recomd_price from costing c1 inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 "
+                    + "on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,6 +153,59 @@ public class costing extends javax.swing.JFrame {
             unitPricecal.setText(unitPrce + "");
 
         }
+    }
+
+    void getUnitPrice1() {
+        if (totalcost1.getText().isEmpty()) {
+            unitPricecal1.setText("00.00");
+        } else {
+            double unitPrce, total, qty;
+            total = Double.parseDouble(totalcost1.getText());
+            qty = Double.parseDouble(jTextField28.getText());
+
+            unitPrce = total / qty;
+            unitPricecal1.setText(unitPrce + "");
+
+        }
+    }
+
+    void calTotal1() {
+        double tot, transFee = 0, TypeFee = 0, profFee = 0, desingFee = 0, trcngCost = 0, positvCost = 0, prntCost = 0, other = 0;
+
+        if (!ftrans1.getText().isEmpty()) {
+            transFee = Double.parseDouble(ftrans1.getText());
+        }
+
+        if (!ftyp1.getText().isEmpty()) {
+            TypeFee = Double.parseDouble(ftyp1.getText());
+        }
+
+        if (!fread1.getText().isEmpty()) {
+            profFee = Double.parseDouble(fread1.getText());
+        }
+
+        if (!fcovr1.getText().isEmpty()) {
+            desingFee = Double.parseDouble(fcovr1.getText());
+        }
+
+        if (!ftracng1.getText().isEmpty()) {
+            trcngCost = Double.parseDouble(ftracng1.getText());
+        }
+
+        if (!fpositive1.getText().isEmpty()) {
+            positvCost = Double.parseDouble(fpositive1.getText());
+        }
+
+        if (!fprinting1.getText().isEmpty()) {
+            prntCost = Double.parseDouble(fprinting1.getText());
+        }
+
+        if (!fother1.getText().isEmpty()) {
+            other = Double.parseDouble(fother1.getText());
+        }
+
+        tot = transFee + TypeFee + profFee + desingFee + trcngCost + positvCost + prntCost + other;
+        totalcost1.setText(tot + "");
     }
 
     /**
@@ -253,6 +313,57 @@ public class costing extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel42 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
+        jTextField21 = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jTextField28 = new javax.swing.JTextField();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        ftrans1 = new javax.swing.JTextField();
+        ftyp1 = new javax.swing.JTextField();
+        fread1 = new javax.swing.JTextField();
+        fcovr1 = new javax.swing.JTextField();
+        ftracng1 = new javax.swing.JTextField();
+        fpositive1 = new javax.swing.JTextField();
+        fprinting1 = new javax.swing.JTextField();
+        fother1 = new javax.swing.JTextField();
+        totalcost1 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        unitprice1 = new javax.swing.JPanel();
+        unitPricecal1 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        retaiprice1 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jLabel66 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -446,7 +557,7 @@ public class costing extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Title", "Author", "ISBN"
+                "Job No", "Title", "Author", "ISBN", "QTY"
             }
         ));
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -726,10 +837,262 @@ public class costing extends javax.swing.JFrame {
         jButton6.setText("Save");
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 810, 108, 45));
         jPanel2.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 160, 20));
 
         jTabbedPane1.addTab("Costing", jPanel2);
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel28.setText("Costed Books");
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 220, 58));
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel45.setText("Date ");
+        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 210, 52));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel5.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Costed Book", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job No", "Title", "Author", "ISBN", "Qty", "Recommanded Price"
+            }
+        ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable5);
+
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1080, 140));
+
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1120, 170));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quoted Book  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel47.setText("Book Title");
+        jPanel7.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel48.setText("Author");
+        jPanel7.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+
+        jTextField19.setEditable(false);
+        jPanel7.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 290, -1));
+
+        jTextField20.setEditable(false);
+        jPanel7.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 290, -1));
+
+        jTextField21.setEditable(false);
+        jPanel7.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 250, -1));
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel49.setText("ISBN");
+        jPanel7.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel50.setText("QTY");
+        jPanel7.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
+        jTextField28.setEditable(false);
+        jPanel7.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 100, -1));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel51.setText("Job Card No");
+        jPanel7.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        jPanel7.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 90, 30));
+
+        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 1060, 100));
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel53.setText("* Editing/Translation Fees");
+        jPanel5.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel54.setText("* Typesetting Fees");
+        jPanel5.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
+
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel55.setText("* Proof Reading Fees");
+        jPanel5.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
+
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel56.setText("* Cover Designing Fees");
+        jPanel5.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
+
+        jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel57.setText("* Tracings Cost");
+        jPanel5.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+
+        jLabel58.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel58.setText("* Positives Cost");
+        jPanel5.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel59.setText("* Printing Cost");
+        jPanel5.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, -1, -1));
+
+        jLabel60.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel60.setText("* Other Expences");
+        jPanel5.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, -1, -1));
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quotation Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job No", "Company", "Quoted Price"
+            }
+        ));
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable6MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTable6);
+
+        jPanel12.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 390, 130));
+
+        jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, 450, 160));
+
+        ftrans1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ftrans1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(ftrans1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 290, -1));
+
+        ftyp1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ftyp1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(ftyp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 290, -1));
+
+        fread1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fread1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(fread1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 290, -1));
+
+        fcovr1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fcovr1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(fcovr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 290, -1));
+
+        ftracng1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ftracng1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(ftracng1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 290, -1));
+
+        fpositive1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fpositive1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(fpositive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 290, -1));
+
+        fprinting1.setEditable(false);
+        fprinting1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fprinting1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(fprinting1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, 290, -1));
+
+        fother1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fother1KeyReleased(evt);
+            }
+        });
+        jPanel5.add(fother1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 290, -1));
+
+        totalcost1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel5.add(totalcost1, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 664, 160, 40));
+
+        jLabel61.setText("-----------------------------------------------------------------------------");
+        jPanel5.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, 310, -1));
+
+        jLabel62.setText("-----------------------------------------------------------------------------");
+        jPanel5.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 710, 310, -1));
+
+        jLabel63.setText("-----------------------------------------------------------------------------");
+        jPanel5.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 720, 310, 10));
+
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel64.setText("Price Calculation");
+        jPanel5.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 580, -1, -1));
+
+        unitprice1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        unitprice1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        unitPricecal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        unitprice1.add(unitPricecal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 20, 130, 40));
+
+        jPanel5.add(unitprice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, 330, 80));
+
+        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel65.setText("Recommanded Retail Price ");
+        jPanel5.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 730, 250, -1));
+        jPanel5.add(retaiprice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 720, 150, 40));
+
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton7.setText("Update");
+        jButton7.setBorder(null);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 810, 108, 45));
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton8.setText("Clear");
+        jButton8.setBorder(null);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 810, 108, 45));
+
+        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton9.setText("Delete");
+        jButton9.setBorder(null);
+        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel5.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 810, 108, 45));
+        jPanel5.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 160, 20));
+
+        jTabbedPane1.addTab("Costed Books", jPanel5);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
 
@@ -971,7 +1334,6 @@ public class costing extends javax.swing.JFrame {
 
     private void fprintingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fprintingActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_fprintingActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -988,11 +1350,279 @@ public class costing extends javax.swing.JFrame {
         ftracng.setText("");
         fpositive.setText("");
         fprinting.setText("");
+        jLabel42.setText("");
         fother.setText("");
         totalcost.setText("00.00");
         unitPricecal.setText("00.00");
         retaiprice.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //save the costing details
+            int idjob = 0;
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel38.getText() + "'");
+            if (rs.next()) {
+                idjob = rs.getInt("idjob_card");
+            }
+
+            String transF = ftrans.getText();
+            String typF = ftyp.getText();
+            String preadF = fread.getText();
+            String cvrF = fcovr.getText();
+            String tacnC = ftracng.getText();
+            String ptvC = fpositive.getText();
+            String prntC = fprinting.getText();
+            String cmpy_name = jLabel42.getText();
+            String othrE = fother.getText();
+            String total = totalcost.getText();
+            String unitPrc = unitPricecal.getText();
+            String rcomnd_price = retaiprice.getText();
+
+            String pmApprov;
+            if (pmay.isSelected()) {
+                pmApprov = "Yes";
+            } else {
+                pmApprov = "No";
+            }
+
+            String mdApprov;
+            if (diay.isSelected()) {
+                mdApprov = "Yes";
+            } else {
+                mdApprov = "No";
+            }
+
+            ConnectionSet1.getInstance().setResult("insert into costing(editing_fee,typstng_fee,proofrdng_fee,cverdign_fee,trcng_cost,positv_cost,prnt_cost,print_cmny,other_expec,total_cost,unit_price,recomd_price,pm_approv,md_approv,job_card_idjob_card) "
+                    + "values('" + transF + "','" + typF + "','" + preadF + "','" + cvrF + "','" + tacnC + "','" + ptvC + "','" + prntC + "','" + cmpy_name + "','" + othrE + "','" + total + "','" + unitPrc + "','" + rcomnd_price + "','" + pmApprov + "','" + mdApprov + "','" + idjob + "')");
+
+            jLabel38.setText("");
+            jTextField16.setText("");
+            jTextField18.setText("");
+            jTextField17.setText("");
+            jTextField27.setText("");
+            ftrans.setText("");
+            ftyp.setText("");
+            fread.setText("");
+            fcovr.setText("");
+            ftracng.setText("");
+            fpositive.setText("");
+            fprinting.setText("");
+            jLabel42.setText("");
+            fother.setText("");
+            totalcost.setText("00.00");
+            unitPricecal.setText("00.00");
+            retaiprice.setText("");
+
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        try {
+            // TODO add your handling code here:
+            // set data to the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable5.getModel();
+            int i = jTable5.getSelectedRow();
+            String jobid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,print_qty,c1.* from costing c1 inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 "
+                    + "on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + jobid + "'");
+
+            if (rs.next()) {
+                String jobn = rs.getString("idjob_card");
+                jLabel52.setText(jobn);
+
+                String title = rs.getString("manuscript_name");
+                jTextField19.setText(title);
+
+                String anme = rs.getString("fname");
+                jTextField20.setText(anme);
+
+                String isbn = rs.getString("isbn");
+                jTextField21.setText(isbn);
+
+                String qty = rs.getString("print_qty");
+                jTextField28.setText(qty);
+
+                String editf = rs.getString("editing_fee");
+                ftrans1.setText(editf);
+
+                String typf = rs.getString("typstng_fee");
+                ftyp1.setText(typf);
+
+                String proff = rs.getString("proofrdng_fee");
+                fread1.setText(proff);
+
+                String cvrdef = rs.getString("cverdign_fee");
+                fcovr1.setText(cvrdef);
+
+                String tacin = rs.getString("trcng_cost");
+                ftracng1.setText(tacin);
+
+                String positv = rs.getString("positv_cost");
+                fpositive1.setText(positv);
+
+                String prntc = rs.getString("prnt_cost");
+                fprinting1.setText(prntc);
+
+                String prncmp = rs.getString("print_cmny");
+                jLabel66.setText(prncmp);
+
+                String othrex = rs.getString("other_expec");
+                fother1.setText(othrex);
+
+                String total = rs.getString("total_cost");
+                totalcost1.setText(total);
+
+                String unitcst = rs.getString("unit_price");
+                unitPricecal1.setText(unitcst);
+
+                String recprc = rs.getString("recomd_price");
+                retaiprice1.setText(recprc);
+
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobid + "'");
+                if (rs1.next()) {
+                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations", jTable6);
+                }
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        // TODO add your handling code here:
+        //set values for the printing cost
+        DefaultTableModel dtm = (DefaultTableModel) jTable6.getModel();
+        int i = jTable6.getSelectedRow();
+
+        String s1 = dtm.getValueAt(i, 1).toString();
+        jLabel66.setText(s1);
+
+        String s2 = dtm.getValueAt(i, 2).toString();
+        fprinting1.setText(s2);
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_jTable6MouseClicked
+
+    private void ftrans1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftrans1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_ftrans1KeyReleased
+
+    private void ftyp1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftyp1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_ftyp1KeyReleased
+
+    private void fread1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fread1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_fread1KeyReleased
+
+    private void fcovr1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fcovr1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_fcovr1KeyReleased
+
+    private void ftracng1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftracng1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_ftracng1KeyReleased
+
+    private void fpositive1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fpositive1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_fpositive1KeyReleased
+
+    private void fprinting1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fprinting1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_fprinting1KeyReleased
+
+    private void fother1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fother1KeyReleased
+        // TODO add your handling code here:
+        calTotal1();
+        getUnitPrice1();
+    }//GEN-LAST:event_fother1KeyReleased
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        jLabel52.setText("");
+        jTextField19.setText("");
+        jTextField20.setText("");
+        jTextField21.setText("");
+        jTextField28.setText("");
+        ftrans1.setText("");
+        ftyp1.setText("");
+        fread1.setText("");
+        fcovr1.setText("");
+        ftracng1.setText("");
+        fpositive1.setText("");
+        fprinting1.setText("");
+        jLabel66.setText("");
+        fother1.setText("");
+        totalcost1.setText("00.00");
+        unitPricecal1.setText("00.00");
+        retaiprice1.setText("");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update the costed data feild
+            String transF = ftrans1.getText();
+            String typF = ftyp1.getText();
+            String preadF = fread1.getText();
+            String cvrF = fcovr1.getText();
+            String tacnC = ftracng1.getText();
+            String ptvC = fpositive1.getText();
+            String prntC = fprinting1.getText();
+            String cmpy_name = jLabel66.getText();
+            String othrE = fother1.getText();
+            String total = totalcost1.getText();
+            String unitPrc = unitPricecal1.getText();
+            String rcomnd_price = retaiprice1.getText();
+
+            ConnectionSet1.getInstance().setResult("update costing set editing_fee='" + transF + "',typstng_fee='" + typF + "',proofrdng_fee='" + preadF + "',cverdign_fee='" + cvrF + "',trcng_cost='" + tacnC + "',positv_cost='" + ptvC + "',prnt_cost='" + prntC + "',print_cmny='" + cmpy_name + "',other_expec='" + othrE + "',total_cost='" + total + "',unit_price='" + unitPrc + "',recomd_price='" + rcomnd_price + "' where job_card_idjob_card='" + jLabel52.getText() + "'");
+
+            jLabel52.setText("");
+            jTextField19.setText("");
+            jTextField20.setText("");
+            jTextField21.setText("");
+            jTextField28.setText("");
+            ftrans1.setText("");
+            ftyp1.setText("");
+            fread1.setText("");
+            fcovr1.setText("");
+            ftracng1.setText("");
+            fpositive1.setText("");
+            fprinting1.setText("");
+            jLabel66.setText("");
+            fother1.setText("");
+            totalcost1.setText("00.00");
+            unitPricecal1.setText("00.00");
+            retaiprice1.setText("");
+
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1034,19 +1664,30 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JCheckBox dian;
     private javax.swing.JCheckBox diay;
     private javax.swing.JTextField fcovr;
+    private javax.swing.JTextField fcovr1;
     private javax.swing.JTextField fother;
+    private javax.swing.JTextField fother1;
     private javax.swing.JTextField fpositive;
+    private javax.swing.JTextField fpositive1;
     private javax.swing.JTextField fprinting;
+    private javax.swing.JTextField fprinting1;
     private javax.swing.JTextField fread;
+    private javax.swing.JTextField fread1;
     private javax.swing.JTextField ftracng;
+    private javax.swing.JTextField ftracng1;
     private javax.swing.JTextField ftrans;
+    private javax.swing.JTextField ftrans1;
     private javax.swing.JTextField ftyp;
+    private javax.swing.JTextField ftyp1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1068,10 +1709,12 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -1085,28 +1728,58 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1115,15 +1788,23 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField27;
+    private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JCheckBox pman;
     private javax.swing.JCheckBox pmay;
     private javax.swing.JTextField retaiprice;
+    private javax.swing.JTextField retaiprice1;
     private javax.swing.JLabel totalcost;
+    private javax.swing.JLabel totalcost1;
     private javax.swing.JLabel unitPricecal;
+    private javax.swing.JLabel unitPricecal1;
     private javax.swing.JPanel unitprice;
+    private javax.swing.JPanel unitprice1;
     // End of variables declaration//GEN-END:variables
 }

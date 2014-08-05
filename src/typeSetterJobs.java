@@ -1216,7 +1216,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
                     + "values('"+cmlwrk+"','"+cmldte+"','"+pstv_clr+"','"+pstv_clr_pge+"','"+bw+"','"+bw_pge+"','"+img+"','"+shade+"','"+job_crd+"')");
             
             ConnectionSet1.getInstance().setResult("insert into production_description(pduct_sz,nm_pages,job_card_idjob_card) values('"+psize+"','"+pnfpge+"','"+job_crd+"')");
-            
+            tableLoad();
             jTextField16.setText("");
             jTextField17.setText("");
             jTextField15.setText("");
