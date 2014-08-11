@@ -644,10 +644,14 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        // clear all
-        clear();
-
+        try {
+            // TODO add your handling code here:
+            // clear all
+            clear();
+            jcno.setText(maxid("idjob_card", "job_card", 1));
+        } catch (Exception ex) {
+            Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased

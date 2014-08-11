@@ -55,10 +55,10 @@ public class Disigner extends javax.swing.JFrame {
     void tableLoad() {
         try {
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
-                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'", jTable1);
+                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='No'", jTable1);
 
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
-                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'", jTable2);
+                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='Yes'", jTable2);
 
 
         } catch (ClassNotFoundException ex) {
@@ -155,6 +155,12 @@ public class Disigner extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1040, 190));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -275,6 +281,12 @@ public class Disigner extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 620, 190));
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel9.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 20, 250, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -304,7 +316,7 @@ public class Disigner extends javax.swing.JFrame {
             String jbid = dtm.getValueAt(i, 0).toString();
 
             ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price,idgrafic_dep from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
-                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' AND idjob_card='" + jbid + "'");
+                    + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='No' AND idjob_card='" + jbid + "'");
 
             if (rs.next()) {
                 String jbid2 = rs.getString("idjob_card");
@@ -374,7 +386,7 @@ public class Disigner extends javax.swing.JFrame {
                 disiFinish = "No";
             }
 
-            ConnectionSet1.getInstance().setResult("update disigner_jobs set job_done='" + disiFinish + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel1.getText() + "'");
+            ConnectionSet1.getInstance().setResult("update disigner_jobs set job_doned='" + disiFinish + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel1.getText() + "'");
 
             jLabel29.setText("");
             jTextField5.setText("");
@@ -385,6 +397,7 @@ public class Disigner extends javax.swing.JFrame {
             jLabel4.setText("");
             jTextField21.setText("");
             jLabel1.setText("");
+            jCheckBox1.setSelected(false);
             tableLoad();
 
         } catch (Exception ex) {
@@ -417,8 +430,8 @@ public class Disigner extends javax.swing.JFrame {
                 int i = jTable2.getSelectedRow();
                 String jbid = dtm.getValueAt(i, 0).toString();
 
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price,idgrafic_dep,job_done from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
-                        + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND idjob_card='" + jbid + "'");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price,idgrafic_dep,job_doned from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
+                        + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='Yes' AND idjob_card='" + jbid + "'");
 
                 if (rs.next()) {
                     String jbid2 = rs.getString("idjob_card");
@@ -448,7 +461,7 @@ public class Disigner extends javax.swing.JFrame {
                     String gid = rs.getString("idgrafic_dep");
                     jLabel1.setText(gid);
                     
-                    String jobOk = rs.getString("job_done");
+                    String jobOk = rs.getString("job_doned");
                     if(jobOk.equals("Yes")){
                         jCheckBox1.setSelected(true);
                     }
@@ -470,7 +483,7 @@ public class Disigner extends javax.swing.JFrame {
                     disiFinish = "No";
                 }
 
-                ConnectionSet1.getInstance().setResult("update disigner_jobs set job_done='" + disiFinish + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel1.getText() + "'");
+                ConnectionSet1.getInstance().setResult("update disigner_jobs set job_doned='" + disiFinish + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel1.getText() + "'");
 
                 jLabel29.setText("");
                 jTextField5.setText("");
@@ -481,11 +494,45 @@ public class Disigner extends javax.swing.JFrame {
                 jLabel4.setText("");
                 jTextField21.setText("");
                 jLabel1.setText("");
+                jCheckBox1.setSelected(false);
                 tableLoad();
         } catch (Exception ex) {
             Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            // serch the new jobs
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
+                        + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='No' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "'))", jTable1);
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch the complete
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,disigner_deadln,recomd_price from disigner_jobs d1 inner join grafic_jobs g1 on d1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card inner join production_description p1 on "
+                        + "c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_doned='Yes' AND (fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "') or idjob_card like('" + jTextField12.getText() + "%%" + "'))", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField12KeyReleased
 
     /**
      * @param args the command line arguments

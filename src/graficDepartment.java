@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -27,13 +26,12 @@ public class graficDepartment extends javax.swing.JFrame {
     /**
      * Creates new form graficDepartment
      */
-    
     SimpleDateFormat d1, d2;
     Timer t;
-    
+
     public graficDepartment() {
         initComponents();
-        
+
         dateMethod();
         tableLoad();
         try {
@@ -41,9 +39,9 @@ public class graficDepartment extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     void dateMethod() {
         //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
@@ -61,7 +59,8 @@ public class graficDepartment extends javax.swing.JFrame {
                 jLabel16.setText(d1.format(d));
                 jLabel32.setText(d2.format(d));
 
-                
+                jLabel24.setText(d1.format(d));
+                jLabel54.setText(d2.format(d));
 
             }
         });
@@ -76,14 +75,20 @@ public class graficDepartment extends javax.swing.JFrame {
         return date;
 
     }
-    
-    void tableLoad(){
+
+    void tableLoad() {
         try {
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,recomd_price from costing c1 inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card "
                     + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where md_approv='Yes'", jTable1);
-            
-            
-            
+
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is null", jTable3);
+
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is not null", jTable4);
+
+            new tablemodel1().fillTable("select * from grfic_other_jobs", jTable2);
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -93,7 +98,6 @@ public class graficDepartment extends javax.swing.JFrame {
         }
     }
 
-    
     public String maxid(String columname, String table, int columno) throws Exception {
         int i2 = 0;
         ResultSet sr = ConnectionSet1.getInstance().getResult("SELECT * from " + table + " WHERE(SELECT Max(" + columname + ")FROM " + table + ")");
@@ -105,6 +109,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
         return i2 + "".toString();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,6 +119,9 @@ public class graficDepartment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -180,7 +188,8 @@ public class graficDepartment extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
         jTextField18 = new javax.swing.JTextField();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jCheckBox6 = new javax.swing.JCheckBox();
@@ -194,6 +203,47 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel56 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel55 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel57 = new javax.swing.JLabel();
+        jTextField22 = new javax.swing.JTextField();
+        jLabel58 = new javax.swing.JLabel();
+        jTextField23 = new javax.swing.JTextField();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jTextField24 = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jTextField25 = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
+        jTextField26 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel64 = new javax.swing.JLabel();
+        jCheckBox12 = new javax.swing.JCheckBox();
+        jCheckBox13 = new javax.swing.JCheckBox();
+        jCheckBox14 = new javax.swing.JCheckBox();
+        jCheckBox15 = new javax.swing.JCheckBox();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jCheckBox16 = new javax.swing.JCheckBox();
+        jCheckBox17 = new javax.swing.JCheckBox();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -219,6 +269,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jTextField20 = new javax.swing.JTextField();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jLabel68 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -260,6 +311,12 @@ public class graficDepartment extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1080, 150));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -383,7 +440,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Complete Jobs");
+        jLabel3.setText("On Going Jobs");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 190, 58));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -407,9 +464,20 @@ public class graficDepartment extends javax.swing.JFrame {
                 "Job No", "Date", "Title", "Author", "ISBN", "Language", "Complete Desiging", "Complete Palaning"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable3);
 
         jPanel11.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1080, 160));
+
+        jTextField13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField13KeyReleased(evt);
+            }
+        });
         jPanel11.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -431,9 +499,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel38.setText("Job No ");
         jPanel12.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
-
-        jLabel39.setText("jLabel3");
-        jPanel12.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, -1));
+        jPanel12.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 70, 30));
 
         jTextField14.setEditable(false);
         jPanel12.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 250, -1));
@@ -473,7 +539,8 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jTextField18.setEditable(false);
         jPanel12.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 250, -1));
-        jPanel12.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+        jPanel12.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 230, 20));
+        jPanel12.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 100, 30));
 
         jPanel6.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 1050, 160));
 
@@ -484,18 +551,22 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel49.setText("* Positive Out Completed");
         jPanel7.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
+        buttonGroup1.add(jCheckBox6);
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox6.setText("Yes");
         jPanel7.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
+        buttonGroup1.add(jCheckBox7);
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox7.setText("No");
         jPanel7.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
+        buttonGroup2.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox8.setText("No");
         jPanel7.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
+        buttonGroup2.add(jCheckBox9);
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox9.setText("Yes");
         jPanel7.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
@@ -508,10 +579,12 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel51.setText("* CTP");
         jPanel7.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 210, -1));
 
+        buttonGroup3.add(jCheckBox10);
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox10.setText("Yes");
         jPanel7.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
+        buttonGroup3.add(jCheckBox11);
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox11.setText("No");
         jPanel7.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
@@ -522,12 +595,22 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton7.setText("Save");
         jButton7.setBorder(null);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 750, 108, 45));
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Update");
+        jButton8.setText("Clear");
         jButton8.setBorder(null);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -537,6 +620,190 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel6.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 750, 108, 45));
 
         jTabbedPane1.addTab("Jobs in Hand", jPanel6);
+
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel23.setText("Completed Jobs");
+        jPanel13.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 210, 58));
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel53.setText("Date ");
+        jPanel13.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel13.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 210, 52));
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel13.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Completed Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Disigner Complete", "Planner Complete"
+            }
+        ));
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTable4);
+
+        jPanel14.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1090, 180));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+        jPanel14.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 260, -1));
+
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel56.setText("Search");
+        jPanel14.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
+
+        jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1110, 270));
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Job Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel55.setText("Book Title");
+        jPanel15.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 110, -1));
+
+        jTextField7.setEditable(false);
+        jPanel15.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 291, -1));
+        jPanel15.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 100, 30));
+
+        jTextField22.setEditable(false);
+        jPanel15.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 250, -1));
+
+        jLabel58.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel58.setText("ISBN");
+        jPanel15.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
+
+        jTextField23.setEditable(false);
+        jPanel15.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 290, -1));
+
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel59.setText("Authour/Translator name");
+        jPanel15.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jLabel60.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel60.setText("Language");
+        jPanel15.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        jTextField24.setEditable(false);
+        jPanel15.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 290, -1));
+
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel61.setText("Date ");
+        jPanel15.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, -1, -1));
+
+        jLabel62.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel62.setText("Disigning Complete");
+        jPanel15.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        jTextField25.setEditable(false);
+        jPanel15.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 290, -1));
+
+        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel63.setText("Planning Complete");
+        jPanel15.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, -1, -1));
+
+        jTextField26.setEditable(false);
+        jPanel15.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 250, -1));
+        jPanel15.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 230, 20));
+        jPanel15.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 100, 30));
+
+        jLabel67.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel67.setText("Job No ");
+        jPanel15.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+
+        jPanel13.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 1050, 160));
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel64.setText("* Positive Out Completed");
+        jPanel16.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        buttonGroup1.add(jCheckBox12);
+        jCheckBox12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox12.setText("Yes");
+        jPanel16.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        buttonGroup1.add(jCheckBox13);
+        jCheckBox13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox13.setText("No");
+        jPanel16.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        buttonGroup2.add(jCheckBox14);
+        jCheckBox14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox14.setText("No");
+        jPanel16.add(jCheckBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+
+        buttonGroup2.add(jCheckBox15);
+        jCheckBox15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox15.setText("Yes");
+        jPanel16.add(jCheckBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+
+        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel65.setText("* Trasing Completed");
+        jPanel16.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 210, -1));
+
+        jLabel66.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel66.setText("* CTP");
+        jPanel16.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 210, -1));
+
+        buttonGroup3.add(jCheckBox16);
+        jCheckBox16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox16.setText("Yes");
+        jPanel16.add(jCheckBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+
+        buttonGroup3.add(jCheckBox17);
+        jCheckBox17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox17.setText("No");
+        jPanel16.add(jCheckBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+
+        jPanel13.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 400, 140));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Update");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 750, 108, 45));
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton11.setText("Delete");
+        jButton11.setBorder(null);
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel13.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 750, 108, 45));
+
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton12.setText("Clear");
+        jButton12.setBorder(null);
+        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
+
+        jTabbedPane1.addTab("Completed Jobs", jPanel13);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -556,6 +823,12 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Other Job Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel9.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 295, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -567,9 +840,14 @@ public class graficDepartment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Other Job No", "Receiving Date", "Designer Name", "Complete Date", "Remark"
+                "Other Job No", "Job Name", "Designer Name", "Receiving Date", "Complete Date", "Remark"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 1050, 220));
@@ -580,12 +858,22 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 750, 108, 45));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Update");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -627,6 +915,9 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel3.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, 200, -1));
         jPanel3.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, -1));
 
+        jLabel68.setText("jLabel68");
+        jPanel3.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 30));
+
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 1060, 220));
 
         jTabbedPane1.addTab("Other Jobs", jPanel2);
@@ -639,42 +930,42 @@ public class graficDepartment extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
             // TODO add your handling code here:
-    //        set data to the feilds
+            //        set data to the feilds
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             int i = jTable1.getSelectedRow();
             String jobid = dtm.getValueAt(i, 0).toString();
-            
+
             ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,recomd_price from costing c1 inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card "
-                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where md_approv='Yes' AND idjob_card='"+jobid+"'");
-            
-            if(rs.next()){
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where md_approv='Yes' AND idjob_card='" + jobid + "'");
+
+            if (rs.next()) {
                 String job_crdid = rs.getString("idjob_card");
                 jLabel29.setText(job_crdid);
-                
+
                 String ag_date = rs.getString("agrmt_sign_date");
                 jLabel4.setText(ag_date);
-                
+
                 String titl = rs.getString("manuscript_name");
                 jTextField5.setText(titl);
-                
+
                 String author = rs.getString("fname");
                 jTextField10.setText(author);
-                
+
                 String ibn = rs.getString("isbn");
                 jTextField9.setText(ibn);
-                
+
                 String langu = rs.getString("language");
                 jTextField11.setText(langu);
-                
+
                 String rprce = rs.getString("recomd_price");
                 jTextField21.setText(rprce);
-                
+
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -683,32 +974,32 @@ public class graficDepartment extends javax.swing.JFrame {
             //save data 
             String dingerName = jComboBox1.getSelectedItem().toString();
             String dndead = datechosser(jDateChooser1);
-            
+
             String planerName = jComboBox2.getSelectedItem().toString();
             String pdead = datechosser(jDateChooser3);
-            
+
             int job_cardid = 0;
             ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel29.getText() + "'");
             if (rs.next()) {
                 job_cardid = rs.getInt("idjob_card");
             }
-            
+
             ConnectionSet1.getInstance().setResult("insert into grafic_jobs(disigner_nme,disigner_deadln,planner_nme,planner_deadln,job_card_idjob_card,send_dte) "
-                    + "values('"+dingerName+"','"+dndead+"','"+planerName+"','"+pdead+"','"+job_cardid+"','"+jLabel16.getText()+"')");
-            
-           int grfjid = 0;
-            ResultSet rs1 = ConnectionSet1.getInstance().getResult("select idgrafic_dep from grafic_jobs where idgrafic_dep='"+jLabel17.getText()+"'");
-            if(rs1.next()){
+                    + "values('" + dingerName + "','" + dndead + "','" + planerName + "','" + pdead + "','" + job_cardid + "','" + jLabel16.getText() + "')");
+
+            int grfjid = 0;
+            ResultSet rs1 = ConnectionSet1.getInstance().getResult("select idgrafic_dep from grafic_jobs where idgrafic_dep='" + jLabel17.getText() + "'");
+            if (rs1.next()) {
                 grfjid = rs1.getInt("idgrafic_dep");
             }
-            
-            ConnectionSet1.getInstance().setResult("insert into disigner_jobs(job_done,grafic_jobs_idgrafic_dep) values('No','"+grfjid+"')");
-            ConnectionSet1.getInstance().setResult("insert into planner(job_done,grafic_jobs_idgrafic_dep) values('No','"+grfjid+"')");
-            
+
+            ConnectionSet1.getInstance().setResult("insert into disigner_jobs(job_doned,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
+            ConnectionSet1.getInstance().setResult("insert into planner(job_done,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
+
             jLabel17.setText(maxid("idgrafic_dep", "grafic_jobs", 1));
             jComboBox1.setSelectedIndex(0);
             jComboBox2.setSelectedIndex(0);
-            
+
             jTextField5.setText("");
             jLabel29.setText("");
             jTextField10.setText("");
@@ -716,12 +1007,416 @@ public class graficDepartment extends javax.swing.JFrame {
             jTextField11.setText("");
             jLabel4.setText("");
             jTextField21.setText("");
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        try {
+            // TODO add your handling code here:
+            //set values for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+            int i = jTable3.getSelectedRow();
+            String jobid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done,idgrafic_dep from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is null");
+
+            if (rs.next()) {
+                String idjob = rs.getString("idjob_card");
+                jLabel39.setText(idjob);
+
+                String jobdate = rs.getString("agrmt_sign_date");
+                jLabel18.setText(jobdate);
+
+                String title = rs.getString("manuscript_name");
+                jTextField6.setText(title);
+
+                String author = rs.getString("fname");
+                jTextField15.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField14.setText(isbn);
+
+                String langu = rs.getString("language");
+                jTextField16.setText(langu);
+
+                String disjbdn = rs.getString("job_doned");
+                jTextField17.setText(disjbdn);
+
+                String plnjbdn = rs.getString("job_done");
+                jTextField18.setText(plnjbdn);
+
+                String idgrf = rs.getString("idgrafic_dep");
+                jLabel19.setText(idgrf);
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //save the job in hand is completed
+            String positv_cplt;
+            if (jCheckBox6.isSelected()) {
+                positv_cplt = "Yes";
+            } else {
+                positv_cplt = "No";
+            }
+
+            String tracng_cplt;
+            if (jCheckBox9.isSelected()) {
+                tracng_cplt = "Yes";
+            } else {
+                tracng_cplt = "No";
+            }
+
+            String ctp;
+            if (jCheckBox10.isSelected()) {
+                ctp = "Yes";
+            } else {
+                ctp = "No";
+            }
+
+            ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel19.getText() + "'");
+
+            jTextField6.setText("");
+            jTextField15.setText("");
+            jTextField16.setText("");
+            jTextField17.setText("");
+            jLabel39.setText("");
+            jLabel19.setText("");
+            jTextField14.setText("");
+            jLabel18.setText("");
+            jTextField18.setText("");
+            jCheckBox6.setSelected(false);
+            jCheckBox7.setSelected(false);
+            jCheckBox9.setSelected(false);
+            jCheckBox8.setSelected(false);
+            jCheckBox10.setSelected(false);
+            jCheckBox11.setSelected(false);
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        try {
+            // TODO add your handling code here:
+            //set value for the table
+            DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
+            int i = jTable4.getSelectedRow();
+            String jobid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done,idgrafic_dep,postv_cmplt,trcng_cmplt,ctp from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is not null");
+
+            if (rs.next()) {
+                String idjob = rs.getString("idjob_card");
+                jLabel57.setText(idjob);
+
+                String jobdate = rs.getString("agrmt_sign_date");
+                jLabel25.setText(jobdate);
+
+                String title = rs.getString("manuscript_name");
+                jTextField7.setText(title);
+
+                String author = rs.getString("fname");
+                jTextField23.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField22.setText(isbn);
+
+                String langu = rs.getString("language");
+                jTextField24.setText(langu);
+
+                String disjbdn = rs.getString("job_doned");
+                jTextField25.setText(disjbdn);
+
+                String plnjbdn = rs.getString("job_done");
+                jTextField26.setText(plnjbdn);
+
+                String idgrf = rs.getString("idgrafic_dep");
+                jLabel26.setText(idgrf);
+
+                String pos_cmplt = rs.getString("postv_cmplt");
+                if (pos_cmplt.equals("Yes")) {
+                    jCheckBox12.setSelected(true);
+                } else {
+                    jCheckBox13.setSelected(true);
+                }
+
+                String trsng_cmplt = rs.getString("trcng_cmplt");
+                if (trsng_cmplt.equals("Yes")) {
+                    jCheckBox15.setSelected(true);
+                } else {
+                    jCheckBox14.setSelected(true);
+                }
+
+                String ctp = rs.getString("ctp");
+                if (ctp.equals("Yes")) {
+                    jCheckBox16.setSelected(true);
+                } else {
+                    jCheckBox17.setSelected(true);
+                }
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        //clear all data
+        jTextField6.setText("");
+        jTextField15.setText("");
+        jTextField16.setText("");
+        jTextField17.setText("");
+        jLabel39.setText("");
+        jLabel19.setText("");
+        jTextField14.setText("");
+        jLabel18.setText("");
+        jTextField18.setText("");
+        jCheckBox6.setSelected(false);
+        jCheckBox7.setSelected(false);
+        jCheckBox9.setSelected(false);
+        jCheckBox8.setSelected(false);
+        jCheckBox10.setSelected(false);
+        jCheckBox11.setSelected(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update the complete jobs
+            String positv_cplt;
+            if (jCheckBox12.isSelected()) {
+                positv_cplt = "Yes";
+            } else {
+                positv_cplt = "No";
+            }
+
+            String tracng_cplt;
+            if (jCheckBox15.isSelected()) {
+                tracng_cplt = "Yes";
+            } else {
+                tracng_cplt = "No";
+            }
+
+            String ctp;
+            if (jCheckBox16.isSelected()) {
+                ctp = "Yes";
+            } else {
+                ctp = "No";
+            }
+
+            ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel26.getText() + "'");
+
+            jTextField7.setText("");
+            jTextField23.setText("");
+            jTextField24.setText("");
+            jTextField25.setText("");
+            jLabel57.setText("");
+            jLabel26.setText("");
+            jTextField22.setText("");
+            jLabel25.setText("");
+            jTextField26.setText("");
+            jCheckBox12.setSelected(false);
+            jCheckBox13.setSelected(false);
+            jCheckBox15.setSelected(false);
+            jCheckBox14.setSelected(false);
+            jCheckBox16.setSelected(false);
+            jCheckBox17.setSelected(false);
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        //clear all data
+        jTextField7.setText("");
+        jTextField23.setText("");
+        jTextField24.setText("");
+        jTextField25.setText("");
+        jLabel57.setText("");
+        jLabel26.setText("");
+        jTextField22.setText("");
+        jLabel25.setText("");
+        jTextField26.setText("");
+        jCheckBox12.setSelected(false);
+        jCheckBox13.setSelected(false);
+        jCheckBox15.setSelected(false);
+        jCheckBox14.setSelected(false);
+        jCheckBox16.setSelected(false);
+        jCheckBox17.setSelected(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            //search a new jobs
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,recomd_price from costing c1 inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where md_approv='Yes' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "'))", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField13KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch on goin jobs
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is null  AND (fname like('" + jTextField13.getText() + "%%" + "') or manuscript_name like('" + jTextField13.getText() + "%%%" + "') or idjob_card like('" + jTextField13.getText() + "%%" + "'))", jTable3);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField13KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch the complete jobs
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is not null  AND (fname like('" + jTextField1.getText() + "%%" + "') or manuscript_name like('" + jTextField1.getText() + "%%%" + "') or idjob_card like('" + jTextField1.getText() + "%%" + "'))", jTable4);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //add the other job details
+            String jname = jTextField19.getText();
+            String disinr = jTextField20.getText();
+            String reci_dte = datechosser(jDateChooser5);
+            //String cmplt_dte =  datechosser(jDateChooser4);
+            String remk = jTextArea1.getText();
+
+            ConnectionSet1.getInstance().setResult("insert into grfic_other_jobs(jname,disigner,recive_dte,remark) values('" + jname + "','" + disinr + "','" + reci_dte + "','" + remk + "')");
+
+            jTextField19.setText("");
+            jTextField20.setText("");
+            jTextArea1.setText("");
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try {
+            // TODO add your handling code here:
+            // set data from the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+            String ojid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from grfic_other_jobs");
+
+            if (rs.next()) {
+                String ojbid = rs.getString("idgrfic_other_jobs");
+                jLabel68.setText(ojbid);
+
+                String jbnme = rs.getString("jname");
+                jTextField19.setText(jbnme);
+
+                String disigner = rs.getString("disigner");
+                jTextField20.setText(disigner);
+
+                String resdte = rs.getString("recive_dte");
+                Date d = new Date(resdte);
+                d.getDate();
+                jDateChooser5.setDate(d);
+
+                String remrk = rs.getString("remark");
+                jTextArea1.setText(remrk);
+
+                String cmpltdte = rs.getString("cmplt_dte");
+                Date d1 = new Date(cmpltdte);
+                d1.getDate();
+                jDateChooser4.setDate(d1);
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update the form
+            String jname = jTextField19.getText();
+            String disinr = jTextField20.getText();
+            String reci_dte = datechosser(jDateChooser5);
+            String cmplt_dte = datechosser(jDateChooser4);
+            String remk = jTextArea1.getText();
+            
+            ConnectionSet1.getInstance().setResult("update grfic_other_jobs set jname='"+jname+"',disigner='"+disinr+"',recive_dte='"+reci_dte+"',cmplt_dte='"+cmplt_dte+"',remark='"+remk+"' where idgrfic_other_jobs='"+jLabel68.getText()+"'");
+        
+            jTextField19.setText("");
+            jTextField20.setText("");
+            jTextArea1.setText("");
+            tableLoad();
             
         } catch (Exception ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+                
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch other jobs details
+            new tablemodel1().fillTable("select * from grfic_other_jobs where jname like('" + jTextField12.getText() + "%%" + "') or idgrfic_other_jobs like('" + jTextField12.getText() + "%%%" + "')", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField12KeyReleased
 
     /**
      * @param args the command line arguments
@@ -758,7 +1453,13 @@ public class graficDepartment extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -769,6 +1470,12 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
+    private javax.swing.JCheckBox jCheckBox12;
+    private javax.swing.JCheckBox jCheckBox13;
+    private javax.swing.JCheckBox jCheckBox14;
+    private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox16;
+    private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
@@ -779,7 +1486,6 @@ public class graficDepartment extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private com.toedter.calendar.JDateChooser jDateChooser5;
-    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -789,10 +1495,16 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -822,7 +1534,23 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -830,6 +1558,10 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -842,11 +1574,14 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -859,8 +1594,14 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
+    private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables

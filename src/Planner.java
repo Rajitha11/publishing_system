@@ -56,6 +56,8 @@ public class Planner extends javax.swing.JFrame {
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
                     + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'", jTable1);
 
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'", jTable2);
 
 
         } catch (ClassNotFoundException ex) {
@@ -166,6 +168,12 @@ public class Planner extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1040, 180));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -243,9 +251,20 @@ public class Planner extends javax.swing.JFrame {
                 "Job No", "Title", "Author", "ISBN", "Language", "Date", "Deadline", "Retail Price"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 620, 190));
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel9.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 20, 260, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -259,7 +278,7 @@ public class Planner extends javax.swing.JFrame {
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox1.setText("* Completed The Job");
-        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 30, 180, 30));
+        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 180, 30));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 630, 340, 90));
 
@@ -278,6 +297,11 @@ public class Planner extends javax.swing.JFrame {
         jButton5.setText("Update");
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 800, 108, 45));
 
         jPanel15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -472,6 +496,9 @@ public class Planner extends javax.swing.JFrame {
             jCheckBox10.setSelected(false);
             jCheckBox11.setSelected(false);
             jCheckBox1.setSelected(false);
+            jTextField16.setText("");
+            jTextField17.setText("");
+            tableLoad();
 
         } catch (Exception ex) {
             Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
@@ -500,6 +527,168 @@ public class Planner extends javax.swing.JFrame {
         jTextField16.setText("");
         jTextField17.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try {
+            // TODO add your handling code here:
+            //set data from the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+            String jobid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price,pduct_sz,nm_pages,job_done,idgrafic_dep,t1.* from planner pl1 "
+                    + "inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card "
+                    + "inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'");
+
+            if (rs.next()) {
+                String idjob = rs.getString("idjob_card");
+                jLabel29.setText(idjob);
+
+                String grpid = rs.getString("idgrafic_dep");
+                jLabel3.setText(grpid);
+
+                String title = rs.getString("manuscript_name");
+                jTextField5.setText(title);
+
+                String author = rs.getString("fname");
+                jTextField10.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField9.setText(isbn);
+
+                String langu = rs.getString("language");
+                jTextField11.setText(langu);
+
+                String snddte = rs.getString("send_dte");
+                jLabel1.setText(snddte);
+
+                String deadln = rs.getString("planner_deadln");
+                jLabel4.setText(deadln);
+
+                String rtilprc = rs.getString("recomd_price");
+                jTextField21.setText(rtilprc);
+
+                String psiz = rs.getString("pduct_sz");
+                jTextField15.setText(psiz);
+
+                String nofpge = rs.getString("nm_pages");
+                jTextField14.setText(nofpge);
+
+                String postiv_clr = rs.getString("psitiv_clr");
+                if (postiv_clr.equals("Yes")) {
+                    jCheckBox9.setSelected(true);
+                } else {
+                    jCheckBox9.setSelected(false);
+                }
+
+                String postiv_clr_pg = rs.getString("psitiv_clr_pge");
+                jTextField16.setText(postiv_clr_pg);
+
+                String postiv_bw = rs.getString("psitiv_bw");
+                if (postiv_bw.equals("Yes")) {
+                    jCheckBox7.setSelected(true);
+                } else {
+                    jCheckBox7.setSelected(false);
+                }
+
+                String postiv_bw_pg = rs.getString("psitiv_bw_pge");
+                jTextField17.setText(postiv_bw_pg);
+
+                String img = rs.getString("img");
+                if (img.equals("Have")) {
+                    jCheckBox10.setSelected(true);
+                } else {
+                    jCheckBox10.setSelected(false);
+                }
+
+                String shad = rs.getString("shades");
+                if (shad.equals("Have")) {
+                    jCheckBox11.setSelected(true);
+                } else {
+                    jCheckBox11.setSelected(false);
+                }
+
+                String compt = rs.getString("job_done");
+                if (compt.equals("Yes")) {
+                    jCheckBox1.setSelected(true);
+                } else {
+                    jCheckBox1.setSelected(false);
+                }
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //update the feilds
+            String plnrFinshed;
+            if (jCheckBox1.isSelected()) {
+                plnrFinshed = "Yes";
+            } else {
+                plnrFinshed = "No";
+            }
+
+            ConnectionSet1.getInstance().setResult("update planner set job_done='" + plnrFinshed + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel3.getText() + "'");
+
+            jLabel29.setText("");
+            jLabel3.setText("");
+            jTextField5.setText("");
+            jTextField10.setText("");
+            jTextField9.setText("");
+            jTextField11.setText("");
+            jLabel1.setText("");
+            jLabel4.setText("");
+            jTextField21.setText("");
+            jTextField15.setText("");
+            jTextField14.setText("");
+            jCheckBox9.setSelected(false);
+            jCheckBox10.setSelected(false);
+            jCheckBox11.setSelected(false);
+            jCheckBox1.setSelected(false);
+            jTextField16.setText("");
+            jTextField17.setText("");
+            tableLoad();
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            // serch the new jobs
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
+                        + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'  AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "'))", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //serch the complete jobs
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
+                        + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'  AND (fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "') or idjob_card like('" + jTextField12.getText() + "%%" + "'))", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField12KeyReleased
 
     /**
      * @param args the command line arguments
