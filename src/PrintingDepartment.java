@@ -77,7 +77,8 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Printing Details");
         setEnabled(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -270,6 +271,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
         getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 800, 200, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
