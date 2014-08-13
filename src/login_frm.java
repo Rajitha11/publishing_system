@@ -1,8 +1,14 @@
+
+import com.org.DB.ConnectionSet1;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -27,10 +33,10 @@ public class login_frm extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        passw = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -46,24 +52,27 @@ public class login_frm extends javax.swing.JFrame {
         jLabel3.setText("Username");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 130, 40));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 200, 30));
-
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 200, 30));
 
-        jButton2.setFont(new java.awt.Font("BatangChe", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("BatangChe", 1, 12)); // NOI18N
         jButton2.setText("Exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, -1, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 510, 60, 30));
 
-        jButton1.setFont(new java.awt.Font("BatangChe", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("BatangChe", 1, 12)); // NOI18N
         jButton1.setText("Login");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 90, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 80, 30));
+        getContentPane().add(passw, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 200, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Background-01.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
@@ -74,8 +83,38 @@ public class login_frm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //exit button code
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            String username = jTextField3.getText();
+            String password = passw.getText();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + username + "' AND password='" + password + "'");
+
+            if (rs.next()) {
+
+                String desig = rs.getString("designation");
+
+                String userTyp = rs.getString("user_type");
+
+                String uname = rs.getString("username");
+
+                new Menu(desig, userTyp, uname).setVisible(true);
+                this.dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Username or Password is Incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +156,7 @@ public class login_frm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField passw;
     // End of variables declaration//GEN-END:variables
 }

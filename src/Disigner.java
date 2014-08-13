@@ -36,6 +36,8 @@ public class Disigner extends javax.swing.JFrame {
 
     }
 
+    
+
     void dateMethod() {
         //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
@@ -118,6 +120,7 @@ public class Disigner extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Designer");
@@ -304,6 +307,9 @@ public class Disigner extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 750, 80, 30));
+
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 90, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -593,6 +599,7 @@ public class Disigner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel4;
