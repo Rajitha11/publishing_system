@@ -12,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,10 +29,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     /**
      * Creates new form fullEvoluationProcess
      */
-    
     SimpleDateFormat d1, d2;
     Timer t;
-    
+
     public fullEvoluationProcess() {
         initComponents();
         //
@@ -70,7 +70,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         return date;
 
     }
-    
+
     void dateMethod() {
         //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
@@ -81,10 +81,10 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 Date d = new Date();
                 jLabel14.setText(d1.format(d));
                 jLabel30.setText(d2.format(d));
-                
+
                 jLabel18.setText(d1.format(d));
                 jLabel31.setText(d2.format(d));
-                
+
                 jLabel41.setText(d1.format(d));
                 jLabel42.setText(d2.format(d));
             }
@@ -971,30 +971,34 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            // Save the evaluation process
+        if (jLabel3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                // Save the evaluation process
 
-            int manu_script = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + jLabel3.getText() + "'");
-            if (rs.next()) {
-                manu_script = rs.getInt("idrm");
+                int manu_script = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + jLabel3.getText() + "'");
+                if (rs.next()) {
+                    manu_script = rs.getInt("idrm");
+                }
+
+                String sntto = jComboBox3.getSelectedItem().toString();
+                String sntby = jComboBox4.getSelectedItem().toString();
+                String sntdat = datechosser(jDateChooser4);
+                ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm,decision) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "','Pending')");
+
+                jLabel3.setText("");
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField6.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String sntto = jComboBox3.getSelectedItem().toString();
-            String sntby = jComboBox4.getSelectedItem().toString();
-            String sntdat = datechosser(jDateChooser4);
-            ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm,decision) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "','Pending')");
-
-            jLabel3.setText("");
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField6.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1057,31 +1061,35 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7KeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            // update the all manuscript table data
-            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+        if (jLabel3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                // update the all manuscript table data
+                DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
 
-            String sntto = jComboBox3.getSelectedItem().toString();
-            String sntby = jComboBox4.getSelectedItem().toString();
-            String sntdat = datechosser(jDateChooser4);
+                String sntto = jComboBox3.getSelectedItem().toString();
+                String sntby = jComboBox4.getSelectedItem().toString();
+                String sntdat = datechosser(jDateChooser4);
 
-            ConnectionSet1.getInstance().setResult("Update evaluation set send_to='" + sntto + "',sent_by='" + sntby + "',sent_date='" + sntdat + "' where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
-            jLabel3.setText("");
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField6.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+                ConnectionSet1.getInstance().setResult("Update evaluation set send_to='" + sntto + "',sent_by='" + sntby + "',sent_date='" + sntdat + "' where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
+                jLabel3.setText("");
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField6.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
-        
-            try {
+
+        try {
             // TODO add your handling code here:
             // serch data
             new tablemodel1().fillTable("select idrm,fname,contact_no,email,manuscript_name,catergory,ms_type,send_to,sent_by,sent_date,decision from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision='Pending' and (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or decision like('" + jTextField8.getText() + "%%%" + "'))", jTable4);
@@ -1092,9 +1100,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-        
-        
+
+
+
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -1137,35 +1145,39 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save approvel manu script
-            String resdat = datechosser(jDateChooser1);
-            String aprow;
-            if (jCheckBox3.isSelected()) {
-                aprow = "Approve";
-            } else {
-                aprow = "Reject";
+        if (jLabel27.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save approvel manu script
+                String resdat = datechosser(jDateChooser1);
+                String aprow;
+                if (jCheckBox3.isSelected()) {
+                    aprow = "Approve";
+                } else {
+                    aprow = "Reject";
+                }
+
+                ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
+                jLabel27.setText("");
+                jTextField9.setText("");
+                jTextField10.setText("");
+                jTextField11.setText("");
+                jTextField12.setText("");
+                jTextField13.setText("");
+                jLabel34.setText("");
+                jTextArea1.setText("");
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
-            jLabel27.setText("");
-            jTextField9.setText("");
-            jTextField10.setText("");
-            jTextField11.setText("");
-            jTextField12.setText("");
-            jTextField13.setText("");
-            jLabel34.setText("");
-            jTextArea1.setText("");
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyReleased
-        
+
         try {
             // TODO add your handling code here:
             // serch data
@@ -1177,7 +1189,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jTextField14KeyReleased
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
@@ -1234,29 +1246,33 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update approvel manu script
-            String resdat = datechosser(jDateChooser1);
-            String aprow;
-            if (jCheckBox3.isSelected()) {
-                aprow = "Approve";
-            } else {
-                aprow = "Reject";
-            }
+        if (jLabel27.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update approvel manu script
+                String resdat = datechosser(jDateChooser1);
+                String aprow;
+                if (jCheckBox3.isSelected()) {
+                    aprow = "Approve";
+                } else {
+                    aprow = "Reject";
+                }
 
-            ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
-            jLabel27.setText("");
-            jTextField9.setText("");
-            jTextField10.setText("");
-            jTextField11.setText("");
-            jTextField12.setText("");
-            jTextField13.setText("");
-            jLabel34.setText("");
-            jTextArea1.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+                ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow + "',reason='" + jTextArea1.getText() + "' where reseving_manuscript_idrm='" + jLabel27.getText() + "'");
+                jLabel27.setText("");
+                jTextField9.setText("");
+                jTextField10.setText("");
+                jTextField11.setText("");
+                jTextField12.setText("");
+                jTextField13.setText("");
+                jLabel34.setText("");
+                jTextArea1.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1392,27 +1408,31 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update approvel manu script
-            String resdat = datechosser(jDateChooser5);
-            String aprow1 = null;
-            if (jCheckBox5.isSelected()) {
-                aprow1 = "Approve";
-            }
+        if (jLabel51.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update approvel manu script
+                String resdat = datechosser(jDateChooser5);
+                String aprow1 = null;
+                if (jCheckBox5.isSelected()) {
+                    aprow1 = "Approve";
+                }
 
-            ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow1 + "' where reseving_manuscript_idrm='" + jLabel51.getText() + "'");
-            jLabel51.setText("");
-            jTextField17.setText("");
-            jTextField18.setText("");
-            jTextField19.setText("");
-            jTextField20.setText("");
-            jTextField21.setText("");
-            jLabel56.setText("");
-            jLabel60.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+                ConnectionSet1.getInstance().setResult("update evaluation set recive_date='" + resdat + "',decision='" + aprow1 + "' where reseving_manuscript_idrm='" + jLabel51.getText() + "'");
+                jLabel51.setText("");
+                jTextField17.setText("");
+                jTextField18.setText("");
+                jTextField19.setText("");
+                jTextField20.setText("");
+                jTextField21.setText("");
+                jLabel56.setText("");
+                jLabel60.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 

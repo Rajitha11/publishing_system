@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -394,6 +395,11 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton5.setText("Clear");
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -971,49 +977,52 @@ public class graficDepartment extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save data 
-            String dingerName = jComboBox1.getSelectedItem().toString();
-            String dndead = datechosser(jDateChooser1);
+        if (jLabel29.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Card", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save data 
+                String dingerName = jComboBox1.getSelectedItem().toString();
+                String dndead = datechosser(jDateChooser1);
 
-            String planerName = jComboBox2.getSelectedItem().toString();
-            String pdead = datechosser(jDateChooser3);
+                String planerName = jComboBox2.getSelectedItem().toString();
+                String pdead = datechosser(jDateChooser3);
 
-            int job_cardid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel29.getText() + "'");
-            if (rs.next()) {
-                job_cardid = rs.getInt("idjob_card");
+                int job_cardid = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel29.getText() + "'");
+                if (rs.next()) {
+                    job_cardid = rs.getInt("idjob_card");
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into grafic_jobs(disigner_nme,disigner_deadln,planner_nme,planner_deadln,job_card_idjob_card,send_dte) "
+                        + "values('" + dingerName + "','" + dndead + "','" + planerName + "','" + pdead + "','" + job_cardid + "','" + jLabel16.getText() + "')");
+
+                int grfjid = 0;
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select idgrafic_dep from grafic_jobs where idgrafic_dep='" + jLabel17.getText() + "'");
+                if (rs1.next()) {
+                    grfjid = rs1.getInt("idgrafic_dep");
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into disigner_jobs(job_doned,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
+                ConnectionSet1.getInstance().setResult("insert into planner(job_done,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
+
+                jLabel17.setText(maxid("idgrafic_dep", "grafic_jobs", 1));
+                jComboBox1.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+
+                jTextField5.setText("");
+                jLabel29.setText("");
+                jTextField10.setText("");
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jLabel4.setText("");
+                jTextField21.setText("");
+
+            } catch (Exception ex) {
+                Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ConnectionSet1.getInstance().setResult("insert into grafic_jobs(disigner_nme,disigner_deadln,planner_nme,planner_deadln,job_card_idjob_card,send_dte) "
-                    + "values('" + dingerName + "','" + dndead + "','" + planerName + "','" + pdead + "','" + job_cardid + "','" + jLabel16.getText() + "')");
-
-            int grfjid = 0;
-            ResultSet rs1 = ConnectionSet1.getInstance().getResult("select idgrafic_dep from grafic_jobs where idgrafic_dep='" + jLabel17.getText() + "'");
-            if (rs1.next()) {
-                grfjid = rs1.getInt("idgrafic_dep");
-            }
-
-            ConnectionSet1.getInstance().setResult("insert into disigner_jobs(job_doned,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
-            ConnectionSet1.getInstance().setResult("insert into planner(job_done,grafic_jobs_idgrafic_dep) values('No','" + grfjid + "')");
-
-            jLabel17.setText(maxid("idgrafic_dep", "grafic_jobs", 1));
-            jComboBox1.setSelectedIndex(0);
-            jComboBox2.setSelectedIndex(0);
-
-            jTextField5.setText("");
-            jLabel29.setText("");
-            jTextField10.setText("");
-            jTextField9.setText("");
-            jTextField11.setText("");
-            jLabel4.setText("");
-            jTextField21.setText("");
-
-        } catch (Exception ex) {
-            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -1063,53 +1072,56 @@ public class graficDepartment extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the job in hand is completed
-            String positv_cplt;
-            if (jCheckBox6.isSelected()) {
-                positv_cplt = "Yes";
-            } else {
-                positv_cplt = "No";
+        if (jLabel39.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Card", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save the job in hand is completed
+                String positv_cplt;
+                if (jCheckBox6.isSelected()) {
+                    positv_cplt = "Yes";
+                } else {
+                    positv_cplt = "No";
+                }
+
+                String tracng_cplt;
+                if (jCheckBox9.isSelected()) {
+                    tracng_cplt = "Yes";
+                } else {
+                    tracng_cplt = "No";
+                }
+
+                String ctp;
+                if (jCheckBox10.isSelected()) {
+                    ctp = "Yes";
+                } else {
+                    ctp = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel19.getText() + "'");
+
+                jTextField6.setText("");
+                jTextField15.setText("");
+                jTextField16.setText("");
+                jTextField17.setText("");
+                jLabel39.setText("");
+                jLabel19.setText("");
+                jTextField14.setText("");
+                jLabel18.setText("");
+                jTextField18.setText("");
+                jCheckBox6.setSelected(false);
+                jCheckBox7.setSelected(false);
+                jCheckBox9.setSelected(false);
+                jCheckBox8.setSelected(false);
+                jCheckBox10.setSelected(false);
+                jCheckBox11.setSelected(false);
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String tracng_cplt;
-            if (jCheckBox9.isSelected()) {
-                tracng_cplt = "Yes";
-            } else {
-                tracng_cplt = "No";
-            }
-
-            String ctp;
-            if (jCheckBox10.isSelected()) {
-                ctp = "Yes";
-            } else {
-                ctp = "No";
-            }
-
-            ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel19.getText() + "'");
-
-            jTextField6.setText("");
-            jTextField15.setText("");
-            jTextField16.setText("");
-            jTextField17.setText("");
-            jLabel39.setText("");
-            jLabel19.setText("");
-            jTextField14.setText("");
-            jLabel18.setText("");
-            jTextField18.setText("");
-            jCheckBox6.setSelected(false);
-            jCheckBox7.setSelected(false);
-            jCheckBox9.setSelected(false);
-            jCheckBox8.setSelected(false);
-            jCheckBox10.setSelected(false);
-            jCheckBox11.setSelected(false);
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1200,53 +1212,56 @@ public class graficDepartment extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update the complete jobs
-            String positv_cplt;
-            if (jCheckBox12.isSelected()) {
-                positv_cplt = "Yes";
-            } else {
-                positv_cplt = "No";
+        if (jLabel57.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Card", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update the complete jobs
+                String positv_cplt;
+                if (jCheckBox12.isSelected()) {
+                    positv_cplt = "Yes";
+                } else {
+                    positv_cplt = "No";
+                }
+
+                String tracng_cplt;
+                if (jCheckBox15.isSelected()) {
+                    tracng_cplt = "Yes";
+                } else {
+                    tracng_cplt = "No";
+                }
+
+                String ctp;
+                if (jCheckBox16.isSelected()) {
+                    ctp = "Yes";
+                } else {
+                    ctp = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel26.getText() + "'");
+
+                jTextField7.setText("");
+                jTextField23.setText("");
+                jTextField24.setText("");
+                jTextField25.setText("");
+                jLabel57.setText("");
+                jLabel26.setText("");
+                jTextField22.setText("");
+                jLabel25.setText("");
+                jTextField26.setText("");
+                jCheckBox12.setSelected(false);
+                jCheckBox13.setSelected(false);
+                jCheckBox15.setSelected(false);
+                jCheckBox14.setSelected(false);
+                jCheckBox16.setSelected(false);
+                jCheckBox17.setSelected(false);
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String tracng_cplt;
-            if (jCheckBox15.isSelected()) {
-                tracng_cplt = "Yes";
-            } else {
-                tracng_cplt = "No";
-            }
-
-            String ctp;
-            if (jCheckBox16.isSelected()) {
-                ctp = "Yes";
-            } else {
-                ctp = "No";
-            }
-
-            ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel26.getText() + "'");
-
-            jTextField7.setText("");
-            jTextField23.setText("");
-            jTextField24.setText("");
-            jTextField25.setText("");
-            jLabel57.setText("");
-            jLabel26.setText("");
-            jTextField22.setText("");
-            jLabel25.setText("");
-            jTextField26.setText("");
-            jCheckBox12.setSelected(false);
-            jCheckBox13.setSelected(false);
-            jCheckBox15.setSelected(false);
-            jCheckBox14.setSelected(false);
-            jCheckBox16.setSelected(false);
-            jCheckBox17.setSelected(false);
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1391,19 +1406,19 @@ public class graficDepartment extends javax.swing.JFrame {
             String reci_dte = datechosser(jDateChooser5);
             String cmplt_dte = datechosser(jDateChooser4);
             String remk = jTextArea1.getText();
-            
-            ConnectionSet1.getInstance().setResult("update grfic_other_jobs set jname='"+jname+"',disigner='"+disinr+"',recive_dte='"+reci_dte+"',cmplt_dte='"+cmplt_dte+"',remark='"+remk+"' where idgrfic_other_jobs='"+jLabel68.getText()+"'");
-        
+
+            ConnectionSet1.getInstance().setResult("update grfic_other_jobs set jname='" + jname + "',disigner='" + disinr + "',recive_dte='" + reci_dte + "',cmplt_dte='" + cmplt_dte + "',remark='" + remk + "' where idgrfic_other_jobs='" + jLabel68.getText() + "'");
+
             jTextField19.setText("");
             jTextField20.setText("");
             jTextArea1.setText("");
             tableLoad();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
@@ -1419,6 +1434,10 @@ public class graficDepartment extends javax.swing.JFrame {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextField12KeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

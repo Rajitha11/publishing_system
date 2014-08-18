@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -406,7 +407,7 @@ public class productDiscription extends javax.swing.JFrame {
                 jComboBox4.setModel(new DefaultComboBoxModel(v3));
 
             }
-            
+
             loadPaperTyp();
             loadBoardtp();
             loadGauge();
@@ -418,68 +419,75 @@ public class productDiscription extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the data 
-            String qty = jTextField7.getText();
-            String ptyp = jComboBox1.getSelectedItem().toString();
-            String ptyp_ga = jComboBox3.getSelectedItem().toString();
-            String brtyp = jComboBox2.getSelectedItem().toString();
-            String brtyp_ga = jComboBox4.getSelectedItem().toString();
-            String impnt_check = jTextField2.getText();
-            String remrk = jTextArea1.getText();
-            ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+        if (jLabel4.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select Job Card details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save the data 
+                String qty = jTextField7.getText();
+                String ptyp = jComboBox1.getSelectedItem().toString();
+                String ptyp_ga = jComboBox3.getSelectedItem().toString();
+                String brtyp = jComboBox2.getSelectedItem().toString();
+                String brtyp_ga = jComboBox4.getSelectedItem().toString();
+                String impnt_check = jTextField2.getText();
+                String remrk = jTextArea1.getText();
+                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
-            jTextField7.setText("");
-            jComboBox1.setSelectedIndex(0);
-            jComboBox3.setSelectedIndex(0);
-            jComboBox2.setSelectedIndex(0);
-            jComboBox4.setSelectedIndex(0);
-            jTextField2.setText("");
-            jTextArea1.setText("");
-            jLabel4.setText("");
-            jTextField11.setText("");
-            jTextField9.setText("");
-            jTextField10.setText("");
-            jTextField6.setText("");
-            jTextField4.setText("");
-            tableLoad();
+                jTextField7.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jTextField2.setText("");
+                jTextArea1.setText("");
+                jLabel4.setText("");
+                jTextField11.setText("");
+                jTextField9.setText("");
+                jTextField10.setText("");
+                jTextField6.setText("");
+                jTextField4.setText("");
+                tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //        update the data product description
-            String qty = jTextField7.getText();
-            String ptyp = jComboBox1.getSelectedItem().toString();
-            String ptyp_ga = jComboBox3.getSelectedItem().toString();
-            String brtyp = jComboBox2.getSelectedItem().toString();
-            String brtyp_ga = jComboBox4.getSelectedItem().toString();
-            String impnt_check = jTextField2.getText();
-            String remrk = jTextArea1.getText();
-            ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+        if (jLabel4.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select Job Card details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //        update the data product description
+                String qty = jTextField7.getText();
+                String ptyp = jComboBox1.getSelectedItem().toString();
+                String ptyp_ga = jComboBox3.getSelectedItem().toString();
+                String brtyp = jComboBox2.getSelectedItem().toString();
+                String brtyp_ga = jComboBox4.getSelectedItem().toString();
+                String impnt_check = jTextField2.getText();
+                String remrk = jTextArea1.getText();
+                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
-            jTextField7.setText("");
-            jComboBox1.setSelectedIndex(0);
-            jComboBox3.setSelectedIndex(0);
-            jComboBox2.setSelectedIndex(0);
-            jComboBox4.setSelectedIndex(0);
-            jTextField2.setText("");
-            jTextArea1.setText("");
-            jLabel4.setText("");
-            jTextField11.setText("");
-            jTextField9.setText("");
-            jTextField10.setText("");
-            jTextField6.setText("");
-            jTextField4.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+                jTextField7.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jTextField2.setText("");
+                jTextArea1.setText("");
+                jLabel4.setText("");
+                jTextField11.setText("");
+                jTextField9.setText("");
+                jTextField10.setText("");
+                jTextField6.setText("");
+                jTextField4.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -36,19 +36,27 @@ public class typeSetterJobs extends javax.swing.JFrame {
         //hide the jlist
         jPanel5.setVisible(false);
 
-        tableLoad();
-
         dateMethod();
+    }
+
+    typeSetterJobs(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        
+        jLabel4.setText(uname);
+        
+        tableLoad();
+        
     }
 
     void tableLoad() {
         try {
 
-            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable4);
-            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
-            tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remark,sent_date,resive_date from proof_details", jTable2);
-            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof'", jTable1);
-            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from typesetter_fil t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complete='Yes'", jTable3);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where type_setter='"+jLabel4.getText()+"'", jTable4);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where type_setter='"+jLabel4.getText()+"'", jTable5);
+            new tablemodel1().fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remarkp,sent_date,resive_date from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card where type_setter='"+jLabel4.getText()+"'", jTable2);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof' AND type_setter='"+jLabel4.getText()+"'", jTable1);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from typesetter_fil t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complete='Yes' AND type_setter='"+jLabel4.getText()+"'", jTable3);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,6 +147,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jTable5 = new javax.swing.JTable();
         jTextField23 = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
@@ -399,6 +408,9 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jPanel17.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 60, -1));
 
         jPanel1.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 960, 230));
+
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
 
         jTabbedPane1.addTab("Typesetter Jobs", jPanel1);
 
@@ -834,7 +846,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Completed & Ongoing Jobs", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1150, 900));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
 
         pack();
         setLocationRelativeTo(null);
@@ -910,7 +922,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
             // TODO add your handling code here:
             // search new job for the type setter
 
-            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where fname like('" + jTextField18.getText() + "%%" + "') or manuscript_name like('" + jTextField18.getText() + "%%%" + "') or isbn like('" + jTextField18.getText() + "%%%" + "')", jTable4);
+            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where type_setter='"+jLabel4.getText()+"' AND (fname like('" + jTextField18.getText() + "%%" + "') or manuscript_name like('" + jTextField18.getText() + "%%%" + "') or isbn like('" + jTextField18.getText() + "%%%" + "'))", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -925,7 +937,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //approve the job typesetter
-            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where  fname like('" + jTextField23.getText() + "%%" + "') or manuscript_name like('" + jTextField23.getText() + "%%%" + "') or isbn like('" + jTextField23.getText() + "%%%" + "')", jTable5);
+            tablemodel1.fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where type_setter='"+jLabel4.getText()+"' AND (fname like('" + jTextField23.getText() + "%%" + "') or manuscript_name like('" + jTextField23.getText() + "%%%" + "') or isbn like('" + jTextField23.getText() + "%%%" + "'))", jTable5);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
@@ -945,7 +957,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
                 jPanel5.setVisible(true);
 
                 //ResultSet rs = ConnectionSet1.getInstance().getResult("select * from reseving_manuscript where manuscript_name like('" + jTextField1.getText() + "%%%%%" + "')");
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select manuscript_name,idjob_card from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm where manuscript_name like('" + jTextField1.getText() + "%%%%%" + "')");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select manuscript_name,idjob_card from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm where type_setter='"+jLabel4.getText()+"' AND manuscript_name like('" + jTextField1.getText() + "%%%%%" + "')");
                 Vector v = new Vector();
                 //Vector v1 = new Vector();
 
@@ -1009,7 +1021,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
             String sdte = datechosser(jDateChooser5);
             //String dtertn = datechosser(jDateChooser6);
 
-            ConnectionSet1.getInstance().setResult("insert into proof_details(`proof_details`.`b_title`, `proof_details`.`p_step`, `proof_details`.`p_reader`, `proof_details`.`sent_date`,`proof_details`.`remark`, `proof_details`.`job_card_idjob_card`) values"
+            ConnectionSet1.getInstance().setResult("insert into proof_details(`proof_details`.`b_title`, `proof_details`.`p_step`, `proof_details`.`p_reader`, `proof_details`.`sent_date`,`proof_details`.`remarkp`, `proof_details`.`job_card_idjob_card`) values"
                     + "('" + jTextField1.getText() + "','" + proof + "','" + jTextField13.getText() + "','" + sdte + "','" + jTextArea3.getText() + "','" + jLabel2.getText() + "')");
 
             jTextField1.setText("");
@@ -1039,7 +1051,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
             String sdte = datechosser(jDateChooser5);
             String dtertn = datechosser(jDateChooser6);
 
-            ConnectionSet1.getInstance().setResult("Update proof_details set b_title='" + jTextField1.getText() + "',p_reader='" + jTextField13.getText() + "',sent_date='" + sdte + "',resive_date='" + dtertn + "',remark='" + jTextArea3.getText() + "' where p_step='" + proof + "' and job_card_idjob_card='"+jLabel2.getText()+"'");
+            ConnectionSet1.getInstance().setResult("Update proof_details set b_title='" + jTextField1.getText() + "',p_reader='" + jTextField13.getText() + "',sent_date='" + sdte + "',resive_date='" + dtertn + "',remarkp='" + jTextArea3.getText() + "' where p_step='" + proof + "' and job_card_idjob_card='"+jLabel2.getText()+"'");
             jTextField1.setText("");
             jTextField13.setText("");
             jTextArea3.setText("");
@@ -1056,7 +1068,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //proof details search
-            tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remark,sent_date,resive_date from proof_details where b_title like('" + jTextField12.getText() + "%%%" + "') or job_card_idjob_card like('" + jTextField12.getText() + "%%" + "') or p_step like('" + jTextField12.getText() + "%%" + "')", jTable2);
+            tablemodel1.fillTable("select job_card_idjob_card,b_title,p_step,p_reader,remarkp,sent_date,resive_date from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card  where type_setter='"+jLabel4.getText()+"' AND (b_title like('" + jTextField12.getText() + "%%%" + "') or job_card_idjob_card like('" + jTextField12.getText() + "%%" + "') or p_step like('" + jTextField12.getText() + "%%" + "'))", jTable2);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1125,7 +1137,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //serch Typesetter details
-            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof' and (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or isbn like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='3 rd Proof' AND type_setter='"+jLabel4.getText()+"' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or isbn like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1240,7 +1252,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language from typesetter_fil t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor"
-                    + " where complete='Yes' AND (fname like('" + jTextField24.getText() + "%%" + "') or manuscript_name like('" + jTextField24.getText() + "%%%" + "') or isbn like('" + jTextField24.getText() + "%%%" + "'))" , jTable3);
+                    + " where complete='Yes' AND type_setter='"+jLabel4.getText()+"' AND (fname like('" + jTextField24.getText() + "%%" + "') or manuscript_name like('" + jTextField24.getText() + "%%%" + "') or isbn like('" + jTextField24.getText() + "%%%" + "'))" , jTable3);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1330,6 +1342,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;

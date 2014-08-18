@@ -7,8 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -70,7 +73,7 @@ public class costing extends javax.swing.JFrame {
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,print_qty from production_description p1 inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card inner join job_card j1 "
                     + "on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complete='Yes' AND imprint_check IS NOT NULL", jTable2);
 
-            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cmpy_name,q_price from quotations q1 inner join production_description p1 on q1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 "
+            new tablemodel1().fillTable("select idquotations,idjob_card,manuscript_name,fname,isbn,cmpy_name,q_price from quotations q1 inner join production_description p1 on q1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 "
                     + "on p1.job_card_idjob_card = t1.job_card_idjob_card inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable1);
 
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,print_qty from production_description p1 inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card inner join job_card j1 "
@@ -253,6 +256,8 @@ public class costing extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jLabel67 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -406,9 +411,14 @@ public class costing extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Title", "Author", "ISBN", "Company", "Quoted Price"
+                "Qid", "Job No", "Title", "Author", "ISBN", "Company", "Quoted Price"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 1050, 150));
@@ -513,13 +523,32 @@ public class costing extends javax.swing.JFrame {
         jButton3.setText("Update");
         jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 480, 90, 30));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Delete");
+        jButton2.setText("Clear");
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 480, 90, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 90, 30));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Delete");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 480, 90, 30));
+
+        jLabel67.setText("jLabel67");
+        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, -1, -1));
 
         jTabbedPane1.addTab("Get Quotation", jPanel1);
 
@@ -1102,31 +1131,35 @@ public class costing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            // add quoted prices
-            String cmpny = jComboBox1.getSelectedItem().toString();
-            String price = jTextField7.getText();
+        if (jLabel40.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                // add quoted prices
+                String cmpny = jComboBox1.getSelectedItem().toString();
+                String price = jTextField7.getText();
 
-            int job_cardid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel40.getText() + "'");
-            if (rs.next()) {
-                job_cardid = rs.getInt("idjob_card");
+                int job_cardid = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel40.getText() + "'");
+                if (rs.next()) {
+                    job_cardid = rs.getInt("idjob_card");
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into quotations(cmpy_name,q_price,job_card_idjob_card) values('" + cmpny + "','" + price + "','" + job_cardid + "')");
+
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jLabel40.setText("");
+                jTextField7.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jTextField15.setText("");
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ConnectionSet1.getInstance().setResult("insert into quotations(cmpy_name,q_price,job_card_idjob_card) values('" + cmpny + "','" + price + "','" + job_cardid + "')");
-
-            jTextField9.setText("");
-            jTextField11.setText("");
-            jTextField10.setText("");
-            jLabel40.setText("");
-            jTextField7.setText("");
-            jComboBox1.setSelectedIndex(0);
-            jTextField15.setText("");
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1360,67 +1393,70 @@ public class costing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the costing details
-            int idjob = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel38.getText() + "'");
-            if (rs.next()) {
-                idjob = rs.getInt("idjob_card");
+        if (jLabel38.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save the costing details
+                int idjob = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel38.getText() + "'");
+                if (rs.next()) {
+                    idjob = rs.getInt("idjob_card");
+                }
+
+                String transF = ftrans.getText();
+                String typF = ftyp.getText();
+                String preadF = fread.getText();
+                String cvrF = fcovr.getText();
+                String tacnC = ftracng.getText();
+                String ptvC = fpositive.getText();
+                String prntC = fprinting.getText();
+                String cmpy_name = jLabel42.getText();
+                String othrE = fother.getText();
+                String total = totalcost.getText();
+                String unitPrc = unitPricecal.getText();
+                String rcomnd_price = retaiprice.getText();
+
+                String pmApprov;
+                if (pmay.isSelected()) {
+                    pmApprov = "Yes";
+                } else {
+                    pmApprov = "No";
+                }
+
+                String mdApprov;
+                if (diay.isSelected()) {
+                    mdApprov = "Yes";
+                } else {
+                    mdApprov = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into costing(editing_fee,typstng_fee,proofrdng_fee,cverdign_fee,trcng_cost,positv_cost,prnt_cost,print_cmny,other_expec,total_cost,unit_price,recomd_price,pm_approv,md_approv,job_card_idjob_card) "
+                        + "values('" + transF + "','" + typF + "','" + preadF + "','" + cvrF + "','" + tacnC + "','" + ptvC + "','" + prntC + "','" + cmpy_name + "','" + othrE + "','" + total + "','" + unitPrc + "','" + rcomnd_price + "','" + pmApprov + "','" + mdApprov + "','" + idjob + "')");
+
+                jLabel38.setText("");
+                jTextField16.setText("");
+                jTextField18.setText("");
+                jTextField17.setText("");
+                jTextField27.setText("");
+                ftrans.setText("");
+                ftyp.setText("");
+                fread.setText("");
+                fcovr.setText("");
+                ftracng.setText("");
+                fpositive.setText("");
+                fprinting.setText("");
+                jLabel42.setText("");
+                fother.setText("");
+                totalcost.setText("00.00");
+                unitPricecal.setText("00.00");
+                retaiprice.setText("");
+
+            } catch (Exception ex) {
+                Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String transF = ftrans.getText();
-            String typF = ftyp.getText();
-            String preadF = fread.getText();
-            String cvrF = fcovr.getText();
-            String tacnC = ftracng.getText();
-            String ptvC = fpositive.getText();
-            String prntC = fprinting.getText();
-            String cmpy_name = jLabel42.getText();
-            String othrE = fother.getText();
-            String total = totalcost.getText();
-            String unitPrc = unitPricecal.getText();
-            String rcomnd_price = retaiprice.getText();
-
-            String pmApprov;
-            if (pmay.isSelected()) {
-                pmApprov = "Yes";
-            } else {
-                pmApprov = "No";
-            }
-
-            String mdApprov;
-            if (diay.isSelected()) {
-                mdApprov = "Yes";
-            } else {
-                mdApprov = "No";
-            }
-
-            ConnectionSet1.getInstance().setResult("insert into costing(editing_fee,typstng_fee,proofrdng_fee,cverdign_fee,trcng_cost,positv_cost,prnt_cost,print_cmny,other_expec,total_cost,unit_price,recomd_price,pm_approv,md_approv,job_card_idjob_card) "
-                    + "values('" + transF + "','" + typF + "','" + preadF + "','" + cvrF + "','" + tacnC + "','" + ptvC + "','" + prntC + "','" + cmpy_name + "','" + othrE + "','" + total + "','" + unitPrc + "','" + rcomnd_price + "','" + pmApprov + "','" + mdApprov + "','" + idjob + "')");
-
-            jLabel38.setText("");
-            jTextField16.setText("");
-            jTextField18.setText("");
-            jTextField17.setText("");
-            jTextField27.setText("");
-            ftrans.setText("");
-            ftyp.setText("");
-            fread.setText("");
-            fcovr.setText("");
-            ftracng.setText("");
-            fpositive.setText("");
-            fprinting.setText("");
-            jLabel42.setText("");
-            fother.setText("");
-            totalcost.setText("00.00");
-            unitPricecal.setText("00.00");
-            retaiprice.setText("");
-
-        } catch (Exception ex) {
-            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
@@ -1583,48 +1619,140 @@ public class costing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (jLabel52.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update the costed data feild
+                String transF = ftrans1.getText();
+                String typF = ftyp1.getText();
+                String preadF = fread1.getText();
+                String cvrF = fcovr1.getText();
+                String tacnC = ftracng1.getText();
+                String ptvC = fpositive1.getText();
+                String prntC = fprinting1.getText();
+                String cmpy_name = jLabel66.getText();
+                String othrE = fother1.getText();
+                String total = totalcost1.getText();
+                String unitPrc = unitPricecal1.getText();
+                String rcomnd_price = retaiprice1.getText();
+
+                ConnectionSet1.getInstance().setResult("update costing set editing_fee='" + transF + "',typstng_fee='" + typF + "',proofrdng_fee='" + preadF + "',cverdign_fee='" + cvrF + "',trcng_cost='" + tacnC + "',positv_cost='" + ptvC + "',prnt_cost='" + prntC + "',print_cmny='" + cmpy_name + "',other_expec='" + othrE + "',total_cost='" + total + "',unit_price='" + unitPrc + "',recomd_price='" + rcomnd_price + "' where job_card_idjob_card='" + jLabel52.getText() + "'");
+
+                jLabel52.setText("");
+                jTextField19.setText("");
+                jTextField20.setText("");
+                jTextField21.setText("");
+                jTextField28.setText("");
+                ftrans1.setText("");
+                ftyp1.setText("");
+                fread1.setText("");
+                fcovr1.setText("");
+                ftracng1.setText("");
+                fpositive1.setText("");
+                fprinting1.setText("");
+                jLabel66.setText("");
+                fother1.setText("");
+                totalcost1.setText("00.00");
+                unitPricecal1.setText("00.00");
+                retaiprice1.setText("");
+
+            } catch (Exception ex) {
+                Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //clear all the data
+        jTextField9.setText("");
+        jTextField11.setText("");
+        jTextField10.setText("");
+        jLabel40.setText("");
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jTextField15.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //update the data
+        if (jLabel40.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Qutaion Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                String cmpny = jComboBox1.getSelectedItem().toString();
+                String price = jTextField7.getText();
+
+                ConnectionSet1.getInstance().setResult("update quotations set cmpy_name='" + cmpny + "',q_price='" + price + "' where idquotations='" + jLabel67.getText() + "'");
+
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jLabel40.setText("");
+                jTextField7.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jTextField15.setText("");
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
             // TODO add your handling code here:
-            //update the costed data feild
-            String transF = ftrans1.getText();
-            String typF = ftyp1.getText();
-            String preadF = fread1.getText();
-            String cvrF = fcovr1.getText();
-            String tacnC = ftracng1.getText();
-            String ptvC = fpositive1.getText();
-            String prntC = fprinting1.getText();
-            String cmpy_name = jLabel66.getText();
-            String othrE = fother1.getText();
-            String total = totalcost1.getText();
-            String unitPrc = unitPricecal1.getText();
-            String rcomnd_price = retaiprice1.getText();
+            //set data from the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            int i = jTable1.getSelectedRow();
+            String jobNo = dtm.getValueAt(i, 0).toString();
 
-            ConnectionSet1.getInstance().setResult("update costing set editing_fee='" + transF + "',typstng_fee='" + typF + "',proofrdng_fee='" + preadF + "',cverdign_fee='" + cvrF + "',trcng_cost='" + tacnC + "',positv_cost='" + ptvC + "',prnt_cost='" + prntC + "',print_cmny='" + cmpy_name + "',other_expec='" + othrE + "',total_cost='" + total + "',unit_price='" + unitPrc + "',recomd_price='" + rcomnd_price + "' where job_card_idjob_card='" + jLabel52.getText() + "'");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,cmpy_name,q_price,print_qty,idquotations from quotations q1 inner join production_description p1 on q1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 "
+                    + "on p1.job_card_idjob_card = t1.job_card_idjob_card inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idquotations='" + jobNo + "'");
 
-            jLabel52.setText("");
-            jTextField19.setText("");
-            jTextField20.setText("");
-            jTextField21.setText("");
-            jTextField28.setText("");
-            ftrans1.setText("");
-            ftyp1.setText("");
-            fread1.setText("");
-            fcovr1.setText("");
-            ftracng1.setText("");
-            fpositive1.setText("");
-            fprinting1.setText("");
-            jLabel66.setText("");
-            fother1.setText("");
-            totalcost1.setText("00.00");
-            unitPricecal1.setText("00.00");
-            retaiprice1.setText("");
+            if (rs.next()) {
+                String idjob = rs.getString("idjob_card");
+                jLabel40.setText(idjob);
+
+                String qid = rs.getString("idquotations");
+                jLabel67.setText(qid);
+                System.out.println(qid);
+
+                String title = rs.getString("manuscript_name");
+                jTextField9.setText(title);
+
+                String author = rs.getString("fname");
+                jTextField10.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField11.setText(isbn);
+
+                String qty = rs.getString("print_qty");
+                jTextField15.setText(qty);
+
+                String company = rs.getString("cmpy_name");
+                Vector v = new Vector();
+                v.add(company);
+                jComboBox1.setModel(new DefaultComboBoxModel(v));
+
+                String price = rs.getString("q_price");
+                jTextField7.setText(price);
+
+
+
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1682,6 +1810,7 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JTextField ftyp;
     private javax.swing.JTextField ftyp1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1754,6 +1883,7 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

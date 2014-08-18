@@ -1,8 +1,25 @@
+
+import com.org.DB.ConnectionSet1;
+import com.org.clz.tablemodel1;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author tuan
@@ -12,8 +29,56 @@ public class PrintingDepartment extends javax.swing.JFrame {
     /**
      * Creates new form PrintingDepartment
      */
+    SimpleDateFormat d1, d2;
+    Timer t;
+
     public PrintingDepartment() {
         initComponents();
+
+        tableLoad();
+
+    }
+
+    void tableLoad() {
+        try {
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes'", jTable1);
+
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
+                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable2);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                jLabel14.setText(d1.format(d));
+                jLabel30.setText(d2.format(d));
+
+            }
+        });
+        t.start();
+    }
+
+    public static String datechosser(JDateChooser jd) {
+        SimpleDateFormat sd = new SimpleDateFormat("dd /MMMM /yyyy");
+        Date d = jd.getDate();
+        String date = sd.format(d);
+        System.out.println(date);
+        return date;
+
     }
 
     /**
@@ -57,6 +122,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -72,14 +140,13 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
         jTextField17 = new javax.swing.JTextField();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Printing Details");
-        setEnabled(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -101,12 +168,23 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Book Title", "Author ", "ISBN", "Product Size", "Number Of Pages", "Print Quantity", "Inner Pages", "Cover", "Imprint Checked", "Remark"
+                "Job No", "Book Title", "Author ", "ISBN", "Product Size", "Number Of Pages", "Print Quantity"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1090, 140));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -126,7 +204,6 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jTextField6.setEditable(false);
-        jTextField6.setEnabled(false);
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 290, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -134,15 +211,14 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, -1, -1));
 
         jTextField4.setEditable(false);
-        jTextField4.setEnabled(false);
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 270, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Paper Type");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 230, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 230, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Innser Pages");
@@ -154,25 +230,24 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Board Type");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 230, -1));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 230, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Gauge");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Gauge");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Print Quantity");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, -1));
 
         jTextField7.setEditable(false);
-        jTextField7.setEnabled(false);
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 270, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -197,10 +272,19 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 230, -1));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 230, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 230, -1));
+        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 230, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel25.setText("ISBN");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+
+        jLabel67.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel67.setText("Job No ");
+        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 120, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 50, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 1060, 190));
 
@@ -212,12 +296,23 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job No", "Title", "Author", "ISBN", "Printing recive Date", "Quantity", "Used Paper Rims", "Complete Date", "Book Printed Date"
+                "Job No", "Title", "Author", "ISBN", "Cover Prinyed Date", "Quantity", "Inside Printed Date", "Used Paper Rims", "Complete Date"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1050, 140));
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel9.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 295, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -230,12 +325,22 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jButton4.setText("Save");
         jButton4.setBorder(null);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 840, 108, 45));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Update");
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 840, 108, 45));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -245,34 +350,331 @@ public class PrintingDepartment extends javax.swing.JFrame {
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 840, 108, 45));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Book Printed Date");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 800, -1, -1));
+        jLabel5.setText("* Inside Printed Date");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel24.setText("Quantity");
+        jLabel24.setText("* Quantity");
         getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 740, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel23.setText("Used Paper Reams");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, 140, -1));
+        jLabel23.setText("* Used Paper Reams");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 800, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Printing Recived Date");
+        jLabel4.setText("* Cover Printed Date");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 740, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Complete Date");
+        jLabel18.setText("* Complete Date");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 770, -1, -1));
-        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 770, 200, -1));
-        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 740, 270, -1));
-        getContentPane().add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 200, -1));
+        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 800, 200, -1));
+        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 740, 200, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 770, 200, -1));
         getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 740, 200, -1));
-        getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 800, 200, -1));
+        getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 770, 200, -1));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Clear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 840, 90, 40));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            // TODO add your handling code here:
+            // set data for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            int i = jTable1.getSelectedRow();
+            String jbid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,p1.* from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes' AND idjob_card='" + jbid + "'");
+
+            if (rs.next()) {
+                String jobid = rs.getString("idjob_card");
+                jLabel6.setText(jbid);
+
+                String titl = rs.getString("manuscript_name");
+                jTextField9.setText(titl);
+
+                String author = rs.getString("fname");
+                jTextField10.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField11.setText(isbn);
+
+                String prosiz = rs.getString("pduct_sz");
+                jTextField6.setText(prosiz);
+
+                String numofpg = rs.getString("nm_pages");
+                jTextField4.setText(numofpg);
+
+                String qty = rs.getString("print_qty");
+                jTextField7.setText(qty);
+
+                String papertyp = rs.getString("innr_paper_typ");
+                Vector v = new Vector();
+                v.add(papertyp);
+                jComboBox1.setModel(new DefaultComboBoxModel(v));
+
+                String paperguge = rs.getString("innr_paper_gauge");
+                Vector v1 = new Vector();
+                v1.add(paperguge);
+                jComboBox3.setModel(new DefaultComboBoxModel(v1));
+
+                String cver = rs.getString("cver_brd_typ");
+                Vector v2 = new Vector();
+                v2.add(cver);
+                jComboBox2.setModel(new DefaultComboBoxModel(v2));
+
+                String cvergige = rs.getString("cver_brd_gauge");
+                Vector v3 = new Vector();
+                v3.add(cvergige);
+                jComboBox4.setModel(new DefaultComboBoxModel(v3));
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (jLabel6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //        save the data
+                String cverPrint = datechosser(jDateChooser2);
+                String insdePrint = datechosser(jDateChooser3);
+                String rems = jTextField15.getText();
+                String qty = jTextField17.getText();
+                String cmplt = datechosser(jDateChooser1);
+
+                int jobid = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel6.getText() + "'");
+                if (rs.next()) {
+                    jobid = rs.getInt("idjob_card");
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into printing(cver_print_dte,insde_printed_date,paper_rim,qty,cmplt_date,job_card_idjob_card) values('" + cverPrint + "','" + insdePrint + "','" + rems + "','" + qty + "','" + cmplt + "','" + jobid + "')");
+
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jTextField7.setText("");
+                jTextField6.setText("");
+                jTextField4.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jLabel6.setText("");
+
+                jTextField15.setText("");
+                jTextField17.setText("");
+                jDateChooser1.setDate(null);
+                jDateChooser2.setDate(null);
+                jDateChooser3.setDate(null);
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (jLabel6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Details", "Eroor", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update the feilds
+                String cverPrint = datechosser(jDateChooser2);
+                String insdePrint = datechosser(jDateChooser3);
+                String rems = jTextField15.getText();
+                String qty = jTextField17.getText();
+                String cmplt = datechosser(jDateChooser1);
+
+                ConnectionSet1.getInstance().setResult("update printing set cver_print_dte='" + cverPrint + "',insde_printed_date='" + insdePrint + "',paper_rim='" + rems + "',qty='" + qty + "',cmplt_date='" + cmplt + "' where job_card_idjob_card='" + jLabel6.getText() + "'");
+
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jTextField7.setText("");
+                jTextField6.setText("");
+                jTextField4.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jLabel6.setText("");
+
+                jTextField15.setText("");
+                jTextField17.setText("");
+                jDateChooser1.setDate(null);
+                jDateChooser2.setDate(null);
+                jDateChooser3.setDate(null);
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try {
+            // TODO add your handling code here:
+            //        set data for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+            String jbid = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date,p1.* from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
+                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + jbid + "'");
+
+            if (rs.next()) {
+                String jobid = rs.getString("idjob_card");
+                jLabel6.setText(jbid);
+
+                String titl = rs.getString("manuscript_name");
+                jTextField9.setText(titl);
+
+                String author = rs.getString("fname");
+                jTextField10.setText(author);
+
+                String isbn = rs.getString("isbn");
+                jTextField11.setText(isbn);
+
+                String prosiz = rs.getString("pduct_sz");
+                jTextField6.setText(prosiz);
+
+                String numofpg = rs.getString("nm_pages");
+                jTextField4.setText(numofpg);
+
+                String qty = rs.getString("print_qty");
+                jTextField7.setText(qty);
+
+                String papertyp = rs.getString("innr_paper_typ");
+                Vector v = new Vector();
+                v.add(papertyp);
+                jComboBox1.setModel(new DefaultComboBoxModel(v));
+
+                String paperguge = rs.getString("innr_paper_gauge");
+                Vector v1 = new Vector();
+                v1.add(paperguge);
+                jComboBox3.setModel(new DefaultComboBoxModel(v1));
+
+                String cver = rs.getString("cver_brd_typ");
+                Vector v2 = new Vector();
+                v2.add(cver);
+                jComboBox2.setModel(new DefaultComboBoxModel(v2));
+
+                String cvergige = rs.getString("cver_brd_gauge");
+                Vector v3 = new Vector();
+                v3.add(cvergige);
+                jComboBox4.setModel(new DefaultComboBoxModel(v3));
+
+                String cverpdte = rs.getString("cver_print_dte");
+                Date d = new Date(cverpdte);
+                d.getDate();
+                jDateChooser2.setDate(d);
+
+                String insdeprindte = rs.getString("insde_printed_date");
+                Date d1 = new Date(insdeprindte);
+                d1.getDate();
+                jDateChooser3.setDate(d1);
+
+                String rim = rs.getString("paper_rim");
+                jTextField15.setText(rim);
+
+                String qtyp = rs.getString("qty");
+                jTextField17.setText(qtyp);
+
+                String cmplt = rs.getString("cmplt_date");
+                Date d2 = new Date(cmplt);
+                d2.getDate();
+                jDateChooser1.setDate(d2);
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the details
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes' "
+                    + "AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the details
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
+                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where "
+                    + "fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "')", jTable2);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField12KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        clear alld data
+        jTextField9.setText("");
+        jTextField11.setText("");
+        jTextField10.setText("");
+        jTextField7.setText("");
+        jTextField6.setText("");
+        jTextField4.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jLabel6.setText("");
+
+        jTextField15.setText("");
+        jTextField17.setText("");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+        jDateChooser3.setDate(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +711,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -319,7 +722,6 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -336,11 +738,14 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

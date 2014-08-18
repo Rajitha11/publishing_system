@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,7 +33,15 @@ public class Planner extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
+
+    }
+
+    Planner(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel5.setText(uname);
         tableLoad();
+
     }
 
     void dateMethod() {
@@ -54,10 +63,10 @@ public class Planner extends javax.swing.JFrame {
     void tableLoad() {
         try {
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
-                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'", jTable1);
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' AND planner_nme='" + jLabel5.getText() + "'", jTable1);
 
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
-                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'", jTable2);
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND planner_nme='" + jLabel5.getText() + "'", jTable2);
 
 
         } catch (ClassNotFoundException ex) {
@@ -131,6 +140,7 @@ public class Planner extends javax.swing.JFrame {
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Planner");
@@ -378,6 +388,9 @@ public class Planner extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 750, 80, 30));
 
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 0, 10));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -471,41 +484,44 @@ public class Planner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the planer job complete
-            String plnrFinshed;
-            if (jCheckBox1.isSelected()) {
-                plnrFinshed = "Yes";
-            } else {
-                plnrFinshed = "No";
+        if (jLabel29.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select the job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save the planer job complete
+                String plnrFinshed;
+                if (jCheckBox1.isSelected()) {
+                    plnrFinshed = "Yes";
+                } else {
+                    plnrFinshed = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("update planner set job_done='" + plnrFinshed + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel3.getText() + "'");
+
+                jLabel29.setText("");
+                jLabel3.setText("");
+                jTextField5.setText("");
+                jTextField10.setText("");
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jLabel1.setText("");
+                jLabel4.setText("");
+                jTextField21.setText("");
+                jTextField15.setText("");
+                jTextField14.setText("");
+                jCheckBox9.setSelected(false);
+                jCheckBox10.setSelected(false);
+                jCheckBox11.setSelected(false);
+                jCheckBox1.setSelected(false);
+                jTextField16.setText("");
+                jTextField17.setText("");
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ConnectionSet1.getInstance().setResult("update planner set job_done='" + plnrFinshed + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel3.getText() + "'");
-
-            jLabel29.setText("");
-            jLabel3.setText("");
-            jTextField5.setText("");
-            jTextField10.setText("");
-            jTextField9.setText("");
-            jTextField11.setText("");
-            jLabel1.setText("");
-            jLabel4.setText("");
-            jTextField21.setText("");
-            jTextField15.setText("");
-            jTextField14.setText("");
-            jCheckBox9.setSelected(false);
-            jCheckBox10.setSelected(false);
-            jCheckBox11.setSelected(false);
-            jCheckBox1.setSelected(false);
-            jTextField16.setText("");
-            jTextField17.setText("");
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -625,38 +641,42 @@ public class Planner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update the feilds
-            String plnrFinshed;
-            if (jCheckBox1.isSelected()) {
-                plnrFinshed = "Yes";
-            } else {
-                plnrFinshed = "No";
+        if (jLabel29.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select the job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update the feilds
+                String plnrFinshed;
+                if (jCheckBox1.isSelected()) {
+                    plnrFinshed = "Yes";
+                } else {
+                    plnrFinshed = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("update planner set job_done='" + plnrFinshed + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel3.getText() + "'");
+
+                jLabel29.setText("");
+                jLabel3.setText("");
+                jTextField5.setText("");
+                jTextField10.setText("");
+                jTextField9.setText("");
+                jTextField11.setText("");
+                jLabel1.setText("");
+                jLabel4.setText("");
+                jTextField21.setText("");
+                jTextField15.setText("");
+                jTextField14.setText("");
+                jCheckBox9.setSelected(false);
+                jCheckBox10.setSelected(false);
+                jCheckBox11.setSelected(false);
+                jCheckBox1.setSelected(false);
+                jTextField16.setText("");
+                jTextField17.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            ConnectionSet1.getInstance().setResult("update planner set job_done='" + plnrFinshed + "',date_job='" + jLabel15.getText() + "' where grafic_jobs_idgrafic_dep='" + jLabel3.getText() + "'");
-
-            jLabel29.setText("");
-            jLabel3.setText("");
-            jTextField5.setText("");
-            jTextField10.setText("");
-            jTextField9.setText("");
-            jTextField11.setText("");
-            jLabel1.setText("");
-            jLabel4.setText("");
-            jTextField21.setText("");
-            jTextField15.setText("");
-            jTextField14.setText("");
-            jCheckBox9.setSelected(false);
-            jCheckBox10.setSelected(false);
-            jCheckBox11.setSelected(false);
-            jCheckBox1.setSelected(false);
-            jTextField16.setText("");
-            jTextField17.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -665,7 +685,7 @@ public class Planner extends javax.swing.JFrame {
             // TODO add your handling code here:
             // serch the new jobs
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
-                        + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'  AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "'))", jTable1);
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' AND planner_nme='" + jLabel5.getText() + "' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or idjob_card like('" + jTextField8.getText() + "%%" + "'))", jTable1);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -681,7 +701,7 @@ public class Planner extends javax.swing.JFrame {
             // TODO add your handling code here:
             //serch the complete jobs
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price from planner pl1 inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
-                        + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'  AND (fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "') or idjob_card like('" + jTextField12.getText() + "%%" + "'))", jTable2);
+                    + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND planner_nme='" + jLabel5.getText() + "' AND (fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "') or idjob_card like('" + jTextField12.getText() + "%%" + "'))", jTable2);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -754,6 +774,7 @@ public class Planner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;

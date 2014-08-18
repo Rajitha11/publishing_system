@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -354,47 +355,50 @@ public class translationDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the traslation details
-            String jono = jLabel1.getText();
-            String org_bk = jTextField7.getText();
-            String tran_bk = jTextField9.getText();
-            String org_autr = jTextField8.getText();
-            String cr_agcy = jTextField11.getText();
-            String roylity = jTextField13.getText();
-            String cunty = jTextField15.getText();
-            String cntct_prsn = jTextField16.getText();
-            String adres = jTextField12.getText();
-            String tran_autr = jTextField10.getText();
-            String edte = datechosser(jDateChooser1);
-            String issudte = datechosser(jDateChooser2);
-            String phn = jTextField14.getText();
-            String email = jTextField17.getText();
-            String web = jTextField18.getText();
+        if (jLabel1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscriptname", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //save the traslation details
+                String jono = jLabel1.getText();
+                String org_bk = jTextField7.getText();
+                String tran_bk = jTextField9.getText();
+                String org_autr = jTextField8.getText();
+                String cr_agcy = jTextField11.getText();
+                String roylity = jTextField13.getText();
+                String cunty = jTextField15.getText();
+                String cntct_prsn = jTextField16.getText();
+                String adres = jTextField12.getText();
+                String tran_autr = jTextField10.getText();
+                String edte = datechosser(jDateChooser1);
+                String issudte = datechosser(jDateChooser2);
+                String phn = jTextField14.getText();
+                String email = jTextField17.getText();
+                String web = jTextField18.getText();
 
-            ConnectionSet1.getInstance().setResult("insert into translation(original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website,job_card_idjob_card) "
-                    + "values('" + org_bk + "','" + tran_bk + "','" + org_autr + "','" + tran_autr + "','" + cr_agcy + "','" + roylity + "','" + edte + "','" + issudte + "','" + cunty + "','" + phn + "','" + cntct_prsn + "','" + email + "','" + adres + "','" + web + "','" + jono + "')");
+                ConnectionSet1.getInstance().setResult("insert into translation(original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website,job_card_idjob_card) "
+                        + "values('" + org_bk + "','" + tran_bk + "','" + org_autr + "','" + tran_autr + "','" + cr_agcy + "','" + roylity + "','" + edte + "','" + issudte + "','" + cunty + "','" + phn + "','" + cntct_prsn + "','" + email + "','" + adres + "','" + web + "','" + jono + "')");
 
-            jLabel1.setText("");
-            jTextField7.setText("");
-            jTextField9.setText("");
-            jTextField8.setText("");
-            jTextField11.setText("");
-            jTextField13.setText("");
-            jTextField15.setText("");
-            jTextField16.setText("");
-            jTextField12.setText("");
-            jTextField10.setText("");
-            jTextField14.setText("");
-            jTextField17.setText("");
-            jTextField18.setText("");
-            tableLoad();
+                jLabel1.setText("");
+                jTextField7.setText("");
+                jTextField9.setText("");
+                jTextField8.setText("");
+                jTextField11.setText("");
+                jTextField13.setText("");
+                jTextField15.setText("");
+                jTextField16.setText("");
+                jTextField12.setText("");
+                jTextField10.setText("");
+                jTextField14.setText("");
+                jTextField17.setText("");
+                jTextField18.setText("");
+                tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField19KeyReleased
@@ -471,48 +475,51 @@ public class translationDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update the translation data
-            String jono = jLabel1.getText();
-            String org_bk = jTextField7.getText();
-            String tran_bk = jTextField9.getText();
-            String org_autr = jTextField8.getText();
-            String cr_agcy = jTextField11.getText();
-            String roylity = jTextField13.getText();
-            String cunty = jTextField15.getText();
-            String cntct_prsn = jTextField16.getText();
-            String adres = jTextField12.getText();
-            String tran_autr = jTextField10.getText();
-            String edte = datechosser(jDateChooser1);
-            String issudte = datechosser(jDateChooser2);
-            String phn = jTextField14.getText();
-            String email = jTextField17.getText();
-            String web = jTextField18.getText();
+        if (jLabel1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Manuscriptname", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update the translation data
+                String jono = jLabel1.getText();
+                String org_bk = jTextField7.getText();
+                String tran_bk = jTextField9.getText();
+                String org_autr = jTextField8.getText();
+                String cr_agcy = jTextField11.getText();
+                String roylity = jTextField13.getText();
+                String cunty = jTextField15.getText();
+                String cntct_prsn = jTextField16.getText();
+                String adres = jTextField12.getText();
+                String tran_autr = jTextField10.getText();
+                String edte = datechosser(jDateChooser1);
+                String issudte = datechosser(jDateChooser2);
+                String phn = jTextField14.getText();
+                String email = jTextField17.getText();
+                String web = jTextField18.getText();
 
-            ConnectionSet1.getInstance().setResult("Update translation set original_bname='"+org_bk+"',sinhala_bname='"+tran_bk+"',original_author='"+org_autr+"',translator_name='"+tran_autr+"',"
-                    + "cp_agency='"+cr_agcy+"',royality_pay='"+roylity+"',ex_date='"+edte+"',issue_date='"+issudte+"',country='"+cunty+"',phone='"+phn+"',contact_agency='"+cntct_prsn+"',"
-                    + "email='"+email+"',address='"+adres+"',website='"+web+"' where job_card_idjob_card='"+jono+"'");
-            
-            jLabel1.setText("");
-            jTextField7.setText("");
-            jTextField9.setText("");
-            jTextField8.setText("");
-            jTextField11.setText("");
-            jTextField13.setText("");
-            jTextField15.setText("");
-            jTextField16.setText("");
-            jTextField12.setText("");
-            jTextField10.setText("");
-            jTextField14.setText("");
-            jTextField17.setText("");
-            jTextField18.setText("");
-            tableLoad();
-            
-        } catch (Exception ex) {
-            Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+                ConnectionSet1.getInstance().setResult("Update translation set original_bname='" + org_bk + "',sinhala_bname='" + tran_bk + "',original_author='" + org_autr + "',translator_name='" + tran_autr + "',"
+                        + "cp_agency='" + cr_agcy + "',royality_pay='" + roylity + "',ex_date='" + edte + "',issue_date='" + issudte + "',country='" + cunty + "',phone='" + phn + "',contact_agency='" + cntct_prsn + "',"
+                        + "email='" + email + "',address='" + adres + "',website='" + web + "' where job_card_idjob_card='" + jono + "'");
+
+                jLabel1.setText("");
+                jTextField7.setText("");
+                jTextField9.setText("");
+                jTextField8.setText("");
+                jTextField11.setText("");
+                jTextField13.setText("");
+                jTextField15.setText("");
+                jTextField16.setText("");
+                jTextField12.setText("");
+                jTextField10.setText("");
+                jTextField14.setText("");
+                jTextField17.setText("");
+                jTextField18.setText("");
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -66,10 +67,10 @@ public class resivinManuScript extends javax.swing.JFrame {
                 Date d = new Date();
                 jLabel14.setText(d1.format(d));
                 jLabel30.setText(d2.format(d));
-                
+
                 jLabel21.setText(d1.format(d));
                 jLabel33.setText(d2.format(d));
-                
+
                 jLabel29.setText(d1.format(d));
                 jLabel35.setText(d2.format(d));
             }
@@ -129,7 +130,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             if (jCheckBox1.isSelected()) {
                 System.out.println("aaaaaaaaaa");
 
-                ConnectionSet1.getInstance().setResult("insert into author(`author`.`fname`, `author`.`lname`, `author`.`contact_no`, `author`.`contact_land`, `author`.`address`, `author`.`email`) values ('" + fname.getText() + "','" + ln.getText() + "','" + contct.getText() + "','"+jTextField3.getText()+"','" + addres.getText() + "','" + email.getText() + "')");
+                ConnectionSet1.getInstance().setResult("insert into author(`author`.`fname`, `author`.`lname`, `author`.`contact_no`, `author`.`contact_land`, `author`.`address`, `author`.`email`) values ('" + fname.getText() + "','" + ln.getText() + "','" + contct.getText() + "','" + jTextField3.getText() + "','" + addres.getText() + "','" + email.getText() + "')");
                 System.out.println("bbbbbbbb");
 
                 int author = 0;
@@ -869,11 +870,13 @@ public class resivinManuScript extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         // insert to the database
-
-        save();
-        clear();
-        tableLoad();
-
+        if (nme_manuscript.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No Value In The Manuscript Name", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            save();
+            clear();
+            tableLoad();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -983,27 +986,27 @@ public class resivinManuScript extends javax.swing.JFrame {
             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
             int i = jTable2.getSelectedRow();
             String s = dtm.getValueAt(i, 0).toString();
-            ResultSet rs =  ConnectionSet1.getInstance().getResult("select * from author where idauthor='"+s+"'");
-            
-            if(rs.next()){
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from author where idauthor='" + s + "'");
+
+            if (rs.next()) {
                 //String s7 = rs.getString("idauthor");
                 jTextField1.setText(s);
-                
-                String s1 = rs .getString("fname");
+
+                String s1 = rs.getString("fname");
                 efn.setText(s1);
-                
+
                 String s2 = rs.getString("lname");
                 eln.setText(s2);
-                
+
                 String s3 = rs.getString("contact_no");
                 econtct.setText(s3);
-                
+
                 String s4 = rs.getString("contact_land");
                 jTextField4.setText(s4);
-                
+
                 String s5 = rs.getString("address");
                 eaddress.setText(s5);
-                
+
                 String s6 = rs.getString("email");
                 eemail.setText(s6);
             }
@@ -1017,7 +1020,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             // dtm.getValueAt(i, 6).toString();
 
             //jTextField1.setText(s);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1104,7 +1107,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             // TODO add your handling code here:
             //update author
             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',contact_land='"+jTextField4.getText()+"',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
+            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',contact_land='" + jTextField4.getText() + "',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
             dtm.setRowCount(0);
             jTextField1.setText("");
             efn.setText("");

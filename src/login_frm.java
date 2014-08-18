@@ -53,6 +53,11 @@ public class login_frm extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 130, 40));
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 200, 30));
 
         jButton2.setFont(new java.awt.Font("BatangChe", 1, 12)); // NOI18N
@@ -72,6 +77,12 @@ public class login_frm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 80, 30));
+
+        passw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwActionPerformed(evt);
+            }
+        });
         getContentPane().add(passw, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 200, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Background-01.jpg"))); // NOI18N
@@ -108,6 +119,10 @@ public class login_frm extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(this, "Username or Password is Incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+                jTextField3.setText("");
+                passw.setText("");
+                jTextField3.grabFocus();
+
             }
 
         } catch (Exception ex) {
@@ -115,6 +130,42 @@ public class login_frm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+        passw.grabFocus();
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void passwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwActionPerformed
+        try {
+            // TODO add your handling code here:
+            String username = jTextField3.getText();
+            String password = passw.getText();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + username + "' AND password='" + password + "'");
+
+            if (rs.next()) {
+
+                String desig = rs.getString("designation");
+
+                String userTyp = rs.getString("user_type");
+
+                String uname = rs.getString("username");
+
+                new Menu(desig, userTyp, uname).setVisible(true);
+                this.dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Username or Password is Incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+                jTextField3.setText("");
+                passw.setText("");
+                jTextField3.grabFocus();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(login_frm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_passwActionPerformed
 
     /**
      * @param args the command line arguments

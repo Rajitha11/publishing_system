@@ -12,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -590,58 +591,62 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable6MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            // save a new jobCard Details
-            int manu_script = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + rno.getText() + "'");
-            if (rs.next()) {
-                manu_script = rs.getInt("idrm");
+        if (rno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select the Manuscript", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                // save a new jobCard Details
+                int manu_script = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + rno.getText() + "'");
+                if (rs.next()) {
+                    manu_script = rs.getInt("idrm");
+                }
+
+                String isbnsjnt;
+                if (aprvisbn.isSelected()) {
+                    isbnsjnt = "Yes";
+                } else {
+                    isbnsjnt = "No";
+                }
+
+                String isb = isbn.getText();
+                String typs = typstr.getSelectedItem().toString();
+                String rmk = rmrk.getText();
+
+                String agsing;
+                if (ay.isSelected()) {
+                    agsing = "Yes";
+                } else {
+                    agsing = "No";
+                }
+
+                String agtyp = agmtty.getSelectedItem().toString();
+                String resdat = datechosser(agmtdte);
+
+                String pmarv;
+                if (pmy.isSelected()) {
+                    pmarv = "Yes";
+                } else {
+                    pmarv = "No";
+                }
+
+                String mdaprv;
+                if (dy.isSelected()) {
+                    mdaprv = "Yes";
+                } else {
+                    mdaprv = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("insert into job_card( `job_card`.`isbn_apply`, `job_card`.`isbn`, `job_card`.`type_setter`, `job_card`.`remark`, `job_card`.`agrmt_sign`, `job_card`.`agrmt_type`, `job_card`.`agrmt_sign_date`, `job_card`.`pm_aprove`, `job_card`.`md_aprove`, `job_card`.`reseving_manuscript_idrm`)"
+                        + "values('" + isbnsjnt + "','" + isb + "','" + typs + "','" + rmk + "','" + agsing + "','" + agtyp + "','" + resdat + "','" + pmarv + "','" + mdaprv + "','" + manu_script + "') ");
+                clear();
+                tableLoad();
+                jcno.setText(maxid("idjob_card", "job_card", 1));
+
+            } catch (Exception ex) {
+                Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String isbnsjnt;
-            if (aprvisbn.isSelected()) {
-                isbnsjnt = "Yes";
-            } else {
-                isbnsjnt = "No";
-            }
-
-            String isb = isbn.getText();
-            String typs = typstr.getSelectedItem().toString();
-            String rmk = rmrk.getText();
-
-            String agsing;
-            if (ay.isSelected()) {
-                agsing = "Yes";
-            } else {
-                agsing = "No";
-            }
-
-            String agtyp = agmtty.getSelectedItem().toString();
-            String resdat = datechosser(agmtdte);
-
-            String pmarv;
-            if (pmy.isSelected()) {
-                pmarv = "Yes";
-            } else {
-                pmarv = "No";
-            }
-
-            String mdaprv;
-            if (dy.isSelected()) {
-                mdaprv = "Yes";
-            } else {
-                mdaprv = "No";
-            }
-
-            ConnectionSet1.getInstance().setResult("insert into job_card( `job_card`.`isbn_apply`, `job_card`.`isbn`, `job_card`.`type_setter`, `job_card`.`remark`, `job_card`.`agrmt_sign`, `job_card`.`agrmt_type`, `job_card`.`agrmt_sign_date`, `job_card`.`pm_aprove`, `job_card`.`md_aprove`, `job_card`.`reseving_manuscript_idrm`)"
-                    + "values('" + isbnsjnt + "','" + isb + "','" + typs + "','" + rmk + "','" + agsing + "','" + agtyp + "','" + resdat + "','" + pmarv + "','" + mdaprv + "','" + manu_script + "') ");
-            clear();
-            tableLoad();
-            jcno.setText(maxid("idjob_card", "job_card", 1));
-
-        } catch (Exception ex) {
-            Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -784,53 +789,56 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            // update a job card
-            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
-            
-            String isbnsjnt;
-            if (aprvisbn.isSelected()) {
-                isbnsjnt = "Yes";
-            } else {
-                isbnsjnt = "No";
+        if (rno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select the Job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                // update a job card
+                DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+
+                String isbnsjnt;
+                if (aprvisbn.isSelected()) {
+                    isbnsjnt = "Yes";
+                } else {
+                    isbnsjnt = "No";
+                }
+
+                String isb = isbn.getText();
+                String typs = typstr.getSelectedItem().toString();
+                String rmk = rmrk.getText();
+
+                String agsing;
+                if (ay.isSelected()) {
+                    agsing = "Yes";
+                } else {
+                    agsing = "No";
+                }
+
+                String agtyp = agmtty.getSelectedItem().toString();
+                String resdat = datechosser(agmtdte);
+
+                String pmarv;
+                if (pmy.isSelected()) {
+                    pmarv = "Yes";
+                } else {
+                    pmarv = "No";
+                }
+
+                String mdaprv;
+                if (dy.isSelected()) {
+                    mdaprv = "Yes";
+                } else {
+                    mdaprv = "No";
+                }
+
+                ConnectionSet1.getInstance().setResult("update job_card set isbn_apply='" + isbnsjnt + "',isbn='" + isb + "',type_setter='" + typs + "',remark='" + rmk + "',agrmt_sign='" + agsing + "',agrmt_type='" + agtyp + "',agrmt_sign_date='" + resdat + "',pm_aprove='" + pmarv + "',md_aprove='" + mdaprv + "' where idjob_card='" + jcno.getText() + "'");
+                clear();
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String isb = isbn.getText();
-            String typs = typstr.getSelectedItem().toString();
-            String rmk = rmrk.getText();
-
-            String agsing;
-            if (ay.isSelected()) {
-                agsing = "Yes";
-            } else {
-                agsing = "No";
-            }
-
-            String agtyp = agmtty.getSelectedItem().toString();
-            String resdat = datechosser(agmtdte);
-
-            String pmarv;
-            if (pmy.isSelected()) {
-                pmarv = "Yes";
-            } else {
-                pmarv = "No";
-            }
-
-            String mdaprv;
-            if (dy.isSelected()) {
-                mdaprv = "Yes";
-            } else {
-                mdaprv = "No";
-            }
-            
-            ConnectionSet1.getInstance().setResult("update job_card set isbn_apply='"+isbnsjnt+"',isbn='"+isb+"',type_setter='"+typs+"',remark='"+rmk+"',agrmt_sign='"+agsing+"',agrmt_type='"+agtyp+"',agrmt_sign_date='"+resdat+"',pm_aprove='"+pmarv+"',md_aprove='"+mdaprv+"' where idjob_card='"+jcno.getText()+"'");
-            clear();
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
