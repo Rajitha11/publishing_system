@@ -119,6 +119,12 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         typstr.setSelectedIndex(0);
         rmrk.setText("");
         agmtty.setSelectedIndex(0);
+        
+        aprvisbn.setSelected(false);
+        buttonGroup1.clearSelection();
+        buttonGroup2.clearSelection();
+        buttonGroup3.clearSelection();
+        agmtdte.setDate(null);
 
     }
 

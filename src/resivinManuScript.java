@@ -171,7 +171,8 @@ public class resivinManuScript extends javax.swing.JFrame {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void clear() {
         //clear values
-        jCheckBox1.setText("");
+        jCheckBox1.setSelected(false);
+        jPanel1.setVisible(false);
         aname.setText("");
         nme_manuscript.setText("");
         qulifi.setText("");
@@ -180,6 +181,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         contct.setText("");
         addres.setText("");
         email.setText("");
+        buttonGroup1.clearSelection();
+        buttonGroup2.clearSelection();
+        jTextField3.setText("");
+        catag.setSelectedIndex(0);
+        sub_catag.setSelectedIndex(0);
+        langu.setSelectedIndex(0);
 
     }
 
@@ -876,6 +883,11 @@ public class resivinManuScript extends javax.swing.JFrame {
             save();
             clear();
             tableLoad();
+            try {
+                jLabel3.setText(maxid("idrm", "reseving_manuscript", 1));
+            } catch (Exception ex) {
+                Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1042,6 +1054,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         econtct.setText("");
         eaddress.setText("");
         eemail.setText("");
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1050,6 +1063,12 @@ public class resivinManuScript extends javax.swing.JFrame {
         jTextField2.setText("");
         emnu_name.setText("");
         jTextField7.setText("");
+        ecatag.setSelectedIndex(0);
+        esub_catag.setSelectedIndex(0);
+        jComboBox1.setSelectedIndex(0);
+        buttonGroup3.clearSelection();
+        buttonGroup4.clearSelection();
+        jLabel44.setText("");
 
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -1154,6 +1173,12 @@ public class resivinManuScript extends javax.swing.JFrame {
             jTextField2.setText("");
             emnu_name.setText("");
             jTextField7.setText("");
+            ecatag.setSelectedIndex(0);
+            esub_catag.setSelectedIndex(0);
+            jComboBox1.setSelectedIndex(0);
+            buttonGroup3.clearSelection();
+            buttonGroup4.clearSelection();
+            jLabel44.setText("");
             tableLoad();
         } catch (Exception ex) {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);

@@ -96,6 +96,20 @@ public class Menu extends javax.swing.JFrame {
             jButton3.setEnabled(true);
             jButton12.setEnabled(true);
         
+        }else if(desig.equals("IT") && userTyp.equals("Admin")){
+            jButton8.setEnabled(true);
+            jButton2.setEnabled(true);
+            jButton4.setEnabled(true);
+            jButton5.setEnabled(true);
+            jButton3.setEnabled(true);
+            jButton10.setEnabled(true);
+            jButton1.setEnabled(true);
+            jButton9.setEnabled(true);
+            jButton6.setEnabled(true);
+            jButton11.setEnabled(true);
+            jButton12.setEnabled(true);
+            jButton7.setEnabled(true);
+        
         }
 
 

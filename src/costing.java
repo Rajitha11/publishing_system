@@ -258,6 +258,7 @@ public class costing extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel67 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -549,6 +550,16 @@ public class costing extends javax.swing.JFrame {
 
         jLabel67.setText("jLabel67");
         jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, -1, -1));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
         jTabbedPane1.addTab("Get Quotation", jPanel1);
 
@@ -1744,8 +1755,6 @@ public class costing extends javax.swing.JFrame {
                 String price = rs.getString("q_price");
                 jTextField7.setText(price);
 
-
-
             }
 
         } catch (Exception ex) {
@@ -1753,6 +1762,12 @@ public class costing extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        //go home
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1811,6 +1826,7 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JTextField ftyp1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

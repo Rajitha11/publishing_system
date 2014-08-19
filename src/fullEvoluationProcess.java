@@ -995,6 +995,10 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jTextField3.setText("");
                 jTextField4.setText("");
                 jTextField6.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jDateChooser4.setDate(null);
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
@@ -1080,6 +1084,10 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jTextField3.setText("");
                 jTextField4.setText("");
                 jTextField6.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jComboBox3.setSelectedIndex(0);
+                jComboBox4.setSelectedIndex(0);
+                jDateChooser4.setDate(null);
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
@@ -1168,6 +1176,12 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jTextField13.setText("");
                 jLabel34.setText("");
                 jTextArea1.setText("");
+                jComboBox2.setSelectedIndex(0);
+                jComboBox5.setSelectedIndex(0);
+                jComboBox6.setSelectedIndex(0);
+                jDateChooser1.setDate(null);
+                buttonGroup1.clearSelection();
+                jPanel10.setVisible(false);
                 tableLoad();
 
             } catch (Exception ex) {
@@ -1269,6 +1283,12 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jTextField13.setText("");
                 jLabel34.setText("");
                 jTextArea1.setText("");
+                jComboBox2.setSelectedIndex(0);
+                jComboBox5.setSelectedIndex(0);
+                jComboBox6.setSelectedIndex(0);
+                jDateChooser1.setDate(null);
+                buttonGroup1.clearSelection();
+                jPanel10.setVisible(false);
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
@@ -1373,7 +1393,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        // clera all
+        // clear all
         jLabel51.setText("");
         jTextField17.setText("");
         jTextField18.setText("");
@@ -1382,6 +1402,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jTextField21.setText("");
         jLabel56.setText("");
         jLabel60.setText("");
+        jComboBox7.setSelectedIndex(0);
+        jComboBox8.setSelectedIndex(0);
+        jComboBox9.setSelectedIndex(0);
+        jDateChooser5.setDate(null);
+        jCheckBox5.setSelected(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1394,6 +1419,12 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jTextField12.setText("");
         jTextField13.setText("");
         jLabel34.setText("");
+        jComboBox2.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
+        buttonGroup1.clearSelection();
+        jPanel10.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1405,6 +1436,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField6.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jDateChooser4.setDate(null);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1429,6 +1465,11 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jTextField21.setText("");
                 jLabel56.setText("");
                 jLabel60.setText("");
+                jComboBox7.setSelectedIndex(0);
+                jComboBox8.setSelectedIndex(0);
+                jComboBox9.setSelectedIndex(0);
+                jDateChooser5.setDate(null);
+                jCheckBox5.setSelected(false);
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);

@@ -128,6 +128,7 @@ public class Disigner extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Designer");
@@ -316,7 +317,17 @@ public class Disigner extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 750, 80, 30));
 
         jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 0, 10));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 70, 30));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton2.setContentAreaFilled(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
         pack();
         setLocationRelativeTo(null);
@@ -557,6 +568,45 @@ public class Disigner extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField12KeyReleased
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+//             TODO add your handling code here:
+//            go back to home
+            String uname = jLabel5.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+//
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+            
+            System.out.println("1");
+            if (username.equals(uname) && typ.equals("User") && desig.equals("Designer")) {
+                System.out.println("2");
+                new Menu("Designer", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+                
+            } else if(username.equals(uname) && typ.equals("User") && desig.equals("Head Of Grafic")){
+                new Menu("Head Of Grafic", "User", uname).setVisible(true);
+                dispose();
+            }
+
+
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -593,6 +643,7 @@ public class Disigner extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
