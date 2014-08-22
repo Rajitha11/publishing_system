@@ -41,11 +41,17 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
     void tableLoad() {
         try {
-            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
-                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes'", jTable1);
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from prnting_shedul ps1 inner join production_description p1 on ps1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='No'", jTable1);
 
-            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
-                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable2);
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
+                    + "on ps1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='Yes'", jTable2);
+            
+//            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
+//                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable2);
+            
+           
+//            idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +131,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -283,8 +290,11 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel67.setText("Job No ");
-        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 120, -1, -1));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 50, 20));
+        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 120, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 140, 50, 20));
+
+        jLabel7.setText("jLabel7");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 154, 40, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 1060, 190));
 
@@ -395,10 +405,13 @@ public class PrintingDepartment extends javax.swing.JFrame {
             int i = jTable1.getSelectedRow();
             String jbid = dtm.getValueAt(i, 0).toString();
 
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,p1.* from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
-                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes' AND idjob_card='" + jbid + "'");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty,idprnting_shedul,innr_paper_typ,innr_paper_gauge,cver_brd_typ,cver_brd_gauge from prnting_shedul ps1 inner join production_description p1 on ps1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='No' AND idjob_card='" + jbid + "'");
 
             if (rs.next()) {
+                String shedulid = rs.getString("idprnting_shedul");
+                jLabel7.setText(shedulid);
+
                 String jobid = rs.getString("idjob_card");
                 jLabel6.setText(jbid);
 
@@ -461,14 +474,18 @@ public class PrintingDepartment extends javax.swing.JFrame {
                 String qty = jTextField17.getText();
                 String cmplt = datechosser(jDateChooser1);
 
-                int jobid = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel6.getText() + "'");
+                int prinshedulid = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idprnting_shedul from prnting_shedul where idprnting_shedul='" + jLabel7.getText() + "'");
                 if (rs.next()) {
-                    jobid = rs.getInt("idjob_card");
+                    prinshedulid = rs.getInt("idprnting_shedul");
+
                 }
+                System.out.println(prinshedulid);
 
-                ConnectionSet1.getInstance().setResult("insert into printing(cver_print_dte,insde_printed_date,paper_rim,qty,cmplt_date,job_card_idjob_card) values('" + cverPrint + "','" + insdePrint + "','" + rems + "','" + qty + "','" + cmplt + "','" + jobid + "')");
+                ConnectionSet1.getInstance().setResult("insert into printing(cver_print_dte,insde_printed_date,paper_rim,qty,cmplt_date,prnting_shedul_idprnting_shedul) values('" + cverPrint + "','" + insdePrint + "','" + rems + "','" + qty + "','" + cmplt + "','" + prinshedulid + "')");
+                ConnectionSet1.getInstance().setResult("update prnting_shedul set status_printing='Yes' where idprnting_shedul='" + jLabel7.getText() + "'");
 
+                jLabel7.setText("");
                 jTextField9.setText("");
                 jTextField11.setText("");
                 jTextField10.setText("");
@@ -508,8 +525,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
                 String qty = jTextField17.getText();
                 String cmplt = datechosser(jDateChooser1);
 
-                ConnectionSet1.getInstance().setResult("update printing set cver_print_dte='" + cverPrint + "',insde_printed_date='" + insdePrint + "',paper_rim='" + rems + "',qty='" + qty + "',cmplt_date='" + cmplt + "' where job_card_idjob_card='" + jLabel6.getText() + "'");
+                ConnectionSet1.getInstance().setResult("update printing set cver_print_dte='" + cverPrint + "',insde_printed_date='" + insdePrint + "',paper_rim='" + rems + "',qty='" + qty + "',cmplt_date='" + cmplt + "' where prnting_shedul_idprnting_shedul='" + jLabel7.getText() + "'");
 
+                jLabel7.setText("");
                 jTextField9.setText("");
                 jTextField11.setText("");
                 jTextField10.setText("");
@@ -543,10 +561,14 @@ public class PrintingDepartment extends javax.swing.JFrame {
             int i = jTable2.getSelectedRow();
             String jbid = dtm.getValueAt(i, 0).toString();
 
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date,p1.* from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
-                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + jbid + "'");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date,idprnting_shedul,p1.* from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
+                    + "on ps1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='Yes' AND idjob_card='" + jbid + "'");
 
+//            idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date,p1.*
             if (rs.next()) {
+                String idshedul =  rs.getString("idprnting_shedul");
+                jLabel7.setText(idshedul);
+                
                 String jobid = rs.getString("idjob_card");
                 jLabel6.setText(jbid);
 
@@ -657,6 +679,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        clear alld data
+        jLabel7.setText("");
         jTextField9.setText("");
         jTextField11.setText("");
         jTextField10.setText("");
@@ -746,6 +769,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

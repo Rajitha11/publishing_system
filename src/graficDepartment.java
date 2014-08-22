@@ -2,6 +2,7 @@
 import com.org.DB.ConnectionSet1;
 import com.org.clz.tablemodel1;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JMonthChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -76,6 +77,7 @@ public class graficDepartment extends javax.swing.JFrame {
         return date;
 
     }
+    
 
     void tableLoad() {
         try {
@@ -86,7 +88,7 @@ public class graficDepartment extends javax.swing.JFrame {
                     + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is null", jTable3);
 
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
-                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is not null", jTable4);
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND printin_shedul='added'", jTable4);
 
             new tablemodel1().fillTable("select * from grfic_other_jobs", jTable2);
 
@@ -1099,7 +1101,7 @@ public class graficDepartment extends javax.swing.JFrame {
                     ctp = "No";
                 }
 
-                ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "' where idgrafic_dep='" + jLabel19.getText() + "'");
+                ConnectionSet1.getInstance().setResult("update grafic_jobs set postv_cmplt='" + positv_cplt + "',trcng_cmplt='" + tracng_cplt + "',ctp='" + ctp + "',printin_shedul='added' where idgrafic_dep='" + jLabel19.getText() + "'");
 
                 jTextField6.setText("");
                 jTextField15.setText("");
