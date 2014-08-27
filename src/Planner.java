@@ -87,6 +87,7 @@ public class Planner extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel38 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -142,10 +143,15 @@ public class Planner extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Planner");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel38.setText("Typesetter");
+        getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 640, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Planner Jobs");
@@ -292,7 +298,7 @@ public class Planner extends javax.swing.JFrame {
         jCheckBox1.setText("* Completed The Job");
         jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 180, 30));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 630, 340, 90));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 680, 340, 90));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Save");
@@ -303,7 +309,7 @@ public class Planner extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 800, 108, 45));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 830, 108, 45));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Update");
@@ -314,7 +320,7 @@ public class Planner extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 800, 108, 45));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 830, 108, 45));
 
         jPanel15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -359,7 +365,7 @@ public class Planner extends javax.swing.JFrame {
         jButton6.setText("Delete");
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 800, 108, 45));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 830, 108, 45));
 
         jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -387,7 +393,7 @@ public class Planner extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 750, 80, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 780, 80, 30));
 
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 0, 10));
@@ -402,6 +408,9 @@ public class Planner extends javax.swing.JFrame {
         });
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
+        jTextField1.setEditable(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 640, 210, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -414,7 +423,7 @@ public class Planner extends javax.swing.JFrame {
             int i = jTable1.getSelectedRow();
             String jobid = dtm.getValueAt(i, 0).toString();
 
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price,pduct_sz,nm_pages,idgrafic_dep,t1.* from planner pl1 "
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price,pduct_sz,nm_pages,idgrafic_dep,type_setter,t1.* from planner pl1 "
                     + "inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
                     + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card "
                     + "inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No'");
@@ -486,6 +495,9 @@ public class Planner extends javax.swing.JFrame {
                 } else {
                     jCheckBox11.setSelected(false);
                 }
+                
+                String typsetter = rs.getString("type_setter");
+                jTextField1.setText(typsetter);
 
             }
 
@@ -565,7 +577,7 @@ public class Planner extends javax.swing.JFrame {
             int i = jTable2.getSelectedRow();
             String jobid = dtm.getValueAt(i, 0).toString();
 
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price,pduct_sz,nm_pages,job_done,idgrafic_dep,t1.* from planner pl1 "
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,language,send_dte,planner_deadln,recomd_price,pduct_sz,nm_pages,job_done,idgrafic_dep,type_setter,t1.* from planner pl1 "
                     + "inner join grafic_jobs g1 on pl1.grafic_jobs_idgrafic_dep = g1.idgrafic_dep inner join costing c1 on g1.job_card_idjob_card = c1.job_card_idjob_card "
                     + "inner join production_description p1 on c1.job_card_idjob_card = p1.job_card_idjob_card inner join typesetter_fil t1 on p1.job_card_idjob_card = t1.job_card_idjob_card "
                     + "inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes'");
@@ -644,6 +656,9 @@ public class Planner extends javax.swing.JFrame {
                 } else {
                     jCheckBox1.setSelected(false);
                 }
+                
+                String typsetter = rs.getString("type_setter");
+                jTextField1.setText(typsetter);
 
             }
         } catch (Exception ex) {
@@ -724,13 +739,53 @@ public class Planner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12KeyReleased
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        //go back to home
-        String uname = jLabel5.getText();
-        String username = null;
-        String desig = null;
-        new Menu("Planner", "User", jLabel5.getText()).setVisible(true);
-        dispose();
+        try {
+            // TODO add your handling code here:
+            //go back to home
+            String uname = jLabel5.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("User") && desig.equals("Planner")) {
+                System.out.println("2");
+                new Menu("Planner", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Head Of Grafic")) {
+                new Menu("Head Of Grafic", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+
+//            new Menu("Planner", "User", jLabel5.getText()).setVisible(true);
+//            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -769,8 +824,6 @@ public class Planner extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -795,6 +848,7 @@ public class Planner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel44;
@@ -814,6 +868,7 @@ public class Planner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;

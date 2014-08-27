@@ -163,7 +163,7 @@ public class addnewuser extends javax.swing.JFrame {
         jLabel13.setText("* Designation");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 680, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MD", "Publishing Manager", "Assistant Publishing Manager", "Head Of Grafic", "Designer", "Planner", "Typesetter", "IT" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MD", "Publishing Manager", "Assistant Publishing Manager", "Head Of Grafic", "Designer", "Planner", "Typesetter", "Printing", "IT" }));
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 680, 270, -1));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

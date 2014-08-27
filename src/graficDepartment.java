@@ -35,13 +35,21 @@ public class graficDepartment extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        tableLoad();
+        
         try {
             jLabel17.setText(maxid("idgrafic_dep", "grafic_jobs", 1));
         } catch (Exception ex) {
             Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    graficDepartment(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel69.setText(uname);
+        tableLoad();
+        
     }
 
     void dateMethod() {
@@ -165,6 +173,8 @@ public class graficDepartment extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jLabel69 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -443,6 +453,19 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel5.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 370, 130));
+
+        jLabel69.setText("jLabel69");
+        jPanel1.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 10, 0));
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton13.setContentAreaFilled(false);
+        jButton13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
         jTabbedPane1.addTab("Grafic Department", jPanel1);
 
@@ -1441,6 +1464,60 @@ public class graficDepartment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        try {
+            //             TODO add your handling code here:
+            //            go back to home
+            String uname = jLabel69.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+            //
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            System.out.println("1");
+            if (username.equals(uname) && typ.equals("User") && desig.equals("Designer")) {
+                System.out.println("2");
+                new Menu("Designer", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Head Of Grafic")) {
+                new Menu("Head Of Grafic", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Planner")) {
+                System.out.println("2");
+                new Menu("Planner", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1483,6 +1560,7 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1574,6 +1652,7 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

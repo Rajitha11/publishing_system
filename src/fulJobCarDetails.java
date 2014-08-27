@@ -36,7 +36,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        tableLoad();
+        
 
         try {
             jcno.setText(maxid("idjob_card", "job_card", 1));
@@ -44,6 +44,14 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    fulJobCarDetails(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel3.setText(uname);
+        tableLoad();
+        
     }
 
     /**
@@ -193,6 +201,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         aprvisbn = new javax.swing.JCheckBox();
         jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jTextField8 = new javax.swing.JTextField();
@@ -472,6 +482,19 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 770, 80, 30));
+
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 60, 10, 0));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 90, 70));
 
         jTabbedPane1.addTab("Add New Job Card", jPanel1);
 
@@ -847,6 +870,48 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //go home
+            String uname = jLabel3.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -896,6 +961,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JCheckBox dy;
     private javax.swing.JTextField isbn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -916,6 +982,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;

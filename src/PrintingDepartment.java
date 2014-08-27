@@ -35,8 +35,16 @@ public class PrintingDepartment extends javax.swing.JFrame {
     public PrintingDepartment() {
         initComponents();
 
-        tableLoad();
+        
 
+    }
+
+    PrintingDepartment(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel16.setText(uname);
+        tableLoad();
+        
     }
 
     void tableLoad() {
@@ -151,6 +159,8 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Printing Details");
@@ -393,6 +403,19 @@ public class PrintingDepartment extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 840, 90, 40));
 
+        jLabel16.setText("jLabel16");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 0, -1));
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton7.setContentAreaFilled(false);
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 90, 70));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -482,7 +505,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
                 }
                 System.out.println(prinshedulid);
 
-                ConnectionSet1.getInstance().setResult("insert into printing(cver_print_dte,insde_printed_date,paper_rim,qty,cmplt_date,prnting_shedul_idprnting_shedul) values('" + cverPrint + "','" + insdePrint + "','" + rems + "','" + qty + "','" + cmplt + "','" + prinshedulid + "')");
+                ConnectionSet1.getInstance().setResult("insert into printing(cver_print_dte,insde_printed_date,paper_rim,qty,cmplt_date,prnting_shedul_idprnting_shedul,printing_step) values('" + cverPrint + "','" + insdePrint + "','" + rems + "','" + qty + "','" + cmplt + "','" + prinshedulid + "','1st Print')");
                 ConnectionSet1.getInstance().setResult("update prnting_shedul set status_printing='Yes' where idprnting_shedul='" + jLabel7.getText() + "'");
 
                 jLabel7.setText("");
@@ -643,9 +666,11 @@ public class PrintingDepartment extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //        search the details
-            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from grafic_jobs g1 inner join production_description p1 on g1.job_card_idjob_card = p1.job_card_idjob_card "
-                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where trcng_cmplt='Yes' "
-                    + "AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from prnting_shedul ps1 inner join production_description p1 on ps1.job_card_idjob_card = p1.job_card_idjob_card "
+                    + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='No' AND "
+                     + "(fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+
+//                    + "AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
@@ -662,10 +687,11 @@ public class PrintingDepartment extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //        search the details
-            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
-                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where "
-                    + "fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "')", jTable2);
+           new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
+                    + "on ps1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='Yes' AND "
+                   + "(fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
 
+//                                + "(fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PrintingDepartment.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -698,6 +724,51 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jDateChooser2.setDate(null);
         jDateChooser3.setDate(null);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //go back to home
+            String uname = jLabel16.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Printing")) {
+                new Menu("Printing", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+
+            //            new Menu("Planner", "User", jLabel5.getText()).setVisible(true);
+            //            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -738,6 +809,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
@@ -752,6 +824,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

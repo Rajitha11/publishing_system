@@ -44,7 +44,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         //hide new author
         jPanel1.setVisible(false);
         // load data from the table
-        tableLoad();
+        
         //author id hide
         jTextField1.setVisible(false);
 
@@ -55,6 +55,14 @@ public class resivinManuScript extends javax.swing.JFrame {
             Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    resivinManuScript(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel47.setText(uname);
+        tableLoad();
+        
     }
 
     void dateMethod() {
@@ -257,6 +265,8 @@ public class resivinManuScript extends javax.swing.JFrame {
         aname = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -584,6 +594,19 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("* New Author");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
+
+        jLabel47.setText("jLabel47");
+        jPanel4.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 20, 0));
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton12.setContentAreaFilled(false);
+        jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 70));
 
         jTabbedPane1.addTab("Reserving Manuscript", jPanel4);
 
@@ -1223,6 +1246,48 @@ public class resivinManuScript extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_qulifiActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //go home
+            String uname = jLabel47.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1284,6 +1349,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JTextField fname;
     private javax.swing.JCheckBox hardc;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1334,6 +1400,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

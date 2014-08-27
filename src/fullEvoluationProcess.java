@@ -38,7 +38,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel10.setVisible(false);
         //
         dateMethod();
+        
+    }
+
+    fullEvoluationProcess(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel61.setText(uname);
         tableLoad();
+        
     }
 
     void tableLoad() {
@@ -143,6 +151,8 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jButton11 = new javax.swing.JButton();
+        jLabel61 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -262,14 +272,14 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Search");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 76, 55, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 90, 55, -1));
 
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 76, 295, -1));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 295, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -435,6 +445,19 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton11.setBorder(null);
         jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 810, 108, 45));
+
+        jLabel61.setText("jLabel61");
+        jPanel1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 40, 0));
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton12.setContentAreaFilled(false);
+        jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
         jTabbedPane5.addTab("Evaluvation Of The Manuscript", jPanel1);
 
@@ -1507,6 +1530,48 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField16KeyReleased
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //go home
+            String uname = jLabel61.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1546,6 +1611,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1626,6 +1692,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

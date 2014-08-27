@@ -35,10 +35,18 @@ public class productDiscription extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        tableLoad();
+        
         loadPaperTyp();
         loadBoardtp();
         loadGauge();
+    }
+
+    productDiscription(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel5.setText(uname);
+        tableLoad();
+        
     }
 
     void loadPaperTyp() {
@@ -169,9 +177,13 @@ public class productDiscription extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Product Description");
@@ -267,8 +279,8 @@ public class productDiscription extends javax.swing.JFrame {
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("* Print Quantity");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
+        jLabel13.setText("* Binding");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
 
         jTextField7.setToolTipText("Eg- 1000");
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 250, -1));
@@ -313,6 +325,13 @@ public class productDiscription extends javax.swing.JFrame {
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 90, 30));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("* Print Quantity");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hard Binding", "Perfect Binding", "Suddle Binding", "Thread Binding" }));
+        jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 250, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 1070, 400));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -343,6 +362,19 @@ public class productDiscription extends javax.swing.JFrame {
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 830, 108, 45));
 
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 70, 0, 10));
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
+        jButton12.setContentAreaFilled(false);
+        jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -355,7 +387,7 @@ public class productDiscription extends javax.swing.JFrame {
 
             int i = jTable1.getSelectedRow();
             String job_card = dtm.getValueAt(i, 0).toString();
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty,innr_paper_typ,cver_brd_typ,imprint_check,remark_pd,innr_paper_gauge,cver_brd_gauge from production_description p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + job_card + "'");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty,innr_paper_typ,cver_brd_typ,imprint_check,remark_pd,innr_paper_gauge,cver_brd_gauge,binding_typ from production_description p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where idjob_card='" + job_card + "'");
 
             if (rs.next()) {
 
@@ -405,6 +437,12 @@ public class productDiscription extends javax.swing.JFrame {
                 Vector v3 = new Vector();
                 v3.add(s13);
                 jComboBox4.setModel(new DefaultComboBoxModel(v3));
+                
+                String s14 = rs.getString("binding_typ");
+                Vector v4 = new Vector();
+                v4.add(s14);
+                jComboBox5.setModel(new DefaultComboBoxModel(v4));
+                
 
             }
 
@@ -432,13 +470,16 @@ public class productDiscription extends javax.swing.JFrame {
                 String brtyp_ga = jComboBox4.getSelectedItem().toString();
                 String impnt_check = jTextField2.getText();
                 String remrk = jTextArea1.getText();
-                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+                String bindinty = jComboBox5.getSelectedItem().toString();
+                
+                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='"+bindinty+"' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
                 jTextField7.setText("");
                 jComboBox1.setSelectedIndex(0);
                 jComboBox3.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
                 jComboBox4.setSelectedIndex(0);
+                jComboBox5.setSelectedIndex(0);
                 jTextField2.setText("");
                 jTextArea1.setText("");
                 jLabel4.setText("");
@@ -469,13 +510,16 @@ public class productDiscription extends javax.swing.JFrame {
                 String brtyp_ga = jComboBox4.getSelectedItem().toString();
                 String impnt_check = jTextField2.getText();
                 String remrk = jTextArea1.getText();
-                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+                String bindinty = jComboBox5.getSelectedItem().toString();
+                
+                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='"+bindinty+"' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
                 jTextField7.setText("");
                 jComboBox1.setSelectedIndex(0);
                 jComboBox3.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
                 jComboBox4.setSelectedIndex(0);
+                jComboBox5.setSelectedIndex(0);
                 jTextField2.setText("");
                 jTextArea1.setText("");
                 jLabel4.setText("");
@@ -490,6 +534,48 @@ public class productDiscription extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //go home
+            String uname = jLabel5.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -527,12 +613,14 @@ public class productDiscription extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -540,6 +628,7 @@ public class productDiscription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -551,6 +640,7 @@ public class productDiscription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

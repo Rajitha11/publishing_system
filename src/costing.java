@@ -35,12 +35,20 @@ public class costing extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        tableLoad();
+
         totalcost.setText("00.00");
         unitPricecal.setText("00.00");
         totalcost1.setText("00.00");
         unitPricecal1.setText("00.00");
 
+
+    }
+
+    costing(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+        jLabel68.setText(uname);
+        tableLoad();
 
     }
 
@@ -259,6 +267,7 @@ public class costing extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jLabel67 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
+        jLabel68 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -549,7 +558,7 @@ public class costing extends javax.swing.JFrame {
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 480, 90, 30));
 
         jLabel67.setText("jLabel67");
-        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, -1, -1));
+        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 554, -1, 0));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
         jButton11.setContentAreaFilled(false);
@@ -560,6 +569,9 @@ public class costing extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
+
+        jLabel68.setText("jLabel68");
+        jPanel1.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 0, 20));
 
         jTabbedPane1.addTab("Get Quotation", jPanel1);
 
@@ -1764,9 +1776,45 @@ public class costing extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        //go home
-        
+        try {
+            // TODO add your handling code here:
+            //go home
+            String uname = jLabel68.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+            }
+
+            if (username.equals(uname) && typ.equals("Admin") && desig.equals("IT")) {
+                System.out.println("3");
+                new Menu("IT", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("Publishing Manager")) {
+                new Menu("Publishing Manager", "Admin", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+                System.out.println("3");
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
+                dispose();
+
+            } else if (username.equals(uname) && typ.equals("Admin") && desig.equals("MD")) {
+                System.out.println("3");
+                new Menu("MD", "Admin", uname).setVisible(true);
+                dispose();
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
@@ -1900,6 +1948,7 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
