@@ -44,7 +44,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         //hide new author
         jPanel1.setVisible(false);
         // load data from the table
-        
+
         //author id hide
         jTextField1.setVisible(false);
 
@@ -62,7 +62,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         this();
         jLabel47.setText(uname);
         tableLoad();
-        
+
     }
 
     void dateMethod() {
@@ -1145,66 +1145,73 @@ public class resivinManuScript extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update author
-            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-            ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',contact_land='" + jTextField4.getText() + "',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
-            dtm.setRowCount(0);
-            jTextField1.setText("");
-            efn.setText("");
-            eln.setText("");
-            econtct.setText("");
-            eaddress.setText("");
-            eemail.setText("");
-            jTextField4.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No Value In The Manuscript Name", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update author
+                DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+                ConnectionSet1.getInstance().setResult("update author set fname='" + efn.getText() + "', lname='" + eln.getText() + "',contact_no='" + econtct.getText() + "',contact_land='" + jTextField4.getText() + "',address='" + eaddress.getText() + "',email='" + eemail.getText() + "' where idauthor='" + jTextField1.getText() + "'");
+                dtm.setRowCount(0);
+                jTextField1.setText("");
+                efn.setText("");
+                eln.setText("");
+                econtct.setText("");
+                eaddress.setText("");
+                eemail.setText("");
+                jTextField4.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //update anuscript
-            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No Value In The Manuscript Name", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //update anuscript
+                DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
 
-            String ctg = ecatag.getSelectedItem().toString();
-            String scatg = esub_catag.getSelectedItem().toString();
-            String lagu = jComboBox1.getSelectedItem().toString();
+                String ctg = ecatag.getSelectedItem().toString();
+                String scatg = esub_catag.getSelectedItem().toString();
+                String lagu = jComboBox1.getSelectedItem().toString();
 
-            String mtype;
-            String mediaty;
-            //
-            if (eown.isSelected()) {
-                mtype = "Own";
-            } else {
-                mtype = "Translation";
+                String mtype;
+                String mediaty;
+                //
+                if (eown.isSelected()) {
+                    mtype = "Own";
+                } else {
+                    mtype = "Translation";
+                }
+                //
+                if (ehard.isSelected()) {
+                    mediaty = "Hard Copy";
+                } else if (ecd.isSelected()) {
+                    mediaty = "CD/DVD";
+                } else {
+                    mediaty = "USB";
+                }
+
+                ConnectionSet1.getInstance().setResult("update reseving_manuscript set manuscript_name='" + emnu_name.getText() + "',catergory='" + ctg + "',sub_catergory='" + scatg + "',language='" + lagu + "',qulification='" + jTextField7.getText() + "',ms_type='" + mtype + "',media_type='" + mediaty + "' where idrm='" + jTextField2.getText() + "' ");
+                jTextField2.setText("");
+                emnu_name.setText("");
+                jTextField7.setText("");
+                ecatag.setSelectedIndex(0);
+                esub_catag.setSelectedIndex(0);
+                jComboBox1.setSelectedIndex(0);
+                buttonGroup3.clearSelection();
+                buttonGroup4.clearSelection();
+                jLabel44.setText("");
+                tableLoad();
+            } catch (Exception ex) {
+                Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //
-            if (ehard.isSelected()) {
-                mediaty = "Hard Copy";
-            } else if (ecd.isSelected()) {
-                mediaty = "CD/DVD";
-            } else {
-                mediaty = "USB";
-            }
-
-            ConnectionSet1.getInstance().setResult("update reseving_manuscript set manuscript_name='" + emnu_name.getText() + "',catergory='" + ctg + "',sub_catergory='" + scatg + "',language='" + lagu + "',qulification='" + jTextField7.getText() + "',ms_type='" + mtype + "',media_type='" + mediaty + "' where idrm='" + jTextField2.getText() + "' ");
-            jTextField2.setText("");
-            emnu_name.setText("");
-            jTextField7.setText("");
-            ecatag.setSelectedIndex(0);
-            esub_catag.setSelectedIndex(0);
-            jComboBox1.setSelectedIndex(0);
-            buttonGroup3.clearSelection();
-            buttonGroup4.clearSelection();
-            jLabel44.setText("");
-            tableLoad();
-        } catch (Exception ex) {
-            Logger.getLogger(resivinManuScript.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
