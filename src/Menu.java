@@ -37,12 +37,13 @@ public class Menu extends javax.swing.JFrame {
         jButton11.setEnabled(false);
         jButton12.setEnabled(false);
         jButton7.setEnabled(false);
+        jButton13.setEnabled(false);
     }
 
-    Menu(String desig, String userTyp,String uname) {
-        
+    Menu(String desig, String userTyp, String uname) {
+
         this();
-        
+
         jLabel6.setText(uname);
 
         if (desig.equals("Publishing Manager") && userTyp.equals("Admin")) {
@@ -58,13 +59,15 @@ public class Menu extends javax.swing.JFrame {
             jButton11.setEnabled(true);
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
+            jButton13.setEnabled(true);
 
         } else if (desig.equals("Head Of Grafic") && userTyp.equals("User")) {
             jButton10.setEnabled(true);
             jButton1.setEnabled(true);
             jButton9.setEnabled(true);
-            
-        }else if(desig.equals("MD") && userTyp.equals("Admin")){
+            jButton13.setEnabled(true);
+
+        } else if (desig.equals("MD") && userTyp.equals("Admin")) {
             jButton8.setEnabled(true);
             jButton2.setEnabled(true);
             jButton4.setEnabled(true);
@@ -77,27 +80,31 @@ public class Menu extends javax.swing.JFrame {
             jButton11.setEnabled(true);
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
-        
-        }else if(desig.equals("Designer") && userTyp.equals("User")){
+            jButton13.setEnabled(true);
+
+        } else if (desig.equals("Designer") && userTyp.equals("User")) {
             jButton1.setEnabled(true);
-        
-        }else if(desig.equals("Planner") && userTyp.equals("User")){
+
+        } else if (desig.equals("Planner") && userTyp.equals("User")) {
             jButton9.setEnabled(true);
             jButton7.setEnabled(true);
             jButton1.setEnabled(true);
-        
-        }else if(desig.equals("Typesetter") && userTyp.equals("User")){
+            jButton13.setEnabled(true);
+
+        } else if (desig.equals("Typesetter") && userTyp.equals("User")) {
             jButton11.setEnabled(true);
-        
-        }else if(desig.endsWith("Assistant Publishing Manager") && userTyp.equals("User")){
+
+        } else if (desig.endsWith("Assistant Publishing Manager") && userTyp.equals("User")) {
             jButton8.setEnabled(true);
             jButton2.setEnabled(true);
             jButton4.setEnabled(true);
             jButton5.setEnabled(true);
             jButton3.setEnabled(true);
             jButton12.setEnabled(true);
-        
-        }else if(desig.equals("IT") && userTyp.equals("Admin")){
+            jButton13.setEnabled(true);
+            jButton7.setEnabled(true);
+
+        } else if (desig.equals("IT") && userTyp.equals("Admin")) {
             jButton8.setEnabled(true);
             jButton2.setEnabled(true);
             jButton4.setEnabled(true);
@@ -110,10 +117,12 @@ public class Menu extends javax.swing.JFrame {
             jButton11.setEnabled(true);
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
-        
-        } else if(desig.equals("Printing") && userTyp.equals("User")){
+            jButton13.setEnabled(true);
+
+        } else if (desig.equals("Printing") && userTyp.equals("User")) {
             jButton6.setEnabled(true);
-        
+            jButton13.setEnabled(true);
+
         }
 
 
@@ -157,6 +166,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -193,7 +205,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 90, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 150, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Process");
@@ -201,7 +213,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Designer");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Evuluation");
@@ -217,18 +229,18 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 90, 66));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 90, 66));
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/catlo0g.png"))); // NOI18N
         jButton7.setBorderPainted(false);
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusable(false);
         jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/catlo0g1.png"))); // NOI18N
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 270, 90, -1));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Costing");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 220, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Manuscript");
@@ -245,7 +257,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 90, 66));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 90, 66));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Receiving ");
@@ -261,11 +273,11 @@ public class Menu extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 90, 66));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 270, 90, 66));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Job Card");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/cost.png"))); // NOI18N
         jButton3.setBorderPainted(false);
@@ -277,15 +289,15 @@ public class Menu extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 90, 66));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 90, 66));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Discription");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 80, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 80, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Printing");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, -1, -1));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/menus.png"))); // NOI18N
         jButton8.setBorderPainted(false);
@@ -302,7 +314,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Catalog");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, -1, -1));
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/planer.png"))); // NOI18N
         jButton9.setBorderPainted(false);
@@ -315,11 +327,11 @@ public class Menu extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 90, 66));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 90, 66));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Planner");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, -1));
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/graficDep.png"))); // NOI18N
         jButton10.setBorderPainted(false);
@@ -332,15 +344,15 @@ public class Menu extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 150, 90, 66));
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 90, 66));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Graphic");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 220, 60, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 60, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Product");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 70, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 220, 70, -1));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/typsetter.png"))); // NOI18N
         jButton11.setBorderPainted(false);
@@ -352,11 +364,11 @@ public class Menu extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 90, -1));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 90, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Typesetter");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, -1, -1));
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/trans.png"))); // NOI18N
         jButton12.setBorderPainted(false);
@@ -368,11 +380,11 @@ public class Menu extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 90, -1));
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 90, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Translations");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 150, 30));
@@ -380,6 +392,26 @@ public class Menu extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         jLabel17.setText("Loged As");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, 100, 30));
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/printshedul.png"))); // NOI18N
+        jButton13.setBorderPainted(false);
+        jButton13.setContentAreaFilled(false);
+        jButton13.setFocusable(false);
+        jButton13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/printshedul1.png"))); // NOI18N
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, 90, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Schedule");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(692, 360, 70, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("Printing");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Background_Artboard 2.jpg"))); // NOI18N
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -26, 1150, 910));
@@ -483,6 +515,13 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        String uname = jLabel6.getText();
+        new printing_shedul(uname).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -522,6 +561,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -540,7 +580,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
