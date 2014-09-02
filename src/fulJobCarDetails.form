@@ -100,10 +100,10 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Language" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
                             <Column editable="true" title="Catergory" type="java.lang.Object"/>
                             <Column editable="true" title="Sub Catergory" type="java.lang.Object"/>
                           </Table>
@@ -726,7 +726,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="* Job No"/>
+                <Property name="text" type="java.lang.String" value="Job No"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -787,16 +787,16 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="10" rowCount="0">
-                        <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                        <Column editable="true" title="Job Card No" type="java.lang.Object"/>
-                        <Column editable="true" title="Title" type="java.lang.Object"/>
-                        <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Language" type="java.lang.Object"/>
-                        <Column editable="true" title="Category" type="java.lang.Object"/>
-                        <Column editable="true" title="Su Category" type="java.lang.Object"/>
-                        <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                        <Column editable="true" title="Type Setter Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Remark" type="java.lang.Object"/>
+                        <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                        <Column editable="false" title="Job Card No" type="java.lang.Object"/>
+                        <Column editable="false" title="Title" type="java.lang.Object"/>
+                        <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Language" type="java.lang.Object"/>
+                        <Column editable="false" title="Category" type="java.lang.Object"/>
+                        <Column editable="false" title="Su Category" type="java.lang.Object"/>
+                        <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                        <Column editable="false" title="Type Setter Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Remark" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -944,7 +944,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="900" y="770" width="80" height="30"/>
+                  <AbsoluteConstraints x="900" y="760" width="80" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1051,16 +1051,16 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="10" rowCount="0">
-                            <Column editable="true" title="Recived No" type="java.lang.Object"/>
-                            <Column editable="true" title="Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Title" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Language" type="java.lang.Object"/>
-                            <Column editable="true" title="Category" type="java.lang.Object"/>
-                            <Column editable="true" title="Sub Category" type="java.lang.Object"/>
-                            <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                            <Column editable="true" title="Type Setter" type="java.lang.Object"/>
-                            <Column editable="true" title="Remark" type="java.lang.Object"/>
+                            <Column editable="false" title="Recived No" type="java.lang.Object"/>
+                            <Column editable="false" title="Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Title" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Category" type="java.lang.Object"/>
+                            <Column editable="false" title="Sub Category" type="java.lang.Object"/>
+                            <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                            <Column editable="false" title="Type Setter" type="java.lang.Object"/>
+                            <Column editable="false" title="Remark" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1138,7 +1138,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="500" width="1110" height="230"/>
+                  <AbsoluteConstraints x="20" y="500" width="1110" height="230"/>
                 </Constraint>
               </Constraints>
 
@@ -1172,7 +1172,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="30" y="50" width="1060" height="160"/>
+                      <AbsoluteConstraints x="20" y="50" width="1070" height="160"/>
                     </Constraint>
                   </Constraints>
 
@@ -1182,12 +1182,12 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="0">
-                            <Column editable="true" title="Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Title" type="java.lang.Object"/>
-                            <Column editable="true" title="Type Setter" type="java.lang.Object"/>
-                            <Column editable="true" title="Typesetting" type="java.lang.Object"/>
+                            <Column editable="false" title="Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Title" type="java.lang.Object"/>
+                            <Column editable="false" title="Type Setter" type="java.lang.Object"/>
+                            <Column editable="false" title="Typesetting" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

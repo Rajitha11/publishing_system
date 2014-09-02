@@ -1413,72 +1413,92 @@ public class costing extends javax.swing.JFrame {
         totalcost.setText("00.00");
         unitPricecal.setText("00.00");
         retaiprice.setText("");
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
+        dtm.setRowCount(0);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (jLabel38.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
+
+        } else if (!jLabel38.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                //save the costing details
-                int idjob = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel38.getText() + "'");
-                if (rs.next()) {
-                    idjob = rs.getInt("idjob_card");
-                }
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card from costing where job_card_idjob_card='" + jLabel38.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Job Card Allready Assinged", null, WIDTH);
 
-                String transF = ftrans.getText();
-                String typF = ftyp.getText();
-                String preadF = fread.getText();
-                String cvrF = fcovr.getText();
-                String tacnC = ftracng.getText();
-                String ptvC = fpositive.getText();
-                String prntC = fprinting.getText();
-                String cmpy_name = jLabel42.getText();
-                String othrE = fother.getText();
-                String total = totalcost.getText();
-                String unitPrc = unitPricecal.getText();
-                String rcomnd_price = retaiprice.getText();
-
-                String pmApprov;
-                if (pmay.isSelected()) {
-                    pmApprov = "Yes";
                 } else {
-                    pmApprov = "No";
+                    try {
+                        // TODO add your handling code here:
+                        //save the costing details
+                        int idjob = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel38.getText() + "'");
+                        if (rs.next()) {
+                            idjob = rs.getInt("idjob_card");
+                        }
+
+                        String transF = ftrans.getText();
+                        String typF = ftyp.getText();
+                        String preadF = fread.getText();
+                        String cvrF = fcovr.getText();
+                        String tacnC = ftracng.getText();
+                        String ptvC = fpositive.getText();
+                        String prntC = fprinting.getText();
+                        String cmpy_name = jLabel42.getText();
+                        String othrE = fother.getText();
+                        String total = totalcost.getText();
+                        String unitPrc = unitPricecal.getText();
+                        String rcomnd_price = retaiprice.getText();
+
+                        String pmApprov;
+                        if (pmay.isSelected()) {
+                            pmApprov = "Yes";
+                        } else {
+                            pmApprov = "No";
+                        }
+
+                        String mdApprov;
+                        if (diay.isSelected()) {
+                            mdApprov = "Yes";
+                        } else {
+                            mdApprov = "No";
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into costing(editing_fee,typstng_fee,proofrdng_fee,cverdign_fee,trcng_cost,positv_cost,prnt_cost,print_cmny,other_expec,total_cost,unit_price,recomd_price,pm_approv,md_approv,job_card_idjob_card) "
+                                + "values('" + transF + "','" + typF + "','" + preadF + "','" + cvrF + "','" + tacnC + "','" + ptvC + "','" + prntC + "','" + cmpy_name + "','" + othrE + "','" + total + "','" + unitPrc + "','" + rcomnd_price + "','" + pmApprov + "','" + mdApprov + "','" + idjob + "')");
+
+                        jLabel38.setText("");
+                        jTextField16.setText("");
+                        jTextField18.setText("");
+                        jTextField17.setText("");
+                        jTextField27.setText("");
+                        ftrans.setText("");
+                        ftyp.setText("");
+                        fread.setText("");
+                        fcovr.setText("");
+                        ftracng.setText("");
+                        fpositive.setText("");
+                        fprinting.setText("");
+                        jLabel42.setText("");
+                        fother.setText("");
+                        totalcost.setText("00.00");
+                        unitPricecal.setText("00.00");
+                        retaiprice.setText("");
+
+                        DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
+                        dtm.setRowCount(0);
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-
-                String mdApprov;
-                if (diay.isSelected()) {
-                    mdApprov = "Yes";
-                } else {
-                    mdApprov = "No";
-                }
-
-                ConnectionSet1.getInstance().setResult("insert into costing(editing_fee,typstng_fee,proofrdng_fee,cverdign_fee,trcng_cost,positv_cost,prnt_cost,print_cmny,other_expec,total_cost,unit_price,recomd_price,pm_approv,md_approv,job_card_idjob_card) "
-                        + "values('" + transF + "','" + typF + "','" + preadF + "','" + cvrF + "','" + tacnC + "','" + ptvC + "','" + prntC + "','" + cmpy_name + "','" + othrE + "','" + total + "','" + unitPrc + "','" + rcomnd_price + "','" + pmApprov + "','" + mdApprov + "','" + idjob + "')");
-
-                jLabel38.setText("");
-                jTextField16.setText("");
-                jTextField18.setText("");
-                jTextField17.setText("");
-                jTextField27.setText("");
-                ftrans.setText("");
-                ftyp.setText("");
-                fread.setText("");
-                fcovr.setText("");
-                ftracng.setText("");
-                fpositive.setText("");
-                fprinting.setText("");
-                jLabel42.setText("");
-                fother.setText("");
-                totalcost.setText("00.00");
-                unitPricecal.setText("00.00");
-                retaiprice.setText("");
 
             } catch (Exception ex) {
                 Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1639,6 +1659,10 @@ public class costing extends javax.swing.JFrame {
         totalcost1.setText("00.00");
         unitPricecal1.setText("00.00");
         retaiprice1.setText("");
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable6.getModel();
+        dtm.setRowCount(0);
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1680,6 +1704,9 @@ public class costing extends javax.swing.JFrame {
                 totalcost1.setText("00.00");
                 unitPricecal1.setText("00.00");
                 retaiprice1.setText("");
+
+                DefaultTableModel dtm = (DefaultTableModel) jTable6.getModel();
+                dtm.setRowCount(0);
 
             } catch (Exception ex) {
                 Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);

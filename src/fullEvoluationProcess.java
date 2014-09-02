@@ -38,7 +38,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jPanel10.setVisible(false);
         //
         dateMethod();
-        
+
     }
 
     fullEvoluationProcess(String uname) {
@@ -46,7 +46,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         this();
         jLabel61.setText(uname);
         tableLoad();
-        
+
     }
 
     void tableLoad() {
@@ -291,7 +291,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Contact No", "Address", "Email", "Script Name", "Catergory", "Script Type"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -415,7 +423,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 810, 108, 45));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 490, 108, 45));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Update");
@@ -437,7 +445,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 810, 108, 45));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 810, 108, 45));
         jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 200, -1));
 
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -498,7 +506,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Decision"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable4MouseClicked(evt);
@@ -651,7 +667,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Recieved Date", "Decision"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable5MouseClicked(evt);
@@ -741,7 +765,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Recieved Date", "Decision"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable6MouseClicked(evt);
@@ -774,7 +806,15 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Contact No", "Email", "Script Name", "Catergory", "Script Type", "Sent To", "Sent By", "Sent Date", "Recieved Date", "Decision"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable7MouseClicked(evt);
@@ -996,36 +1036,49 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jLabel3.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                // TODO add your handling code here:
-                // Save the evaluation process
 
-                int manu_script = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + jLabel3.getText() + "'");
-                if (rs.next()) {
-                    manu_script = rs.getInt("idrm");
+        } else if (!jLabel3.getText().isEmpty()) {
+            try {
+
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reseving_manuscript_idrm from evaluation where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Manuscript is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        // Save the evaluation process
+
+                        int manu_script = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + jLabel3.getText() + "'");
+                        if (rs.next()) {
+                            manu_script = rs.getInt("idrm");
+                        }
+
+                        String sntto = jComboBox3.getSelectedItem().toString();
+                        String sntby = jComboBox4.getSelectedItem().toString();
+                        String sntdat = datechosser(jDateChooser4);
+                        ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm,decision) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "','Pending')");
+
+                        jLabel3.setText("");
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                        jTextField4.setText("");
+                        jTextField6.setText("");
+                        jComboBox1.setSelectedIndex(0);
+                        jComboBox3.setSelectedIndex(0);
+                        jComboBox4.setSelectedIndex(0);
+                        jDateChooser4.setDate(null);
+                        tableLoad();
+                    } catch (Exception ex) {
+                        Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
-                String sntto = jComboBox3.getSelectedItem().toString();
-                String sntby = jComboBox4.getSelectedItem().toString();
-                String sntdat = datechosser(jDateChooser4);
-                ConnectionSet1.getInstance().setResult("insert into evaluation(send_to, sent_by, sent_date,reseving_manuscript_idrm,decision) values('" + sntto + "','" + sntby + "','" + sntdat + "','" + manu_script + "','Pending')");
-
-                jLabel3.setText("");
-                jTextField1.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jTextField4.setText("");
-                jTextField6.setText("");
-                jComboBox1.setSelectedIndex(0);
-                jComboBox3.setSelectedIndex(0);
-                jComboBox4.setSelectedIndex(0);
-                jDateChooser4.setDate(null);
-                tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

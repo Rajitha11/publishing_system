@@ -39,6 +39,7 @@ public class productDiscription extends javax.swing.JFrame {
         loadPaperTyp();
         loadBoardtp();
         loadGauge();
+        bindingTyp();
     }
 
     productDiscription(String uname) {
@@ -49,6 +50,19 @@ public class productDiscription extends javax.swing.JFrame {
         
     }
 
+    void bindingTyp(){
+        try {
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from binding");
+            Vector v = new Vector();
+            while(rs.next()){
+                String bt = rs.getString("binding_typ");
+                jComboBox5.addItem(bt);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     void loadPaperTyp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from paper_type");
@@ -329,7 +343,6 @@ public class productDiscription extends javax.swing.JFrame {
         jLabel16.setText("* Print Quantity");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hard Binding", "Perfect Binding", "Suddle Binding", "Thread Binding" }));
         jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 250, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 1070, 400));
@@ -449,6 +462,7 @@ public class productDiscription extends javax.swing.JFrame {
             loadPaperTyp();
             loadBoardtp();
             loadGauge();
+            bindingTyp();
 
         } catch (Exception ex) {
             Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);

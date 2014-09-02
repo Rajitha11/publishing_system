@@ -418,6 +418,11 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton6.setText("Delete");
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 750, 108, 45));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cover Disigner", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -1462,6 +1467,20 @@ public class graficDepartment extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+//        clear all the data
+        jTextField5.setText("");
+        jTextField10.setText("");
+        jTextField10.setText("");
+        jLabel29.setText("");
+        jLabel17.setText("");
+        jTextField9.setText("");
+        jLabel4.setText("");
+        jTextField21.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
+        jComboBox2.setSelectedIndex(0);
+        jDateChooser3.setDate(null);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1517,6 +1536,10 @@ public class graficDepartment extends javax.swing.JFrame {
             Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

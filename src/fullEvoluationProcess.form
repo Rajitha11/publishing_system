@@ -169,15 +169,59 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact No" type="java.lang.Object"/>
-                            <Column editable="true" title="Address" type="java.lang.Object"/>
-                            <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Catergory" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact No" type="java.lang.Object"/>
+                            <Column editable="false" title="Address" type="java.lang.Object"/>
+                            <Column editable="false" title="Email" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Catergory" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Type" type="java.lang.Object"/>
                           </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -606,7 +650,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="730" y="810" width="108" height="45"/>
+                  <AbsoluteConstraints x="960" y="490" width="108" height="45"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -650,7 +694,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="580" y="810" width="108" height="45"/>
+                  <AbsoluteConstraints x="740" y="810" width="108" height="45"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -833,17 +877,17 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="11" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact No" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact No" type="java.lang.Object"/>
                             <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Catergory" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Type" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent To" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent By" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Decision" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Catergory" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent To" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent By" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Decision" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1391,18 +1435,18 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="12" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact No" type="java.lang.Object"/>
-                            <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Catergory" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Type" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent To" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent By" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Recieved Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Decision" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact No" type="java.lang.Object"/>
+                            <Column editable="false" title="Email" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Catergory" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent To" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent By" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Recieved Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Decision" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1690,18 +1734,18 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="12" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact No" type="java.lang.Object"/>
-                            <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Catergory" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Type" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent To" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent By" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Recieved Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Decision" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact No" type="java.lang.Object"/>
+                            <Column editable="false" title="Email" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Catergory" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent To" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent By" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Recieved Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Decision" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1839,18 +1883,18 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="12" rowCount="0">
-                            <Column editable="true" title="Recive No" type="java.lang.Object"/>
-                            <Column editable="true" title="Authour Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact No" type="java.lang.Object"/>
-                            <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Catergory" type="java.lang.Object"/>
-                            <Column editable="true" title="Script Type" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent To" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent By" type="java.lang.Object"/>
-                            <Column editable="true" title="Sent Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Recieved Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Decision" type="java.lang.Object"/>
+                            <Column editable="false" title="Recive No" type="java.lang.Object"/>
+                            <Column editable="false" title="Authour Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact No" type="java.lang.Object"/>
+                            <Column editable="false" title="Email" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Catergory" type="java.lang.Object"/>
+                            <Column editable="false" title="Script Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent To" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent By" type="java.lang.Object"/>
+                            <Column editable="false" title="Sent Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Recieved Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Decision" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

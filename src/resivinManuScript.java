@@ -180,7 +180,7 @@ public class resivinManuScript extends javax.swing.JFrame {
     void clear() {
         //clear values
         jCheckBox1.setSelected(false);
-        jPanel1.setVisible(false);
+//        jPanel1.setVisible(false);
         aname.setText("");
         nme_manuscript.setText("");
         qulifi.setText("");
@@ -358,7 +358,15 @@ public class resivinManuScript extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Mobile", "Fixed", "Address", "Email", "Script Name", "Catergory", "Script Type"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
 
         jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1110, 160));
@@ -525,6 +533,12 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 200, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 200, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -624,7 +638,7 @@ public class resivinManuScript extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -749,7 +763,15 @@ public class resivinManuScript extends javax.swing.JFrame {
             new String [] {
                 "ID", "Manuscript Name", "Catergory", "Sub Catergory", "Language", "Qulification", "Script Type", "Media Type"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -889,7 +911,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 700, 108, 45));
         jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 0, -1));
 
-        jTabbedPane1.addTab("Reserving Manuscript Details", jPanel6);
+        jTabbedPane1.addTab("Reserved Manuscript Details", jPanel6);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
 
@@ -1236,7 +1258,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
     private void contctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contctActionPerformed
         // TODO add your handling code here:
-        email.grabFocus();
+        jTextField3.grabFocus();
     }//GEN-LAST:event_contctActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
@@ -1294,6 +1316,11 @@ public class resivinManuScript extends javax.swing.JFrame {
             Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+        email.grabFocus();
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

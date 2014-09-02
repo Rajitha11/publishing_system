@@ -36,7 +36,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        
+
 
         try {
             jcno.setText(maxid("idjob_card", "job_card", 1));
@@ -51,7 +51,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         this();
         jLabel3.setText(uname);
         tableLoad();
-        
+
     }
 
     /**
@@ -76,6 +76,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             tablemodel1.fillTable("select idrm,fname,language,manuscript_name,catergory,sub_catergory from evaluation e1 inner join reseving_manuscript r1 on e1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where decision = 'Approve' ORDER BY idrm DESC", jTable6);
             tablemodel1.fillTable("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn,type_setter,remark from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable3);
             tablemodel1.fillTable("select idrm,idjob_card,manuscript_name,fname,language,catergory,sub_catergory,isbn,type_setter,remark from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable4);
+            new tablemodel1().fillTable("select idjob_card,fname,agrmt_sign_date,manuscript_name,type_setter,job_accepted from typesetter_staus t1 inner join job_card j1 on t1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable5);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,7 +128,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         typstr.setSelectedIndex(0);
         rmrk.setText("");
         agmtty.setSelectedIndex(0);
-        
+
         aprvisbn.setSelected(false);
         buttonGroup1.clearSelection();
         buttonGroup2.clearSelection();
@@ -238,7 +239,15 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Authour Name", "Language", "Script Name", "Catergory", "Sub Catergory"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable6MouseClicked(evt);
@@ -422,7 +431,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 670, 290, 80));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("* Job No");
+        jLabel11.setText("Job No");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 630, 90, -1));
 
         typstr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Roshani Tharngika", "Item 2", "Item 3", "Item 4" }));
@@ -440,7 +449,15 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             new String [] {
                 "Recive No", "Job Card No", "Title", "Authour Name", "Language", "Category", "Su Category", "ISBN", "Type Setter Name", "Remark"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -481,7 +498,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 770, 80, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 760, 80, 40));
 
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 60, 10, 0));
@@ -521,7 +538,15 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             new String [] {
                 "Recived No", "Job No", "Title", "Authour Name", "Language", "Category", "Sub Category", "ISBN", "Type Setter", "Remark"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(jTable4);
 
         jPanel7.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1060, 160));
@@ -543,12 +568,20 @@ public class fulJobCarDetails extends javax.swing.JFrame {
             new String [] {
                 "Job No", "Authour Name", "Date", "Title", "Type Setter", "Typesetting"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane7.setViewportView(jTable5);
 
-        jPanel8.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1060, 160));
+        jPanel8.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1070, 160));
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 1110, 230));
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1110, 230));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Assinged Job Cards");
@@ -622,60 +655,73 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (rno.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select the Manuscript", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
+
+        } else if (!rno.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                // save a new jobCard Details
-                int manu_script = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + rno.getText() + "'");
-                if (rs.next()) {
-                    manu_script = rs.getInt("idrm");
-                }
 
-                String isbnsjnt;
-                if (aprvisbn.isSelected()) {
-                    isbnsjnt = "Yes";
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reseving_manuscript_idrm from job_card where reseving_manuscript_idrm='" + rno.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Manuscript is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    isbnsjnt = "No";
+                    try {
+                        // TODO add your handling code here:
+                        // save a new jobCard Details
+                        int manu_script = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idrm from reseving_manuscript where idrm='" + rno.getText() + "'");
+                        if (rs.next()) {
+                            manu_script = rs.getInt("idrm");
+                        }
+
+                        String isbnsjnt;
+                        if (aprvisbn.isSelected()) {
+                            isbnsjnt = "Yes";
+                        } else {
+                            isbnsjnt = "No";
+                        }
+
+                        String isb = isbn.getText();
+                        String typs = typstr.getSelectedItem().toString();
+                        String rmk = rmrk.getText();
+
+                        String agsing;
+                        if (ay.isSelected()) {
+                            agsing = "Yes";
+                        } else {
+                            agsing = "No";
+                        }
+
+                        String agtyp = agmtty.getSelectedItem().toString();
+                        String resdat = datechosser(agmtdte);
+
+                        String pmarv;
+                        if (pmy.isSelected()) {
+                            pmarv = "Yes";
+                        } else {
+                            pmarv = "No";
+                        }
+
+                        String mdaprv;
+                        if (dy.isSelected()) {
+                            mdaprv = "Yes";
+                        } else {
+                            mdaprv = "No";
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into job_card( `job_card`.`isbn_apply`, `job_card`.`isbn`, `job_card`.`type_setter`, `job_card`.`remark`, `job_card`.`agrmt_sign`, `job_card`.`agrmt_type`, `job_card`.`agrmt_sign_date`, `job_card`.`pm_aprove`, `job_card`.`md_aprove`, `job_card`.`reseving_manuscript_idrm`)"
+                                + "values('" + isbnsjnt + "','" + isb + "','" + typs + "','" + rmk + "','" + agsing + "','" + agtyp + "','" + resdat + "','" + pmarv + "','" + mdaprv + "','" + manu_script + "') ");
+                        clear();
+                        tableLoad();
+                        jcno.setText(maxid("idjob_card", "job_card", 1));
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-
-                String isb = isbn.getText();
-                String typs = typstr.getSelectedItem().toString();
-                String rmk = rmrk.getText();
-
-                String agsing;
-                if (ay.isSelected()) {
-                    agsing = "Yes";
-                } else {
-                    agsing = "No";
-                }
-
-                String agtyp = agmtty.getSelectedItem().toString();
-                String resdat = datechosser(agmtdte);
-
-                String pmarv;
-                if (pmy.isSelected()) {
-                    pmarv = "Yes";
-                } else {
-                    pmarv = "No";
-                }
-
-                String mdaprv;
-                if (dy.isSelected()) {
-                    mdaprv = "Yes";
-                } else {
-                    mdaprv = "No";
-                }
-
-                ConnectionSet1.getInstance().setResult("insert into job_card( `job_card`.`isbn_apply`, `job_card`.`isbn`, `job_card`.`type_setter`, `job_card`.`remark`, `job_card`.`agrmt_sign`, `job_card`.`agrmt_type`, `job_card`.`agrmt_sign_date`, `job_card`.`pm_aprove`, `job_card`.`md_aprove`, `job_card`.`reseving_manuscript_idrm`)"
-                        + "values('" + isbnsjnt + "','" + isb + "','" + typs + "','" + rmk + "','" + agsing + "','" + agtyp + "','" + resdat + "','" + pmarv + "','" + mdaprv + "','" + manu_script + "') ");
-                clear();
-                tableLoad();
-                jcno.setText(maxid("idjob_card", "job_card", 1));
 
             } catch (Exception ex) {
-                Logger.getLogger(fulJobCarDetails.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
