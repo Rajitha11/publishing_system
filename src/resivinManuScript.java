@@ -704,9 +704,33 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel34.setText("* Author First Name");
         jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 31, -1, -1));
+
+        eemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eemailActionPerformed(evt);
+            }
+        });
         jPanel8.add(eemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 240, -1));
+
+        efn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                efnActionPerformed(evt);
+            }
+        });
         jPanel8.add(efn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 240, -1));
+
+        eln.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                elnActionPerformed(evt);
+            }
+        });
         jPanel8.add(eln, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 240, -1));
+
+        econtct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                econtctActionPerformed(evt);
+            }
+        });
         jPanel8.add(econtct, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 240, -1));
 
         eaddress.setColumns(20);
@@ -717,6 +741,12 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 160, 10, 0));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel8.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, -1));
 
         jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 1090, 180));
@@ -1321,6 +1351,31 @@ public class resivinManuScript extends javax.swing.JFrame {
         // TODO add your handling code here:
         email.grabFocus();
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void efnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efnActionPerformed
+        // TODO add your handling code here:
+        eln.grabFocus();
+    }//GEN-LAST:event_efnActionPerformed
+
+    private void elnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elnActionPerformed
+        // TODO add your handling code here:
+        econtct.grabFocus();
+    }//GEN-LAST:event_elnActionPerformed
+
+    private void econtctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_econtctActionPerformed
+        // TODO add your handling code here:
+        jTextField4.grabFocus();
+    }//GEN-LAST:event_econtctActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+        eemail.grabFocus();
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void eemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eemailActionPerformed
+        // TODO add your handling code here:
+        eaddress.grabFocus();
+    }//GEN-LAST:event_eemailActionPerformed
 
     /**
      * @param args the command line arguments

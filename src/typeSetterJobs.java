@@ -189,8 +189,8 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jLabel73 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -203,12 +203,12 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel46 = new javax.swing.JLabel();
         jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jButton9 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable7 = new javax.swing.JTable();
         jTextField27 = new javax.swing.JTextField();
         jLabel75 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -564,14 +564,19 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jPanel14.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
         jPanel14.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 100, 30));
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton10.setText("Delete");
-        jButton10.setBorder(null);
-        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel14.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 80, 30));
-
         jLabel5.setText("Select the Book Name First");
         jPanel14.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 14, 210, 20));
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton8.setText("Clear");
+        jButton8.setBorder(null);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 80, 30));
 
         jPanel12.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 1040, 220));
 
@@ -646,17 +651,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
         });
         jPanel12.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 600, 80, 30));
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Clear");
-        jButton8.setBorder(null);
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel12.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 600, 80, 30));
-
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -684,7 +678,13 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Commplte Formating Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel12.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 1110, 230));
+        jPanel12.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 1110, 240));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Delete");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel12.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 600, 80, 30));
 
         jTabbedPane1.addTab("Proof Details", jPanel12);
 
@@ -1589,8 +1589,6 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;

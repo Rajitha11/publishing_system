@@ -388,7 +388,24 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("* Complete Date");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 770, -1, -1));
+
+        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField15ActionPerformed(evt);
+            }
+        });
+        jTextField15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField15KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 800, 200, -1));
+
+        jTextField17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField17KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 740, 200, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 770, 200, -1));
         getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 740, 200, -1));
@@ -769,6 +786,26 @@ public class PrintingDepartment extends javax.swing.JFrame {
             Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+        // TODO add your handling code here:
+        jTextField17.grabFocus();
+    }//GEN-LAST:event_jTextField15ActionPerformed
+
+    private void jTextField17KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField17KeyTyped
+        // TODO add your handling code here:
+        //validate (only numbers)
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField17KeyTyped
+
+    private void jTextField15KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField15KeyTyped
 
     /**
      * @param args the command line arguments

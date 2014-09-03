@@ -157,13 +157,30 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("* Original Book Title");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 291, -1));
+
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 291, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("* Publisher/Copyright Agency");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
         jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField9KeyPressed(evt);
@@ -186,21 +203,45 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("* Translator Name");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, -1, -1));
+
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 291, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("* Country");
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 291, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("* Original Author");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField13ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 291, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("* Expiring Date");
         jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
+
+        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField14ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 291, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -210,7 +251,19 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setText("* Contact Person/Agency");
         jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
+        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField15ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 291, -1));
+
+        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField16ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 291, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -224,6 +277,12 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("* Email");
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
+
+        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField17ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 291, -1));
         jPanel2.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 270, 291, -1));
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 200, -1));
@@ -637,6 +696,56 @@ public class translationDetails extends javax.swing.JFrame {
             jList1.requestFocus();
         }
     }//GEN-LAST:event_jTextField9KeyPressed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+        jTextField7.grabFocus();
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+        jTextField8.grabFocus();
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+        jTextField11.grabFocus();
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+        jTextField13.grabFocus();
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+        // TODO add your handling code here:
+        jTextField15.grabFocus();
+    }//GEN-LAST:event_jTextField13ActionPerformed
+
+    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+        // TODO add your handling code here:
+        jTextField16.grabFocus();
+    }//GEN-LAST:event_jTextField15ActionPerformed
+
+    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+        // TODO add your handling code here:
+        jTextField12.grabFocus();
+    }//GEN-LAST:event_jTextField16ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+        jTextField10.grabFocus();
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        // TODO add your handling code here:
+        jTextField17.grabFocus();
+    }//GEN-LAST:event_jTextField14ActionPerformed
+
+    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+        // TODO add your handling code here
+        jTextField18.grabFocus();
+    }//GEN-LAST:event_jTextField17ActionPerformed
 
     /**
      * @param args the command line arguments

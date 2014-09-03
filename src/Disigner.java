@@ -180,6 +180,7 @@ public class Disigner extends javax.swing.JFrame {
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jLabel68 = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -244,7 +245,15 @@ public class Disigner extends javax.swing.JFrame {
             new String [] {
                 "Job No", "Title", "Author", "ISBN", "Language", "Date", "Deadline", "Retail Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -370,7 +379,15 @@ public class Disigner extends javax.swing.JFrame {
             new String [] {
                 "Job No", "Title", "Author", "ISBN", "Language", "Date", "Deadline", "Retail Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -461,7 +478,15 @@ public class Disigner extends javax.swing.JFrame {
             new String [] {
                 "Other Job No", "Job Name", "Designer Name", "Receiving Date", "Complete Date", "Remark"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -515,6 +540,12 @@ public class Disigner extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("* Remark");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField19ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 290, -1));
 
         jTextArea1.setColumns(20);
@@ -530,6 +561,12 @@ public class Disigner extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("* Designer");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
+
+        jTextField20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField20ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 290, -1));
         jPanel3.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, 200, -1));
         jPanel3.add(jDateChooser5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, -1));
@@ -538,6 +575,15 @@ public class Disigner extends javax.swing.JFrame {
         jPanel3.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 30));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 1060, 220));
+
+        jButton14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton14.setText("Clear");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 700, 90, 30));
 
         jTabbedPane1.addTab("Other Jobs", jPanel2);
 
@@ -564,7 +610,15 @@ public class Disigner extends javax.swing.JFrame {
             new String [] {
                 "Job No", "Date", "Title", "Author", "ISBN", "Language"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable4MouseClicked(evt);
@@ -573,6 +627,12 @@ public class Disigner extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable4);
 
         jPanel5.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 1090, 220));
+
+        jTextField25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField25KeyReleased(evt);
+            }
+        });
         jPanel5.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 295, -1));
 
         jLabel69.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -661,7 +721,15 @@ public class Disigner extends javax.swing.JFrame {
             new String [] {
                 "Job No", "Date", "Title", "Author", "ISBN", "Language"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable5MouseClicked(evt);
@@ -670,6 +738,12 @@ public class Disigner extends javax.swing.JFrame {
         jScrollPane6.setViewportView(jTable5);
 
         jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 1090, 180));
+
+        jTextField27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField27KeyReleased(evt);
+            }
+        });
         jPanel5.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, 295, -1));
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -722,10 +796,10 @@ public class Disigner extends javax.swing.JFrame {
 
                 String gid = rs.getString("idgrafic_dep");
                 jLabel1.setText(gid);
-                
+
                 String typsetter = rs.getString("type_setter");
                 jTextField1.setText(typsetter);
-                
+
             }
             //        String jbid = dtm.getValueAt(i, 0).toString();
             //        jLabel29.setText(jbid);
@@ -850,7 +924,7 @@ public class Disigner extends javax.swing.JFrame {
                 if (jobOk.equals("Yes")) {
                     jCheckBox1.setSelected(true);
                 }
-                
+
                 String typsetter = rs.getString("type_setter");
                 jTextField1.setText(typsetter);
 
@@ -1121,36 +1195,57 @@ public class Disigner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //save the formating  data
-            String complted;
-            if (jCheckBox2.isSelected()) {
-                complted = "Yes";
-            } else {
-                complted = "No";
+        if (jLabel72.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select The Job Card", "error", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!jLabel13.getText().isEmpty()) {
+            try {
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select proof_details_idproof_details from formating_jobs where proof_details_idproof_details='" + jLabel13.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Job Card is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+
+                    try {
+                        // TODO add your handling code here:
+                        //save the formating  data
+                        String complted;
+                        if (jCheckBox2.isSelected()) {
+                            complted = "Yes";
+                        } else {
+                            complted = "No";
+                        }
+
+                        int proofid = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idproof_details from proof_details where idproof_details='" + jLabel13.getText() + "'");
+                        if (rs.next()) {
+                            proofid = rs.getInt("idproof_details");
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into formating_jobs(complte,complte_date,proof_details_idproof_details) values('" + complted + "','" + new Date() + "','" + proofid + "')");
+
+                        jTextField22.setText("");
+                        jTextField23.setText("");
+                        jTextField24.setText("");
+                        jLabel72.setText("");
+                        jLabel13.setText("");
+                        jTextField26.setText("");
+                        jLabel55.setText("");
+                        jCheckBox2.setSelected(false);
+                        tableLoad();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            int proofid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idproof_details from proof_details where idproof_details='" + jLabel13.getText() + "'");
-            if (rs.next()) {
-                proofid = rs.getInt("idproof_details");
-            }
-
-            ConnectionSet1.getInstance().setResult("insert into formating_jobs(complte,complte_date,proof_details_idproof_details) values('" + complted + "','" + new Date() + "','" + proofid + "')");
-
-            jTextField22.setText("");
-            jTextField23.setText("");
-            jTextField24.setText("");
-            jLabel72.setText("");
-            jLabel13.setText("");
-            jTextField26.setText("");
-            jLabel55.setText("");
-            jCheckBox2.setSelected(false);
-
-        } catch (Exception ex) {
-            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -1214,6 +1309,58 @@ public class Disigner extends javax.swing.JFrame {
         jCheckBox2.setSelected(false);
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        //clear all feilds
+        jDateChooser5.setDate(null);
+        jTextField19.setText("");
+        jTextArea1.setText("");
+        jLabel68.setText("");
+        jDateChooser4.setDate(null);
+        jTextField20.setText("");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jTextField25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField25KeyReleased
+        try {
+            // TODO add your handling code here:
+    //        search the details
+            new tablemodel1().fillTable("select idjob_card,resive_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='2 nd Proof' AND resive_date is not null AND(fname like('" + jTextField25.getText() + "%%" + "') or manuscript_name like('" + jTextField25.getText() + "%%%" + "') or isbn like('" + jTextField25.getText() + "%%%" + "'))", jTable4);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField25KeyReleased
+
+    private void jTextField27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField27KeyReleased
+        try {
+            // TODO add your handling code here:
+    //        search the details
+            new tablemodel1().fillTable("select idjob_card,resive_date,manuscript_name,fname,isbn,language from formating_jobs f1 inner join proof_details p1 on f1.proof_details_idproof_details = p1.idproof_details inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complte='Yes' AND(fname like('" + jTextField27.getText() + "%%" + "') or manuscript_name like('" + jTextField27.getText() + "%%%" + "') or isbn like('" + jTextField27.getText() + "%%%" + "'))", jTable5);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    }//GEN-LAST:event_jTextField27KeyReleased
+
+    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+        // TODO add your handling code here:
+        jTextField20.grabFocus();
+    }//GEN-LAST:event_jTextField19ActionPerformed
+
+    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+        // TODO add your handling code here:
+        jTextArea1.grabFocus();
+    }//GEN-LAST:event_jTextField20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1252,6 +1399,7 @@ public class Disigner extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

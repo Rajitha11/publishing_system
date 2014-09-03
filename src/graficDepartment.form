@@ -147,13 +147,13 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="0">
-                            <Column editable="true" title="Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Title" type="java.lang.Object"/>
-                            <Column editable="true" title="Author" type="java.lang.Object"/>
-                            <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                            <Column editable="true" title="Language" type="java.lang.Object"/>
-                            <Column editable="true" title="Retail Price" type="java.lang.Object"/>
+                            <Column editable="false" title="Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Title" type="java.lang.Object"/>
+                            <Column editable="false" title="Author" type="java.lang.Object"/>
+                            <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Retail Price" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -757,14 +757,14 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="0">
-                            <Column editable="true" title="Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Title" type="java.lang.Object"/>
-                            <Column editable="true" title="Author" type="java.lang.Object"/>
-                            <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                            <Column editable="true" title="Language" type="java.lang.Object"/>
-                            <Column editable="true" title="Complete Desiging" type="java.lang.Object"/>
-                            <Column editable="true" title="Complete Palaning" type="java.lang.Object"/>
+                            <Column editable="false" title="Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Title" type="java.lang.Object"/>
+                            <Column editable="false" title="Author" type="java.lang.Object"/>
+                            <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Complete Desiging" type="java.lang.Object"/>
+                            <Column editable="false" title="Complete Palaning" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1372,14 +1372,14 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="0">
-                            <Column editable="true" title="Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Title" type="java.lang.Object"/>
-                            <Column editable="true" title="Author" type="java.lang.Object"/>
-                            <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                            <Column editable="true" title="Language" type="java.lang.Object"/>
-                            <Column editable="true" title="Disigner Complete" type="java.lang.Object"/>
-                            <Column editable="true" title="Planner Complete" type="java.lang.Object"/>
+                            <Column editable="false" title="Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Title" type="java.lang.Object"/>
+                            <Column editable="false" title="Author" type="java.lang.Object"/>
+                            <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Disigner Complete" type="java.lang.Object"/>
+                            <Column editable="false" title="Planner Complete" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2010,12 +2010,12 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="0">
-                            <Column editable="true" title="Other Job No" type="java.lang.Object"/>
-                            <Column editable="true" title="Job Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Designer Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Receiving Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Complete Date" type="java.lang.Object"/>
-                            <Column editable="true" title="Remark" type="java.lang.Object"/>
+                            <Column editable="false" title="Other Job No" type="java.lang.Object"/>
+                            <Column editable="false" title="Job Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Designer Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Receiving Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Complete Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Remark" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2185,6 +2185,9 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField19">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField19ActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="190" y="70" width="290" height="-1"/>
@@ -2238,6 +2241,9 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField20">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField20ActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="740" y="70" width="290" height="-1"/>
@@ -2270,6 +2276,22 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton14">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Clear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="860" y="700" width="90" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

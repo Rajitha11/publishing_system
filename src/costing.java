@@ -1486,6 +1486,7 @@ public class costing extends javax.swing.JFrame {
                         totalcost.setText("00.00");
                         unitPricecal.setText("00.00");
                         retaiprice.setText("");
+                        tableLoad();
 
                         DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
                         dtm.setRowCount(0);
