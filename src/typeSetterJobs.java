@@ -670,6 +670,12 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jScrollPane9.setViewportView(jTable7);
 
         jPanel12.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, 1090, 180));
+
+        jTextField27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField27KeyReleased(evt);
+            }
+        });
         jPanel12.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 650, 295, -1));
 
         jLabel75.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1546,6 +1552,20 @@ public class typeSetterJobs extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Check the Formating is Completed", "check", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jTextField27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField27KeyReleased
+        try {
+            // TODO add your handling code here:
+    //        search the data
+            new tablemodel1().fillTable("select idjob_card,resive_date,manuscript_name,fname,isbn,language,complte from formating_jobs f1 inner join proof_details p1 on f1.proof_details_idproof_details = p1.idproof_details inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complte='Yes' AND type_setter='" + jLabel4.getText() + "' AND (b_title like('" + jTextField27.getText() + "%%%" + "') or job_card_idjob_card like('" + jTextField27.getText() + "%%" + "') or p_step like('" + jTextField27.getText() + "%%" + "'))", jTable7);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(typeSetterJobs.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField27KeyReleased
 
     /**
      * @param args the command line arguments

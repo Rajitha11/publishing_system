@@ -558,7 +558,7 @@ public class costing extends javax.swing.JFrame {
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 480, 90, 30));
 
         jLabel67.setText("jLabel67");
-        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 554, -1, 0));
+        jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 534, -1, 20));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home.png"))); // NOI18N
         jButton11.setContentAreaFilled(false);
@@ -1156,33 +1156,47 @@ public class costing extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jLabel40.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Job Details", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
+        } else if (!jLabel40.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                // add quoted prices
-                String cmpny = jComboBox1.getSelectedItem().toString();
-                String price = jTextField7.getText();
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select cmpy_name,job_card_idjob_card from quotations where job_card_idjob_card='" + jLabel40.getText() + "' AND cmpy_name='" + jComboBox1.getSelectedItem().toString() + "'");
 
-                int job_cardid = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel40.getText() + "'");
-                if (rs.next()) {
-                    job_cardid = rs.getInt("idjob_card");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Company Name is Allready Added", "error", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        // add quoted prices
+                        String cmpny = jComboBox1.getSelectedItem().toString();
+                        String price = jTextField7.getText();
+
+                        int job_cardid = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel40.getText() + "'");
+                        if (rs.next()) {
+                            job_cardid = rs.getInt("idjob_card");
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into quotations(cmpy_name,q_price,job_card_idjob_card) values('" + cmpny + "','" + price + "','" + job_cardid + "')");
+
+                        jTextField9.setText("");
+                        jTextField11.setText("");
+                        jTextField10.setText("");
+                        jLabel40.setText("");
+                        jTextField7.setText("");
+                        jComboBox1.setSelectedIndex(0);
+                        jTextField15.setText("");
+                        tableLoad();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-
-                ConnectionSet1.getInstance().setResult("insert into quotations(cmpy_name,q_price,job_card_idjob_card) values('" + cmpny + "','" + price + "','" + job_cardid + "')");
-
-                jTextField9.setText("");
-                jTextField11.setText("");
-                jTextField10.setText("");
-                jLabel40.setText("");
-                jTextField7.setText("");
-                jComboBox1.setSelectedIndex(0);
-                jTextField15.setText("");
-                tableLoad();
 
             } catch (Exception ex) {
                 Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1726,6 +1740,7 @@ public class costing extends javax.swing.JFrame {
         jTextField7.setText("");
         jComboBox1.setSelectedIndex(0);
         jTextField15.setText("");
+        jLabel67.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1747,6 +1762,7 @@ public class costing extends javax.swing.JFrame {
                 jTextField7.setText("");
                 jComboBox1.setSelectedIndex(0);
                 jTextField15.setText("");
+                jLabel67.setText("");
                 tableLoad();
 
             } catch (Exception ex) {
