@@ -1252,7 +1252,7 @@ public class costing extends javax.swing.JFrame {
 
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobNo + "'");
                 if (rs1.next()) {
-                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations", jTable4);
+                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='"+jobNo+"'", jTable4);
                 }
 
 
@@ -1582,7 +1582,7 @@ public class costing extends javax.swing.JFrame {
 
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobid + "'");
                 if (rs1.next()) {
-                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations", jTable6);
+                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='"+jobid+"'", jTable6);
                 }
 
             }

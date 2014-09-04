@@ -95,6 +95,9 @@ public class graficDepartment extends javax.swing.JFrame {
                     + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND postv_cmplt is null", jTable3);
 
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' or job_doned='No'", jTable5);
+            
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
                     + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND (printin_shedul='added' or printin_shedul='sendP')", jTable4);
 
             new tablemodel1().fillTable("select * from grfic_other_jobs", jTable2);
@@ -215,6 +218,9 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jPanel17 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -498,7 +504,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Works", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Designing & Planning Complete Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -537,7 +543,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jLabel21.setText("Search");
         jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 55, -1));
 
-        jPanel6.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1120, 230));
+        jPanel6.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1120, 230));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Job Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -595,7 +601,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel12.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 230, 20));
         jPanel12.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 100, 30));
 
-        jPanel6.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 1050, 160));
+        jPanel6.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 1050, 160));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -642,7 +648,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jCheckBox11.setText("No");
         jPanel7.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
-        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 400, 140));
+        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, 400, 140));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton7.setText("Save");
@@ -653,7 +659,7 @@ public class graficDepartment extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 750, 108, 45));
+        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 810, 108, 45));
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton8.setText("Clear");
@@ -664,13 +670,42 @@ public class graficDepartment extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
+        jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 108, 45));
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton9.setText("Delete");
         jButton9.setBorder(null);
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 750, 108, 45));
+        jPanel6.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 810, 108, 45));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job No", "Date", "Title", "Author", "ISBN", "Language", "Complete Desiging", "Complete Palaning"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTable5);
+
+        jPanel6.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1090, 160));
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "On Going Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1120, 190));
 
         jTabbedPane1.addTab("Jobs in Hand", jPanel6);
 
@@ -1107,6 +1142,8 @@ public class graficDepartment extends javax.swing.JFrame {
                         jTextField11.setText("");
                         jLabel4.setText("");
                         jTextField21.setText("");
+                        jDateChooser1.setDate(null);
+                        jDateChooser3.setDate(null);
 
                     } catch (Exception ex) {
                         Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
@@ -1523,7 +1560,7 @@ public class graficDepartment extends javax.swing.JFrame {
 //        clear all the data
         jTextField5.setText("");
         jTextField10.setText("");
-        jTextField10.setText("");
+        jTextField11.setText("");
         jLabel29.setText("");
         jLabel17.setText("");
         jTextField9.setText("");
@@ -1614,6 +1651,10 @@ public class graficDepartment extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTextArea1.grabFocus();
     }//GEN-LAST:event_jTextField20ActionPerformed
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1762,6 +1803,7 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1775,11 +1817,13 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
