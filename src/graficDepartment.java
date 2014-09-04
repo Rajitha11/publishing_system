@@ -96,7 +96,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
                     + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' or job_doned='No'", jTable5);
-            
+
             new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
                     + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='Yes' AND job_doned='Yes' AND (printin_shedul='added' or printin_shedul='sendP')", jTable4);
 
@@ -221,6 +221,8 @@ public class graficDepartment extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         jPanel17 = new javax.swing.JPanel();
+        jLabel70 = new javax.swing.JLabel();
+        jTextField27 = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -705,7 +707,19 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "On Going Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1120, 190));
+
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel70.setText("Search");
+        jPanel17.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 55, -1));
+
+        jTextField27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField27KeyReleased(evt);
+            }
+        });
+        jPanel17.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 295, -1));
+
+        jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1120, 210));
 
         jTabbedPane1.addTab("Jobs in Hand", jPanel6);
 
@@ -1454,27 +1468,30 @@ public class graficDepartment extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //add the other job details
-            String jname = jTextField19.getText();
-            String disinr = jTextField20.getText();
-            String reci_dte = datechosser(jDateChooser5);
-            //String cmplt_dte =  datechosser(jDateChooser4);
-            String remk = jTextArea1.getText();
+        if (jTextField19.getText().isEmpty() || jTextField20.getText().isEmpty() || datechosser(jDateChooser5).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fill The All feilds", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //add the other job details
+                String jname = jTextField19.getText();
+                String disinr = jTextField20.getText();
+                String reci_dte = datechosser(jDateChooser5);
+                //String cmplt_dte =  datechosser(jDateChooser4);
+                String remk = jTextArea1.getText();
 
-            ConnectionSet1.getInstance().setResult("insert into grfic_other_jobs(jname,disigner,recive_dte,remark) values('" + jname + "','" + disinr + "','" + reci_dte + "','" + remk + "')");
+                ConnectionSet1.getInstance().setResult("insert into grfic_other_jobs(jname,disigner,recive_dte,remark) values('" + jname + "','" + disinr + "','" + reci_dte + "','" + remk + "')");
 
-            jTextField19.setText("");
-            jTextField20.setText("");
-            jTextArea1.setText("");
-            tableLoad();
+                jTextField19.setText("");
+                jTextField20.setText("");
+                jTextArea1.setText("");
+                tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -1656,6 +1673,21 @@ public class graficDepartment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable5MouseClicked
 
+    private void jTextField27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField27KeyReleased
+        try {
+            // TODO add your handling code here:
+            //search the details
+            new tablemodel1().fillTable("select idjob_card,agrmt_sign_date,manuscript_name,fname,isbn,language,job_doned,job_done from grafic_jobs g1 inner join disigner_jobs d1 on g1.idgrafic_dep = d1.grafic_jobs_idgrafic_dep inner join planner p1 "
+                    + "on g1.idgrafic_dep = p1.grafic_jobs_idgrafic_dep inner join job_card j1 on g1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where job_done='No' or job_doned='No' AND (fname like('" + jTextField13.getText() + "%%" + "') or manuscript_name like('" + jTextField13.getText() + "%%%" + "') or idjob_card like('" + jTextField13.getText() + "%%" + "'))", jTable5);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField27KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1793,6 +1825,7 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1843,6 +1876,7 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
+    private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
