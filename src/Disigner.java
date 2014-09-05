@@ -833,6 +833,9 @@ public class Disigner extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (jLabel29.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select the job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if (!jCheckBox1.isSelected()) {
+            JOptionPane.showMessageDialog(this, "No Values For Save", "Error", JOptionPane.WARNING_MESSAGE);
+
         } else {
             try {
                 // TODO add your handling code here:
@@ -856,6 +859,7 @@ public class Disigner extends javax.swing.JFrame {
                 jTextField21.setText("");
                 jLabel1.setText("");
                 jCheckBox1.setSelected(false);
+                jTextField1.setText("");
                 tableLoad();
 
             } catch (Exception ex) {
@@ -878,6 +882,7 @@ public class Disigner extends javax.swing.JFrame {
         jTextField21.setText("");
         jLabel1.setText("");
         jCheckBox1.setSelected(false);
+        jTextField1.setText("");
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -960,6 +965,7 @@ public class Disigner extends javax.swing.JFrame {
                 jTextField21.setText("");
                 jLabel1.setText("");
                 jCheckBox1.setSelected(false);
+                jTextField1.setText("");
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
@@ -1073,11 +1079,11 @@ public class Disigner extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             // set data from the feilds
-            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
-            int i = jTable2.getSelectedRow();
+            DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+            int i = jTable3.getSelectedRow();
             String ojid = dtm.getValueAt(i, 0).toString();
 
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from grfic_other_jobs");
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from grfic_other_jobs where idgrfic_other_jobs='" + ojid + "'");
 
             if (rs.next()) {
                 String ojbid = rs.getString("idgrfic_other_jobs");
@@ -1110,26 +1116,31 @@ public class Disigner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //add the other job details
-            String jname = jTextField19.getText();
-            String disinr = jTextField20.getText();
-            String reci_dte = datechosser(jDateChooser5);
-            //String cmplt_dte =  datechosser(jDateChooser4);
-            String remk = jTextArea1.getText();
+        if (jTextField19.getText().isEmpty() || jTextField20.getText().isEmpty() || datechosser(jDateChooser5).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fill the All Feilds", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //add the other job details
+                String jname = jTextField19.getText();
+                String disinr = jTextField20.getText();
+                String reci_dte = datechosser(jDateChooser5);
+                //String cmplt_dte =  datechosser(jDateChooser4);
+                String remk = jTextArea1.getText();
 
-            ConnectionSet1.getInstance().setResult("insert into grfic_other_jobs(jname,disigner,recive_dte,remark) values('" + jname + "','" + disinr + "','" + reci_dte + "','" + remk + "')");
+                ConnectionSet1.getInstance().setResult("insert into grfic_other_jobs(jname,disigner,recive_dte,remark) values('" + jname + "','" + disinr + "','" + reci_dte + "','" + remk + "')");
 
-            jTextField19.setText("");
-            jTextField20.setText("");
-            jTextArea1.setText("");
-            tableLoad();
+                jTextField19.setText("");
+                jTextField20.setText("");
+                jTextArea1.setText("");
+                jDateChooser5.setDate(null);
+                jDateChooser4.setDate(null);
+                tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(graficDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1147,6 +1158,8 @@ public class Disigner extends javax.swing.JFrame {
             jTextField19.setText("");
             jTextField20.setText("");
             jTextArea1.setText("");
+            jDateChooser5.setDate(null);
+            jDateChooser4.setDate(null);
             tableLoad();
 
         } catch (Exception ex) {
@@ -1204,8 +1217,10 @@ public class Disigner extends javax.swing.JFrame {
                 if (rs1.next()) {
                     JOptionPane.showMessageDialog(this, "This Job Card is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
 
-                } else {
+                } else if (!jCheckBox2.isSelected()) {
+                    JOptionPane.showMessageDialog(this, "No Values For Save", "error", JOptionPane.WARNING_MESSAGE);
 
+                } else {
                     try {
                         // TODO add your handling code here:
                         //save the formating  data
@@ -1323,7 +1338,7 @@ public class Disigner extends javax.swing.JFrame {
     private void jTextField25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField25KeyReleased
         try {
             // TODO add your handling code here:
-    //        search the details
+            //        search the details
             new tablemodel1().fillTable("select idjob_card,resive_date,manuscript_name,fname,isbn,language from proof_details p1 inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where p_step='2 nd Proof' AND resive_date is not null AND(fname like('" + jTextField25.getText() + "%%" + "') or manuscript_name like('" + jTextField25.getText() + "%%%" + "') or isbn like('" + jTextField25.getText() + "%%%" + "'))", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
@@ -1338,7 +1353,7 @@ public class Disigner extends javax.swing.JFrame {
     private void jTextField27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField27KeyReleased
         try {
             // TODO add your handling code here:
-    //        search the details
+            //        search the details
             new tablemodel1().fillTable("select idjob_card,resive_date,manuscript_name,fname,isbn,language from formating_jobs f1 inner join proof_details p1 on f1.proof_details_idproof_details = p1.idproof_details inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where complte='Yes' AND(fname like('" + jTextField27.getText() + "%%" + "') or manuscript_name like('" + jTextField27.getText() + "%%%" + "') or isbn like('" + jTextField27.getText() + "%%%" + "'))", jTable5);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
@@ -1348,7 +1363,7 @@ public class Disigner extends javax.swing.JFrame {
             Logger.getLogger(Disigner.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
+
     }//GEN-LAST:event_jTextField27KeyReleased
 
     private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed

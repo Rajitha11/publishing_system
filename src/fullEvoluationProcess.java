@@ -1043,6 +1043,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reseving_manuscript_idrm from evaluation where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
                 if (rs1.next()) {
                     JOptionPane.showMessageDialog(this, "This Manuscript is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+                    
                 } else {
                     try {
                         // TODO add your handling code here:
@@ -1143,31 +1144,44 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jLabel3.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Manuscript", "error", JOptionPane.WARNING_MESSAGE);
-        } else {
+
+        } else if (!jLabel3.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                // update the all manuscript table data
-                DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reseving_manuscript_idrm from evaluation where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Manuscript is Allready Assingrd", "error", JOptionPane.WARNING_MESSAGE);
 
-                String sntto = jComboBox3.getSelectedItem().toString();
-                String sntby = jComboBox4.getSelectedItem().toString();
-                String sntdat = datechosser(jDateChooser4);
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        // update the all manuscript table data
+                        DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
 
-                ConnectionSet1.getInstance().setResult("Update evaluation set send_to='" + sntto + "',sent_by='" + sntby + "',sent_date='" + sntdat + "' where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
-                jLabel3.setText("");
-                jTextField1.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jTextField4.setText("");
-                jTextField6.setText("");
-                jComboBox1.setSelectedIndex(0);
-                jComboBox3.setSelectedIndex(0);
-                jComboBox4.setSelectedIndex(0);
-                jDateChooser4.setDate(null);
-                tableLoad();
+                        String sntto = jComboBox3.getSelectedItem().toString();
+                        String sntby = jComboBox4.getSelectedItem().toString();
+                        String sntdat = datechosser(jDateChooser4);
+
+                        ConnectionSet1.getInstance().setResult("Update evaluation set send_to='" + sntto + "',sent_by='" + sntby + "',sent_date='" + sntdat + "' where reseving_manuscript_idrm='" + jLabel3.getText() + "'");
+                        jLabel3.setText("");
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                        jTextField4.setText("");
+                        jTextField6.setText("");
+                        jComboBox1.setSelectedIndex(0);
+                        jComboBox3.setSelectedIndex(0);
+                        jComboBox4.setSelectedIndex(0);
+                        jDateChooser4.setDate(null);
+                        tableLoad();
+                    } catch (Exception ex) {
+                        Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
             } catch (Exception ex) {
                 Logger.getLogger(fullEvoluationProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

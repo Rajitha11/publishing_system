@@ -430,7 +430,12 @@ public class printing_shedul extends javax.swing.JFrame {
 
             }else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
                 System.out.println("3");
-                new Menu("MD", "Admin", uname).setVisible(true);
+                new Menu("MD", "User", uname).setVisible(true);
+                dispose();
+
+            }else if (username.equals(uname) && typ.equals("User") && desig.equals("Planner")) {
+                System.out.println("3");
+                new Menu("Planner", "User", uname).setVisible(true);
                 dispose();
 
             }

@@ -35,7 +35,7 @@ public class productDiscription extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        
+
         loadPaperTyp();
         loadBoardtp();
         loadGauge();
@@ -47,14 +47,14 @@ public class productDiscription extends javax.swing.JFrame {
         this();
         jLabel5.setText(uname);
         tableLoad();
-        
+
     }
 
-    void bindingTyp(){
+    void bindingTyp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from binding");
             Vector v = new Vector();
-            while(rs.next()){
+            while (rs.next()) {
                 String bt = rs.getString("binding_typ");
                 jComboBox5.addItem(bt);
             }
@@ -62,7 +62,7 @@ public class productDiscription extends javax.swing.JFrame {
             Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     void loadPaperTyp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from paper_type");
@@ -198,6 +198,7 @@ public class productDiscription extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Product Description");
@@ -393,6 +394,15 @@ public class productDiscription extends javax.swing.JFrame {
         });
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton4.setText("Clear");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 830, 90, 40));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -455,12 +465,12 @@ public class productDiscription extends javax.swing.JFrame {
                 Vector v3 = new Vector();
                 v3.add(s13);
                 jComboBox4.setModel(new DefaultComboBoxModel(v3));
-                
+
                 String s14 = rs.getString("binding_typ");
                 Vector v4 = new Vector();
                 v4.add(s14);
                 jComboBox5.setModel(new DefaultComboBoxModel(v4));
-                
+
 
             }
 
@@ -478,40 +488,58 @@ public class productDiscription extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jLabel4.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select Job Card details", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                // TODO add your handling code here:
-                //save the data 
-                String qty = jTextField7.getText();
-                String ptyp = jComboBox1.getSelectedItem().toString();
-                String ptyp_ga = jComboBox3.getSelectedItem().toString();
-                String brtyp = jComboBox2.getSelectedItem().toString();
-                String brtyp_ga = jComboBox4.getSelectedItem().toString();
-                String impnt_check = jTextField2.getText();
-                String remrk = jTextArea1.getText();
-                String bindinty = jComboBox5.getSelectedItem().toString();
-                
-                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='"+bindinty+"' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
-                jTextField7.setText("");
-                jComboBox1.setSelectedIndex(0);
-                jComboBox3.setSelectedIndex(0);
-                jComboBox2.setSelectedIndex(0);
-                jComboBox4.setSelectedIndex(0);
-                jComboBox5.setSelectedIndex(0);
-                jTextField2.setText("");
-                jTextArea1.setText("");
-                jLabel4.setText("");
-                jTextField11.setText("");
-                jTextField9.setText("");
-                jTextField10.setText("");
-                jTextField6.setText("");
-                jTextField4.setText("");
-                tableLoad();
+        } else if (!jLabel4.getText().isEmpty()) {
+            try {
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select imprint_check from production_description where imprint_check is null");
+                if (rs.next()) {
+                    if (!jTextField2.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Please Enter The In Print Checked By Feild", "error", JOptionPane.WARNING_MESSAGE);
+
+                    } else {
+                        try {
+                            // TODO add your handling code here:
+                            //save the data 
+                            String qty = jTextField7.getText();
+                            String ptyp = jComboBox1.getSelectedItem().toString();
+                            String ptyp_ga = jComboBox3.getSelectedItem().toString();
+                            String brtyp = jComboBox2.getSelectedItem().toString();
+                            String brtyp_ga = jComboBox4.getSelectedItem().toString();
+                            String impnt_check = jTextField2.getText();
+                            String remrk = jTextArea1.getText();
+                            String bindinty = jComboBox5.getSelectedItem().toString();
+
+                            ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='" + bindinty + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
+
+                            jTextField7.setText("");
+                            jComboBox1.setSelectedIndex(0);
+                            jComboBox3.setSelectedIndex(0);
+                            jComboBox2.setSelectedIndex(0);
+                            jComboBox4.setSelectedIndex(0);
+                            jComboBox5.setSelectedIndex(0);
+                            jTextField2.setText("");
+                            jTextArea1.setText("");
+                            jLabel4.setText("");
+                            jTextField11.setText("");
+                            jTextField9.setText("");
+                            jTextField10.setText("");
+                            jTextField6.setText("");
+                            jTextField4.setText("");
+                            tableLoad();
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "This Job Card is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+                }
 
             } catch (Exception ex) {
                 Logger.getLogger(productDiscription.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -530,8 +558,8 @@ public class productDiscription extends javax.swing.JFrame {
                 String impnt_check = jTextField2.getText();
                 String remrk = jTextArea1.getText();
                 String bindinty = jComboBox5.getSelectedItem().toString();
-                
-                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='"+bindinty+"' where job_card_idjob_card='" + jLabel4.getText() + "'");
+
+                ConnectionSet1.getInstance().setResult("update production_description set print_qty='" + qty + "',innr_paper_typ='" + ptyp + "',innr_paper_gauge='" + ptyp_ga + "',cver_brd_typ='" + brtyp + "',cver_brd_gauge='" + brtyp_ga + "',imprint_check='" + impnt_check + "',remark_pd='" + remrk + "',binding_typ='" + bindinty + "' where job_card_idjob_card='" + jLabel4.getText() + "'");
 
                 jTextField7.setText("");
                 jComboBox1.setSelectedIndex(0);
@@ -601,6 +629,25 @@ public class productDiscription extends javax.swing.JFrame {
         jTextArea1.grabFocus();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+//        clear all the data
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jTextField2.setText("");
+        jTextArea1.setText("");
+        jLabel4.setText("");
+        jTextField11.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField6.setText("");
+        jTextField4.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -640,6 +687,7 @@ public class productDiscription extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;

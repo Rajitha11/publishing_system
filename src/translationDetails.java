@@ -299,6 +299,11 @@ public class translationDetails extends javax.swing.JFrame {
                 jList1MouseClicked(evt);
             }
         });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 290, 40));
@@ -425,7 +430,7 @@ public class translationDetails extends javax.swing.JFrame {
             try {
 
                 jPanel1.setVisible(true);
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where manuscript_name like('" + jTextField9.getText() + "%%%%%" + "')");
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card,manuscript_name,fname from job_card j1 inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where ms_type='Translation' AND manuscript_name like('" + jTextField9.getText() + "%%%%%" + "')");
 
                 Vector v = new Vector();
                 while (rs.next()) {
@@ -458,49 +463,62 @@ public class translationDetails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jLabel1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Manuscriptname", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
+
+        } else if (!jLabel1.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                //save the traslation details
-                String jono = jLabel1.getText();
-                String org_bk = jTextField7.getText();
-                String tran_bk = jTextField9.getText();
-                String org_autr = jTextField8.getText();
-                String cr_agcy = jTextField11.getText();
-                String roylity = jTextField13.getText();
-                String cunty = jTextField15.getText();
-                String cntct_prsn = jTextField16.getText();
-                String adres = jTextField12.getText();
-                String tran_autr = jTextField10.getText();
-                String edte = datechosser(jDateChooser1);
-                String issudte = datechosser(jDateChooser2);
-                String phn = jTextField14.getText();
-                String email = jTextField17.getText();
-                String web = jTextField18.getText();
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card from translation where job_card_idjob_card='" + jLabel1.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Joob Card is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
 
-                ConnectionSet1.getInstance().setResult("insert into translation(original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website,job_card_idjob_card) "
-                        + "values('" + org_bk + "','" + tran_bk + "','" + org_autr + "','" + tran_autr + "','" + cr_agcy + "','" + roylity + "','" + edte + "','" + issudte + "','" + cunty + "','" + phn + "','" + cntct_prsn + "','" + email + "','" + adres + "','" + web + "','" + jono + "')");
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        //save the traslation details
+                        String jono = jLabel1.getText();
+                        String org_bk = jTextField7.getText();
+                        String tran_bk = jTextField9.getText();
+                        String org_autr = jTextField8.getText();
+                        String cr_agcy = jTextField11.getText();
+                        String roylity = jTextField13.getText();
+                        String cunty = jTextField15.getText();
+                        String cntct_prsn = jTextField16.getText();
+                        String adres = jTextField12.getText();
+                        String tran_autr = jTextField10.getText();
+                        String edte = datechosser(jDateChooser1);
+                        String issudte = datechosser(jDateChooser2);
+                        String phn = jTextField14.getText();
+                        String email = jTextField17.getText();
+                        String web = jTextField18.getText();
 
-                jLabel1.setText("");
-                jTextField7.setText("");
-                jTextField9.setText("");
-                jTextField8.setText("");
-                jTextField11.setText("");
-                jTextField13.setText("");
-                jTextField15.setText("");
-                jTextField16.setText("");
-                jTextField12.setText("");
-                jTextField10.setText("");
-                jTextField14.setText("");
-                jTextField17.setText("");
-                jTextField18.setText("");
-                jDateChooser1.setDate(null);
-                jDateChooser2.setDate(null);
-                tableLoad();
+                        ConnectionSet1.getInstance().setResult("insert into translation(original_bname,sinhala_bname,original_author,translator_name,cp_agency,royality_pay,ex_date,issue_date,country,phone,contact_agency,email,address,website,job_card_idjob_card) "
+                                + "values('" + org_bk + "','" + tran_bk + "','" + org_autr + "','" + tran_autr + "','" + cr_agcy + "','" + roylity + "','" + edte + "','" + issudte + "','" + cunty + "','" + phn + "','" + cntct_prsn + "','" + email + "','" + adres + "','" + web + "','" + jono + "')");
+
+                        jLabel1.setText("");
+                        jTextField7.setText("");
+                        jTextField9.setText("");
+                        jTextField8.setText("");
+                        jTextField11.setText("");
+                        jTextField13.setText("");
+                        jTextField15.setText("");
+                        jTextField16.setText("");
+                        jTextField12.setText("");
+                        jTextField10.setText("");
+                        jTextField14.setText("");
+                        jTextField17.setText("");
+                        jTextField18.setText("");
+                        jDateChooser1.setDate(null);
+                        jDateChooser2.setDate(null);
+                        tableLoad();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
 
             } catch (Exception ex) {
                 Logger.getLogger(translationDetails.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -746,6 +764,17 @@ public class translationDetails extends javax.swing.JFrame {
         // TODO add your handling code here
         jTextField18.grabFocus();
     }//GEN-LAST:event_jTextField17ActionPerformed
+
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+        // TODO add your handling code here:
+//        set data
+        if (evt.getKeyCode() == 10) {
+            String an = jList1.getSelectedValue().toString();
+            jTextField9.setText(an);
+
+            jPanel1.setVisible(false);
+        }
+    }//GEN-LAST:event_jList1KeyPressed
 
     /**
      * @param args the command line arguments

@@ -584,8 +584,8 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1110, 230));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setText("Assinged Job Cards");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 290, 58));
+        jLabel4.setText("Job Detail");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 230, 58));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Date ");
@@ -597,7 +597,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
 
-        jTabbedPane1.addTab("Assinged Job Cards", jPanel2);
+        jTabbedPane1.addTab("Job Detail", jPanel2);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
 
@@ -662,6 +662,13 @@ public class fulJobCarDetails extends javax.swing.JFrame {
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reseving_manuscript_idrm from job_card where reseving_manuscript_idrm='" + rno.getText() + "'");
                 if (rs1.next()) {
                     JOptionPane.showMessageDialog(this, "This Manuscript is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+                    
+                } else if(isbn.getText().isEmpty() && !aprvisbn.isSelected()){
+                    JOptionPane.showMessageDialog(this, "Put A ISBN Number or Tik The Apply Button", "error", JOptionPane.WARNING_MESSAGE);
+                    
+                } else if(!ay.isSelected() || !pmy.isSelected() || !dy.isSelected()){
+                    JOptionPane.showMessageDialog(this, "Not selected the Aggrement & Approvals", "error", JOptionPane.WARNING_MESSAGE);
+                
                 } else {
                     try {
                         // TODO add your handling code here:

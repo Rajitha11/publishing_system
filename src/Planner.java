@@ -509,6 +509,9 @@ public class Planner extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (jLabel29.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select the job Details", "Error", JOptionPane.WARNING_MESSAGE);
+        }else if (!jCheckBox1.isSelected()) {
+            JOptionPane.showMessageDialog(this, "No Values For Save", "Error", JOptionPane.WARNING_MESSAGE);
+
         } else {
             try {
                 // TODO add your handling code here:
@@ -539,6 +542,7 @@ public class Planner extends javax.swing.JFrame {
                 jCheckBox1.setSelected(false);
                 jTextField16.setText("");
                 jTextField17.setText("");
+                jTextField1.setText("");
                 tableLoad();
 
             } catch (Exception ex) {
@@ -567,6 +571,7 @@ public class Planner extends javax.swing.JFrame {
         jCheckBox1.setSelected(false);
         jTextField16.setText("");
         jTextField17.setText("");
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -699,6 +704,7 @@ public class Planner extends javax.swing.JFrame {
                 jCheckBox1.setSelected(false);
                 jTextField16.setText("");
                 jTextField17.setText("");
+                jTextField1.setText("");
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);

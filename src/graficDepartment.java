@@ -445,35 +445,35 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "saman", "charith", "thilina" }));
-        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 206, -1));
+        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 206, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("* Disigner Name");
+        jLabel12.setText("* Designer's Name");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("* Deadline");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 200, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 370, 130));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 380, 130));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Layout Planner", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("* Planner Name");
+        jLabel11.setText("* Planner's Name");
         jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "saman", "charith", "thilina" }));
-        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 206, -1));
+        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 206, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("* Deadline");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-        jPanel5.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
+        jPanel5.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 200, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 370, 130));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 380, 130));
 
         jLabel69.setText("jLabel69");
         jPanel1.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 10, 0));
@@ -488,7 +488,7 @@ public class graficDepartment extends javax.swing.JFrame {
         });
         jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
-        jTabbedPane1.addTab("Grafic Department", jPanel1);
+        jTabbedPane1.addTab("Graphic Department", jPanel1);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -633,7 +633,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel7.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel50.setText("* Trasing Completed");
+        jLabel50.setText("* Tracing Completed");
         jPanel7.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 210, -1));
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -705,21 +705,21 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jPanel6.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1090, 160));
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "On Going Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ongoing Jobs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel70.setText("Search");
-        jPanel17.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 55, -1));
+        jPanel17.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 55, -1));
 
         jTextField27.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField27KeyReleased(evt);
             }
         });
-        jPanel17.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 295, -1));
+        jPanel17.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 295, -1));
 
-        jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1120, 210));
+        jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1120, 220));
 
         jTabbedPane1.addTab("Jobs in Hand", jPanel6);
 
@@ -1220,6 +1220,10 @@ public class graficDepartment extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if (jLabel39.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Job Card", "Error", JOptionPane.WARNING_MESSAGE);
+            
+        } else if(!jCheckBox6.isSelected() || jCheckBox9.isSelected() || jCheckBox10.isSelected()){
+            JOptionPane.showMessageDialog(this, "Not Completed", "eoor", JOptionPane.WARNING_MESSAGE);
+            
         } else {
             try {
                 // TODO add your handling code here:
