@@ -277,6 +277,7 @@ public class costing extends javax.swing.JFrame {
         jLabel67 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -337,6 +338,7 @@ public class costing extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel42 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -388,6 +390,7 @@ public class costing extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Costing");
@@ -399,7 +402,7 @@ public class costing extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Quotations");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 160, 58));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, 58));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("Date ");
@@ -588,13 +591,16 @@ public class costing extends javax.swing.JFrame {
         jLabel68.setText("jLabel68");
         jPanel1.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 0, 20));
 
+        jLabel69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel1.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
+
         jTabbedPane1.addTab("Get Quotation", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Costing");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 130, 58));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 130, 58));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Date ");
@@ -940,13 +946,16 @@ public class costing extends javax.swing.JFrame {
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 810, 108, 45));
         jPanel2.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 160, 20));
 
+        jLabel70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel2.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
+
         jTabbedPane1.addTab("Costing", jPanel2);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel28.setText("Costed Books");
-        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 220, 58));
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 220, 58));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel45.setText("Date ");
@@ -1213,6 +1222,9 @@ public class costing extends javax.swing.JFrame {
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 810, 108, 45));
         jPanel5.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 160, 20));
+
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel5.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
 
         jTabbedPane1.addTab("Costed Books", jPanel5);
 
@@ -2149,7 +2161,10 @@ public class costing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

@@ -169,6 +169,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel62 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
@@ -210,6 +211,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel75 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -264,6 +266,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jTable8 = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -280,6 +283,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jTextField25 = new javax.swing.JTextField();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Type Setter Jobs");
@@ -292,7 +296,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Typesetter Jobs");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 10, 230, 58));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 230, 58));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 210, 52));
@@ -472,6 +476,9 @@ public class typeSetterJobs extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
+
         jTabbedPane1.addTab("Typesetter Jobs", jPanel1);
 
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -619,7 +626,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel26.setText("Proof Details");
-        jPanel12.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 210, 58));
+        jPanel12.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 210, 58));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel37.setText("Date ");
@@ -699,13 +706,16 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel12.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 600, 80, 30));
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
+
         jTabbedPane1.addTab("Proof Details", jPanel12);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel23.setText("Typesetter Details");
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 270, 58));
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 270, 58));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 210, 52));
@@ -964,6 +974,9 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jPanel3.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 550, 270));
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 267, 65));
+
         jTabbedPane1.addTab("Type Setter Details", jPanel3);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1050,7 +1063,10 @@ public class typeSetterJobs extends javax.swing.JFrame {
 
         jLabel69.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel69.setText("Completed Jobs");
-        jPanel4.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 270, 58));
+        jPanel4.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 270, 58));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 267, 65));
 
         jTabbedPane1.addTab("Completed & Ongoing Jobs", jPanel4);
 
@@ -1956,6 +1972,7 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -1966,12 +1983,15 @@ public class typeSetterJobs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

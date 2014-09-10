@@ -204,6 +204,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jTextField8 = new javax.swing.JTextField();
@@ -219,6 +220,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Job Card Details");
@@ -272,7 +274,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Create A New Job Card");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 308, 58));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 308, 58));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 210, 52));
@@ -513,6 +515,9 @@ public class fulJobCarDetails extends javax.swing.JFrame {
         });
         jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 90, 70));
 
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 267, 65));
+
         jTabbedPane1.addTab("Add New Job Card", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -585,7 +590,7 @@ public class fulJobCarDetails extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Job Detail");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 230, 58));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 230, 58));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Date ");
@@ -596,6 +601,9 @@ public class fulJobCarDetails extends javax.swing.JFrame {
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 110, 30));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
 
         jTabbedPane1.addTab("Job Detail", jPanel2);
 
@@ -1034,7 +1042,9 @@ public class fulJobCarDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;

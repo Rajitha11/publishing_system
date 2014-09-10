@@ -161,6 +161,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Printing Details");
@@ -168,7 +169,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Printing Details");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 210, 58));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 210, 58));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("Date ");
@@ -432,6 +433,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 90, 70));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
 
         pack();
         setLocationRelativeTo(null);
@@ -878,6 +882,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;

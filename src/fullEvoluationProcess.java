@@ -153,6 +153,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jLabel61 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
+        jLabel62 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -203,6 +204,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jLabel63 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -248,6 +250,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel64 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Evaluvation Process");
@@ -258,7 +261,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Evaluvation Of The Manuscript");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 380, 58));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 380, 58));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Date ");
@@ -467,6 +470,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         });
         jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
+        jLabel62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 267, 65));
+
         jTabbedPane5.addTab("Evaluvation Of The Manuscript", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -483,7 +489,7 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel19.setText("Approval of the Manuscript");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 10, 350, 58));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 350, 58));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All Sent Manuscripts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -726,13 +732,16 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 820, 108, 45));
 
+        jLabel63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 267, 65));
+
         jTabbedPane5.addTab("Approval of the Manuscript", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel39.setText("Approved/Rejected Manuscript");
-        jPanel3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 10, 380, 58));
+        jPanel3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 380, 58));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel40.setText("Date ");
@@ -947,6 +956,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 108, 45));
+
+        jLabel64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel3.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 267, 65));
 
         jTabbedPane5.addTab("Approved / Rejected Manuscript", jPanel3);
 
@@ -1760,6 +1772,9 @@ public class fullEvoluationProcess extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

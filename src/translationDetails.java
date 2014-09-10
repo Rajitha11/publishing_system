@@ -146,6 +146,7 @@ public class translationDetails extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Translation Details");
@@ -365,7 +366,7 @@ public class translationDetails extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Translation Details");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 250, 58));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 250, 58));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Date ");
@@ -428,6 +429,9 @@ public class translationDetails extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 800, 108, 45));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 267, 65));
 
         pack();
         setLocationRelativeTo(null);
@@ -885,6 +889,7 @@ public class translationDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

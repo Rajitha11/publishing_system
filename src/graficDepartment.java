@@ -177,6 +177,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jLabel69 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
+        jLabel71 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -223,6 +224,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
         jTextField27 = new javax.swing.JTextField();
+        jLabel72 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -264,6 +266,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jLabel73 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -291,6 +294,7 @@ public class graficDepartment extends javax.swing.JFrame {
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jLabel68 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
+        jLabel74 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Grafic Department");
@@ -302,7 +306,7 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Jobs");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 130, 58));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 130, 58));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel44.setText("Date ");
@@ -488,13 +492,16 @@ public class graficDepartment extends javax.swing.JFrame {
         });
         jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 70));
 
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
+
         jTabbedPane1.addTab("Graphic Department", jPanel1);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("On Going Jobs");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 190, 58));
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 190, 58));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel45.setText("Date ");
@@ -721,13 +728,16 @@ public class graficDepartment extends javax.swing.JFrame {
 
         jPanel6.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1120, 220));
 
+        jLabel72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel6.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 267, 65));
+
         jTabbedPane1.addTab("Jobs in Hand", jPanel6);
 
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel23.setText("Completed Jobs");
-        jPanel13.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 210, 58));
+        jPanel13.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 210, 58));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel53.setText("Date ");
@@ -913,13 +923,16 @@ public class graficDepartment extends javax.swing.JFrame {
         });
         jPanel13.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 750, 108, 45));
 
+        jLabel73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel13.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 267, 65));
+
         jTabbedPane1.addTab("Completed Jobs", jPanel13);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Other Jobs");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 160, 58));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 160, 58));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText("Date ");
@@ -1058,6 +1071,9 @@ public class graficDepartment extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 700, 90, 30));
+
+        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel2.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 267, 65));
 
         jTabbedPane1.addTab("Other Jobs", jPanel2);
 
@@ -1830,6 +1846,10 @@ public class graficDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

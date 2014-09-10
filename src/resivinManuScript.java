@@ -267,6 +267,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
+        jLabel48 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -294,6 +295,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel49 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -328,6 +330,7 @@ public class resivinManuScript extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Receving Manuscript");
@@ -339,7 +342,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Receving The Manuscript");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 308, 58));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 308, 58));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Date ");
@@ -632,6 +635,9 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
         jPanel4.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 70));
 
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel4.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 267, 65));
+
         jTabbedPane1.addTab("Reserving Manuscript", jPanel4);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -680,7 +686,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel19.setText("Author Details");
-        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 300, 58));
+        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 300, 58));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Date ");
@@ -799,6 +805,9 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
         jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 690, 108, 45));
 
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel5.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 267, 65));
+
         jTabbedPane1.addTab("Author Details", jPanel5);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -842,7 +851,7 @@ public class resivinManuScript extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel26.setText("Reserving Manuscript Details");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 380, 58));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 380, 58));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel27.setText("Search");
@@ -960,6 +969,9 @@ public class resivinManuScript extends javax.swing.JFrame {
         });
         jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 700, 108, 45));
         jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 0, -1));
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel6.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 267, 65));
 
         jTabbedPane1.addTab("Reserved Manuscript Details", jPanel6);
 
@@ -1578,7 +1590,10 @@ public class resivinManuScript extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
