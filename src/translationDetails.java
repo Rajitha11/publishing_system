@@ -242,6 +242,11 @@ public class translationDetails extends javax.swing.JFrame {
                 jTextField14ActionPerformed(evt);
             }
         });
+        jTextField14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField14KeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 291, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -262,6 +267,11 @@ public class translationDetails extends javax.swing.JFrame {
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField16ActionPerformed(evt);
+            }
+        });
+        jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField16KeyTyped(evt);
             }
         });
         jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 291, -1));
@@ -775,6 +785,40 @@ public class translationDetails extends javax.swing.JFrame {
             jPanel1.setVisible(false);
         }
     }//GEN-LAST:event_jList1KeyPressed
+
+    private void jTextField14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(jTextField14.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField14KeyTyped
+
+    private void jTextField16KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(jTextField16.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField16KeyTyped
 
     /**
      * @param args the command line arguments

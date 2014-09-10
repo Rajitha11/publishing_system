@@ -848,6 +848,12 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel52.setText("* Product Size");
         jPanel10.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jTextField14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField14KeyTyped(evt);
+            }
+        });
         jPanel10.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 150, -1));
         jPanel10.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 150, -1));
 
@@ -863,7 +869,19 @@ public class typeSetterJobs extends javax.swing.JFrame {
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox9.setText("Colour");
         jPanel15.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+
+        jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField16KeyTyped(evt);
+            }
+        });
         jPanel15.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 150, -1));
+
+        jTextField17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField17KeyTyped(evt);
+            }
+        });
         jPanel15.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 150, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1811,6 +1829,27 @@ public class typeSetterJobs extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField14KeyTyped
+
+    private void jTextField16KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField16KeyTyped
+
+    private void jTextField17KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField17KeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField17KeyTyped
 
     /**
      * @param args the command line arguments

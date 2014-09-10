@@ -503,6 +503,11 @@ public class resivinManuScript extends javax.swing.JFrame {
                 contctActionPerformed(evt);
             }
         });
+        contct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contctKeyTyped(evt);
+            }
+        });
         jPanel1.add(contct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 200, -1));
 
         email.addActionListener(new java.awt.event.ActionListener() {
@@ -537,6 +542,11 @@ public class resivinManuScript extends javax.swing.JFrame {
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
+            }
+        });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
             }
         });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 200, -1));
@@ -731,6 +741,11 @@ public class resivinManuScript extends javax.swing.JFrame {
                 econtctActionPerformed(evt);
             }
         });
+        econtct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                econtctKeyTyped(evt);
+            }
+        });
         jPanel8.add(econtct, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 240, -1));
 
         eaddress.setColumns(20);
@@ -745,6 +760,11 @@ public class resivinManuScript extends javax.swing.JFrame {
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+            }
+        });
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
             }
         });
         jPanel8.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, -1));
@@ -1376,6 +1396,74 @@ public class resivinManuScript extends javax.swing.JFrame {
         // TODO add your handling code here:
         eaddress.grabFocus();
     }//GEN-LAST:event_eemailActionPerformed
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(jTextField3.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void contctKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contctKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(contct.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_contctKeyTyped
+
+    private void econtctKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_econtctKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(econtct.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_econtctKeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+        
+        if(jTextField4.getText().length() == 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
 
     /**
      * @param args the command line arguments

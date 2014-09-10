@@ -35,7 +35,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
     public PrintingDepartment() {
         initComponents();
 
-        
+
 
     }
 
@@ -44,7 +44,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
         this();
         jLabel16.setText(uname);
         tableLoad();
-        
+
     }
 
     void tableLoad() {
@@ -54,11 +54,11 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
                     + "on ps1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='Yes'", jTable2);
-            
+
 //            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join grafic_jobs g1 on pr1.job_card_idjob_card = g1.job_card_idjob_card inner join production_description p1 "
 //                    + "on g1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor", jTable2);
-            
-           
+
+
 //            idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date
 
         } catch (ClassNotFoundException ex) {
@@ -606,9 +606,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
 
 //            idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date,p1.*
             if (rs.next()) {
-                String idshedul =  rs.getString("idprnting_shedul");
+                String idshedul = rs.getString("idprnting_shedul");
                 jLabel7.setText(idshedul);
-                
+
                 String jobid = rs.getString("idjob_card");
                 jLabel6.setText(jbid);
 
@@ -683,9 +683,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //        search the details
-             new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from prnting_shedul ps1 inner join production_description p1 on ps1.job_card_idjob_card = p1.job_card_idjob_card "
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,print_qty from prnting_shedul ps1 inner join production_description p1 on ps1.job_card_idjob_card = p1.job_card_idjob_card "
                     + "inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='No' AND "
-                     + "(fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+                    + "(fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
 
 //                    + "AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
 
@@ -704,9 +704,9 @@ public class PrintingDepartment extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //        search the details
-           new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
+            new tablemodel1().fillTable("select idjob_card,manuscript_name,fname,isbn,cver_print_dte,qty,insde_printed_date,paper_rim,cmplt_date from printing pr1 inner join prnting_shedul ps1 on pr1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join production_description p1 "
                     + "on ps1.job_card_idjob_card = p1.job_card_idjob_card inner join job_card j1 on p1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where status_printing='Yes' AND "
-                   + "(fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
+                    + "(fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
 
 //                                + "(fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
         } catch (ClassNotFoundException ex) {
@@ -795,15 +795,21 @@ public class PrintingDepartment extends javax.swing.JFrame {
     private void jTextField17KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField17KeyTyped
         // TODO add your handling code here:
         //validate (only numbers)
-        if(!Character.isDigit(evt.getKeyChar())){
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField17KeyTyped
 
     private void jTextField15KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyTyped
         // TODO add your handling code here:
-        if(!Character.isDigit(evt.getKeyChar())){
-            evt.consume();
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '.' ||  c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_jTextField15KeyTyped
 

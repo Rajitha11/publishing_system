@@ -1221,8 +1221,8 @@ public class graficDepartment extends javax.swing.JFrame {
         if (jLabel39.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Select The Job Card", "Error", JOptionPane.WARNING_MESSAGE);
             
-        } else if(!jCheckBox6.isSelected() || jCheckBox9.isSelected() || jCheckBox10.isSelected()){
-            JOptionPane.showMessageDialog(this, "Not Completed", "eoor", JOptionPane.WARNING_MESSAGE);
+        } else if(!jCheckBox6.isSelected() || !jCheckBox9.isSelected() || !jCheckBox10.isSelected()){
+            JOptionPane.showMessageDialog(this, "Not Completed", "error", JOptionPane.WARNING_MESSAGE);
             
         } else {
             try {

@@ -35,7 +35,7 @@ public class printing_shedul extends javax.swing.JFrame {
         initComponents();
 
         dateMethod();
-        
+
 
     }
 
@@ -44,7 +44,7 @@ public class printing_shedul extends javax.swing.JFrame {
         this();
         jLabel3.setText(uname);
         tableLoad();
-        
+
     }
 
     void dateMethod() {
@@ -113,7 +113,7 @@ public class printing_shedul extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -185,6 +185,11 @@ public class printing_shedul extends javax.swing.JFrame {
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 30));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 90, 30));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -222,6 +227,11 @@ public class printing_shedul extends javax.swing.JFrame {
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, -1, 30));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 90, 30));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -257,7 +267,7 @@ public class printing_shedul extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Enter The Year", "error", JOptionPane.WARNING_MESSAGE);
         } else if (jComboBox2.getSelectedItem().equals("--Choose Month--")) {
             JOptionPane.showMessageDialog(this, "Please Select The month", "error", JOptionPane.WARNING_MESSAGE);
-        }else {
+        } else {
             try {
                 // TODO add your handling code here:
                 //        set to the send to print panel
@@ -428,12 +438,12 @@ public class printing_shedul extends javax.swing.JFrame {
                 new Menu("MD", "Admin", uname).setVisible(true);
                 dispose();
 
-            }else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Assistant Publishing Manager")) {
                 System.out.println("3");
-                new Menu("MD", "User", uname).setVisible(true);
+                new Menu("Assistant Publishing Manager", "User", uname).setVisible(true);
                 dispose();
 
-            }else if (username.equals(uname) && typ.equals("User") && desig.equals("Planner")) {
+            } else if (username.equals(uname) && typ.equals("User") && desig.equals("Planner")) {
                 System.out.println("3");
                 new Menu("Planner", "User", uname).setVisible(true);
                 dispose();
@@ -446,6 +456,40 @@ public class printing_shedul extends javax.swing.JFrame {
             Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+
+        if (jTextField2.getText().length() == 4) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+
+        if (jTextField1.getText().length() == 4) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments

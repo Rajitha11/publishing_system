@@ -98,6 +98,15 @@ public class costing extends javax.swing.JFrame {
             Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    void validateWithDote(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+            if (!(c == '.' || c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+                evt.consume();
+            }
+        }
+    }
 
     void calTotal() {
         double tot, transFee = 0, TypeFee = 0, profFee = 0, desingFee = 0, trcngCost = 0, positvCost = 0, prntCost = 0, other = 0;
@@ -445,6 +454,12 @@ public class costing extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("* Quoted Price");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 250, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -675,6 +690,9 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftransKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftransKeyTyped(evt);
+            }
         });
         jPanel2.add(ftrans, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 290, -1));
 
@@ -713,6 +731,9 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftypKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftypKeyTyped(evt);
+            }
         });
         jPanel2.add(ftyp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 290, -1));
 
@@ -728,6 +749,9 @@ public class costing extends javax.swing.JFrame {
         fread.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 freadKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                freadKeyTyped(evt);
             }
         });
         jPanel2.add(fread, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 290, -1));
@@ -745,6 +769,9 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fcovrKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fcovrKeyTyped(evt);
+            }
         });
         jPanel2.add(fcovr, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 290, -1));
 
@@ -761,6 +788,9 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftracngKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftracngKeyTyped(evt);
+            }
         });
         jPanel2.add(ftracng, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 290, -1));
 
@@ -776,6 +806,9 @@ public class costing extends javax.swing.JFrame {
         fpositive.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fpositiveKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fpositiveKeyTyped(evt);
             }
         });
         jPanel2.add(fpositive, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 290, -1));
@@ -805,6 +838,9 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fotherKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fotherKeyTyped(evt);
+            }
         });
         jPanel2.add(fother, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 290, -1));
 
@@ -821,13 +857,13 @@ public class costing extends javax.swing.JFrame {
         jLabel27.setText("-----------------------------------------------------------------------------");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 710, 310, -1));
 
-        totalcost.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        totalcost.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel2.add(totalcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 664, 160, 40));
 
         unitprice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         unitprice.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        unitPricecal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        unitPricecal.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         unitprice.add(unitPricecal, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 20, 130, 40));
 
         jPanel2.add(unitprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, 330, 80));
@@ -839,6 +875,12 @@ public class costing extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel33.setText("Recommanded Retail Price ");
         jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 730, 250, -1));
+
+        retaiprice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                retaipriceKeyTyped(evt);
+            }
+        });
         jPanel2.add(retaiprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 720, 150, 40));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1034,12 +1076,18 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftrans1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftrans1KeyTyped(evt);
+            }
         });
         jPanel5.add(ftrans1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 290, -1));
 
         ftyp1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftyp1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftyp1KeyTyped(evt);
             }
         });
         jPanel5.add(ftyp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 290, -1));
@@ -1048,12 +1096,18 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fread1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fread1KeyTyped(evt);
+            }
         });
         jPanel5.add(fread1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 290, -1));
 
         fcovr1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fcovr1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fcovr1KeyTyped(evt);
             }
         });
         jPanel5.add(fcovr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 290, -1));
@@ -1062,12 +1116,18 @@ public class costing extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftracng1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftracng1KeyTyped(evt);
+            }
         });
         jPanel5.add(ftracng1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 290, -1));
 
         fpositive1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fpositive1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fpositive1KeyTyped(evt);
             }
         });
         jPanel5.add(fpositive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 290, -1));
@@ -1083,6 +1143,9 @@ public class costing extends javax.swing.JFrame {
         fother1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fother1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fother1KeyTyped(evt);
             }
         });
         jPanel5.add(fother1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 290, -1));
@@ -1114,6 +1177,12 @@ public class costing extends javax.swing.JFrame {
         jLabel65.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel65.setText("Recommanded Retail Price ");
         jPanel5.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 730, 250, -1));
+
+        retaiprice1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                retaiprice1KeyTyped(evt);
+            }
+        });
         jPanel5.add(retaiprice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 720, 150, 40));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1252,7 +1321,7 @@ public class costing extends javax.swing.JFrame {
 
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobNo + "'");
                 if (rs1.next()) {
-                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='"+jobNo+"'", jTable4);
+                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobNo + "'", jTable4);
                 }
 
 
@@ -1500,6 +1569,8 @@ public class costing extends javax.swing.JFrame {
                         totalcost.setText("00.00");
                         unitPricecal.setText("00.00");
                         retaiprice.setText("");
+                        buttonGroup1.clearSelection();
+                        buttonGroup2.clearSelection();
                         tableLoad();
 
                         DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
@@ -1582,7 +1653,7 @@ public class costing extends javax.swing.JFrame {
 
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobid + "'");
                 if (rs1.next()) {
-                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='"+jobid+"'", jTable6);
+                    new tablemodel1().fillTable("select job_card_idjob_card,cmpy_name,q_price from quotations where job_card_idjob_card='" + jobid + "'", jTable6);
                 }
 
             }
@@ -1860,6 +1931,91 @@ public class costing extends javax.swing.JFrame {
             Logger.getLogger(costing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void ftransKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftransKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftransKeyTyped
+
+    private void ftypKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftypKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftypKeyTyped
+
+    private void freadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_freadKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_freadKeyTyped
+
+    private void fcovrKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fcovrKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fcovrKeyTyped
+
+    private void ftracngKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftracngKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftracngKeyTyped
+
+    private void fpositiveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fpositiveKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fpositiveKeyTyped
+
+    private void fotherKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fotherKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fotherKeyTyped
+
+    private void ftrans1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftrans1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftrans1KeyTyped
+
+    private void ftyp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftyp1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftyp1KeyTyped
+
+    private void fread1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fread1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fread1KeyTyped
+
+    private void fcovr1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fcovr1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fcovr1KeyTyped
+
+    private void ftracng1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftracng1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_ftracng1KeyTyped
+
+    private void fpositive1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fpositive1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fpositive1KeyTyped
+
+    private void fother1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fother1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_fother1KeyTyped
+
+    private void retaipriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_retaipriceKeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_retaipriceKeyTyped
+
+    private void retaiprice1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_retaiprice1KeyTyped
+        // TODO add your handling code here:
+        validateWithDote(evt);
+    }//GEN-LAST:event_retaiprice1KeyTyped
 
     /**
      * @param args the command line arguments

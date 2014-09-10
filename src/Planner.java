@@ -540,6 +540,7 @@ public class Planner extends javax.swing.JFrame {
                 jCheckBox10.setSelected(false);
                 jCheckBox11.setSelected(false);
                 jCheckBox1.setSelected(false);
+                jCheckBox7.setSelected(false);
                 jTextField16.setText("");
                 jTextField17.setText("");
                 jTextField1.setText("");
@@ -705,6 +706,7 @@ public class Planner extends javax.swing.JFrame {
                 jTextField16.setText("");
                 jTextField17.setText("");
                 jTextField1.setText("");
+                jCheckBox7.setSelected(false);
                 tableLoad();
             } catch (Exception ex) {
                 Logger.getLogger(Planner.class.getName()).log(Level.SEVERE, null, ex);
