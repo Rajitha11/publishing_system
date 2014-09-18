@@ -457,7 +457,7 @@ public class PrintingDepartment extends javax.swing.JFrame {
                 jLabel7.setText(shedulid);
 
                 String jobid = rs.getString("idjob_card");
-                jLabel6.setText(jbid);
+                jLabel6.setText(jobid);
 
                 String titl = rs.getString("manuscript_name");
                 jTextField9.setText(titl);

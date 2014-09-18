@@ -1,0 +1,1004 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.org.reprintframes;
+
+import com.org.DB.ConnectionSet1;
+import com.org.clz.tablemodel1;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author tuan
+ */
+public class resprint_publishing extends javax.swing.JFrame {
+
+    /**
+     * Creates new form resprint_publishing
+     */
+    SimpleDateFormat d1, d2;
+    Timer t;
+
+    public resprint_publishing() {
+        initComponents();
+
+        tableLoad();
+
+    }
+
+    void tableLoad() {
+        try {
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable4);
+            new tablemodel1().fillTable("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable2);
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable7);
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable6);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    void clear() {
+        Printer.setSelectedIndex(0);
+        jComboBox1.setSelectedIndex(0);
+        jLabel16.setText("");
+        jLabel14.setText("");
+        jDateChooser1.setDate(null);
+        jTextField1.setText("");
+        jCheckBox1.setSelected(false);
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        buttonGroup1.clearSelection();
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable5.getModel();
+        dtm.setRowCount(0);
+
+        DefaultTableModel dtm1 = (DefaultTableModel) jTable3.getModel();
+        dtm1.setRowCount(0);
+    }
+
+    public static String datechosser(JDateChooser jd) {
+        SimpleDateFormat sd = new SimpleDateFormat("dd /MMMM /yyyy");
+        Date d = jd.getDate();
+        String date = sd.format(d);
+        System.out.println(date);
+        return date;
+
+    }
+
+    void dateMethod() {
+        //set date & time
+        d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
+        d2 = new SimpleDateFormat("  hh:mm aaa");
+        t = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                date.setText(d1.format(d));
+                time.setText(d2.format(d));
+
+
+            }
+        });
+        t.start();
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextField2 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        Printer = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        jTextField6 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jTextField7 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jTextField8 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        time1 = new javax.swing.JLabel();
+        date1 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        jLabel1.setText("Reprint Request Form");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, 40));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 290, -1));
+
+        date.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 240, 41));
+
+        time.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel2.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 60, 140, 26));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reprint No", "Delivery Date", "ISBN", "Book Title", "Printer", "Paper type", "Quantity Suggested", "Sampel copies", "Book Cover"
+            }
+        ));
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, 1100, 170));
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField2.setToolTipText("ISBN or Book Name");
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 170, 30));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/search.png"))); // NOI18N
+        jButton4.setToolTipText("Search");
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 40, 30));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Publishing Department"));
+        jPanel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox1.setText("*Informed the Author");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 180, 30));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Last Printings"));
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 40, 540, 110));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 470, 100));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "              Print", "              Date", "             Quantity"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable5);
+        jTable5.getColumnModel().getColumn(0).setHeaderValue("              Print");
+        jTable5.getColumnModel().getColumn(1).setHeaderValue("              Date");
+        jTable5.getColumnModel().getColumn(2).setHeaderValue("             Quantity");
+
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 470, 50));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 500, 190));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("*Printer (Press)");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 100, 20));
+
+        Printer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Printer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sarasavi Printer", "Tharanji Printer" }));
+        Printer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(Printer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 140, 30));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("*Paper Type ");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 30));
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "paper type 1 " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 140, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("*Delivery for Printing");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("*Quantity Suggested");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, 30));
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 140, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("*Altered Page Numbers");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, 30));
+
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 200, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("*Book Cover              :");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, 140, 30));
+
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 200, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("*Altered Tracing (No.s)  ");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 150, 30));
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 170, 200, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("*Sample Copies");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 140, 20));
+
+        buttonGroup1.add(jCheckBox2);
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox2.setText(" Same Cover");
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 220, -1, 30));
+
+        buttonGroup1.add(jCheckBox3);
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox3.setText(" New Cover ");
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 220, -1, 30));
+
+        jLabel16.setText("jLabel16");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 50, 20));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 140, -1));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 1100, 310));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 100, 30));
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Copyright © All Rights Reserved at Sarasavi Publishers");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 850, 500, 20));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reprint No", "Added Date", "ISBN", "Book Title", "Author Name", "Price", "Print Attempt", "Move"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable4.getTableHeader().setReorderingAllowed(false);
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable4);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 1100, 160));
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/search.png"))); // NOI18N
+        jButton5.setToolTipText("Search");
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 630, 40, 30));
+
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField6.setToolTipText("ISBN or Book Name");
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, 170, 30));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Clear");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 610, 80, 40));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Submit");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 610, 90, 40));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setText("Publishing Department");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 20));
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Copyright © All Rights Reserved at Sarasavi Publishers");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 850, 500, 20));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 267, 65));
+
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton7.setText("Update");
+        jButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 610, 80, 40));
+
+        jTabbedPane1.addTab("Reprint Request Form", jPanel2);
+
+        jPanel4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setText("Publishing Department");
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 20));
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 290, -1));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton3.setText("Search");
+        jButton3.setToolTipText("Search");
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 98, 29));
+
+        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField7.setToolTipText("ISBN or Book Name");
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField7KeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 223, 29));
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton6.setText("Search");
+        jButton6.setToolTipText("Search");
+        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 98, 29));
+
+        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField8.setToolTipText("ISBN or Book Name");
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 223, 29));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reprint Accepted  Books", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reprint No", "Added Date", "ISBN", "Book Title", "Author Name", "Price", "Print Attempt", "Move"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable6.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(jTable6);
+
+        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, 1100, 230));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 1120, 280));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reprint Requested Books", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reprint No", "Added Date", "ISBN", "Book Title", "Author Name", "Price", "Print Attempt", "Move"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable7.getTableHeader().setReorderingAllowed(false);
+        jScrollPane8.setViewportView(jTable7);
+
+        jPanel6.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 1100, 200));
+
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1120, 250));
+
+        time1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel4.add(time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 60, 140, 26));
+
+        date1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel4.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 240, 41));
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Copyright © All Rights Reserved at Sarasavi Publishers");
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 850, 500, 20));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        jLabel19.setText("Reprint Details");
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 40));
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/sarasavi.png"))); // NOI18N
+        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 267, 65));
+
+        jTabbedPane1.addTab("Applied Reprints", jPanel4);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        try {
+            // TODO add your handling code here:
+            //        set data for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable4.getModel();
+            int i = jTable4.getSelectedRow();
+            String reprintNo = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores,idjob_card from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply' AND idreprint_stores='" + reprintNo + "'");
+            if (rs.next()) {
+
+                String reprintid = rs.getString("idreprint_stores");
+                jLabel14.setText(reprintid);
+
+                String jobid = rs.getString("idjob_card");
+                jLabel16.setText(jobid);
+
+                ResultSet rs2 = ConnectionSet1.getInstance().getResult("select printing_step,cmplt_date,qty from printing p1 inner join prnting_shedul ps1 on p1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join job_card j1 on ps1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'");
+                if (rs2.next()) {
+                    new tablemodel1().fillTable("select printing_step,cmplt_date,qty from printing p1 inner join prnting_shedul ps1 on p1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join job_card j1 on ps1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'", jTable5);
+                }
+
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'");
+                if (rs1.next()) {
+                    new tablemodel1().fillTable("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'", jTable3);
+                }
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the applied books
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply' AND (fname like('" + jTextField2.getText() + "%%" + "') or manuscript_name like('" + jTextField2.getText() + "%%%" + "') or isbn like('" + jTextField2.getText() + "%%%" + "'))", jTable4);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        clear all the data
+        clear();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //        save the approve data
+            String printer = Printer.getSelectedItem().toString();
+            String papertyp = jComboBox1.getSelectedItem().toString();
+            String dlivrprint = datechosser(jDateChooser1);
+            String qtysuject = jTextField1.getText();
+            String infrmauthr;
+            if (jCheckBox1.isSelected()) {
+                infrmauthr = "Yes";
+            } else {
+                infrmauthr = "No";
+                //            JOptionPane.showMessageDialog(this, "please infrom The author", "error", JOptionPane.WARNING_MESSAGE);
+            }
+
+            String alterdpage = jTextField3.getText();
+            String smpl = jTextField4.getText();
+            String alterdtrcin = jTextField5.getText();
+
+            String bokcvr;
+            if (jCheckBox2.isSelected()) {
+                bokcvr = "Same Cover";
+            } else {
+                bokcvr = "New Cover";
+            }
+
+            int reprintId = 0;
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
+            if (rs.next()) {
+                reprintId = rs.getInt("idreprint_stores");
+            }
+
+            ConnectionSet1.getInstance().setResult("insert into reprint_publishing(infrom_authr,printer,paper_typ,deliver_printing,qty_sagest,accepted_dte,alter_pge_num,smpl_cpy,alter_trcin,book_cver,reprint_stores_idreprint_stores,pub_status) values('" + infrmauthr + "','" + printer + "','" + papertyp + "','" + dlivrprint + "','" + qtysuject + "','" + new Date() + "','" + alterdpage + "','" + smpl + "','" + alterdtrcin + "','" + bokcvr + "','" + reprintId + "','approv')");
+// = 
+//            ConnectionSet1.getInstance().setResult("update reprint_stores set reprntaply='approv' where idreprint_stores='" + reprintId + "'");
+
+            clear();
+            tableLoad();
+
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+//        validation
+
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+//        validation
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == ',' || c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        // TODO add your handling code here:
+//        validation
+        char c = evt.getKeyChar();
+
+        if (c != evt.VK_BACK_SPACE && c != evt.VK_DELETE) {
+
+            if (!(c == ',' || c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+
+                evt.consume();
+            }
+        }
+
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the data
+            new tablemodel1().fillTable("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'approv' AND (fname like('" + jTextField6.getText() + "%%" + "') or manuscript_name like('" + jTextField6.getText() + "%%%" + "') or isbn like('" + jTextField6.getText() + "%%%" + "'))", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField6KeyReleased
+
+    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the applied books
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply' AND (fname like('" + jTextField7.getText() + "%%" + "') or manuscript_name like('" + jTextField7.getText() + "%%%" + "') or isbn like('" + jTextField7.getText() + "%%%" + "'))", jTable4);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField7KeyReleased
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            //         TODO add your handling code here:
+            //        search the apply reprint
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'approv' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "') or isbn like('" + jTextField8.getText() + "%%%" + "'))", jTable6);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            // TODO add your handling code here:
+    //        update the data
+            String printer = Printer.getSelectedItem().toString();
+            String papertyp = jComboBox1.getSelectedItem().toString();
+            String dlivrprint = datechosser(jDateChooser1);
+            String qtysuject = jTextField1.getText();
+            String infrmauthr;
+            if (jCheckBox1.isSelected()) {
+                infrmauthr = "Yes";
+            } else {
+                infrmauthr = "No";
+                //            JOptionPane.showMessageDialog(this, "please infrom The author", "error", JOptionPane.WARNING_MESSAGE);
+            }
+
+            String alterdpage = jTextField3.getText();
+            String smpl = jTextField4.getText();
+            String alterdtrcin = jTextField5.getText();
+
+            String bokcvr;
+            if (jCheckBox2.isSelected()) {
+                bokcvr = "Same Cover";
+            } else {
+                bokcvr = "New Cover";
+            }
+
+            ConnectionSet1.getInstance().setResult("update reprint_publishing set infrom_authr='"+infrmauthr+"',printer='"+printer+"',paper_typ='"+papertyp+"',deliver_printing='"+dlivrprint+"',qty_sagest='"+qtysuject+"',alter_pge_num='"+alterdpage+"',smpl_cpy='"+smpl+"',alter_trcin='"+alterdtrcin+"',book_cver='"+bokcvr+"' where idreprint_publishing='"+jLabel14.getText()+"'");
+            
+            clear();
+            tableLoad();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        try {
+            // TODO add your handling code here:
+            //        set data for the feilds
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            int i = jTable2.getSelectedRow();
+            String reprintId = dtm.getValueAt(i, 0).toString();
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver,printer,idjob_card,infrom_authr,alter_pge_num,alter_trcin from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv' AND idreprint_stores='" + reprintId + "'");
+            if (rs.next()) {
+
+                String rpid = rs.getString("idreprint_stores");
+                jLabel14.setText(rpid);
+
+                String priner = rs.getString("printer");
+                Vector v = new Vector();
+                v.add(priner);
+                Printer.setModel(new DefaultComboBoxModel(v));
+
+                String paprtyp = rs.getString("paper_typ");
+                Vector v1 = new Vector();
+                v1.add(paprtyp);
+                jComboBox1.setModel(new DefaultComboBoxModel(v1));
+
+                String jobid = rs.getString("idjob_card");
+                jLabel16.setText(jobid);
+
+                String dprint = rs.getString("deliver_printing");
+                Date d = new Date(dprint);
+                d.getDate();
+                jDateChooser1.setDate(d);
+
+                String qty = rs.getString("qty_sagest");
+                jTextField1.setText(qty);
+
+                String athourinfrm = rs.getString("infrom_authr");
+                if (athourinfrm.equals("Yes")) {
+                    jCheckBox1.setSelected(true);
+                } else {
+                    jCheckBox1.setSelected(false);
+                }
+
+                String altpagenumbers = rs.getString("alter_pge_num");
+                jTextField3.setText(altpagenumbers);
+
+                String smpl = rs.getString("smpl_cpy");
+                jTextField4.setText(smpl);
+
+                String alter_trcn = rs.getString("alter_trcin");
+                jTextField5.setText(alter_trcn);
+
+                String book_cvr = rs.getString("book_cver");
+                if (book_cvr.equals("Same Cover")) {
+                    jCheckBox2.setSelected(true);
+                } else {
+                    jCheckBox3.setSelected(true);
+                }
+
+                ResultSet rs2 = ConnectionSet1.getInstance().getResult("select printing_step,cmplt_date,qty from printing p1 inner join prnting_shedul ps1 on p1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join job_card j1 on ps1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'");
+                if (rs2.next()) {
+                    new tablemodel1().fillTable("select printing_step,cmplt_date,qty from printing p1 inner join prnting_shedul ps1 on p1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join job_card j1 on ps1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'", jTable5);
+                }
+
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'");
+                if (rs1.next()) {
+                    new tablemodel1().fillTable("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel16.getText() + "'", jTable3);
+                }
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(resprint_publishing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(resprint_publishing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(resprint_publishing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(resprint_publishing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new resprint_publishing().setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Printer;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel date;
+    private javax.swing.JLabel date1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JComboBox jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel time;
+    private javax.swing.JLabel time1;
+    // End of variables declaration//GEN-END:variables
+}
