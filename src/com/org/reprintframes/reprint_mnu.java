@@ -4,6 +4,12 @@
  */
 package com.org.reprintframes;
 
+import com.org.DB.ConnectionSet1;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author tuan
@@ -15,6 +21,80 @@ public class reprint_mnu extends javax.swing.JFrame {
      */
     public reprint_mnu() {
         initComponents();
+
+        hiddenMenu();
+
+    }
+
+    public reprint_mnu(String uname) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this();
+
+        try {
+            jLabel7.setText(uname);
+
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + jLabel7.getText() + "'");
+            if (rs.next()) {
+                String usname = uname;
+                String utyp = rs.getString("user_type");
+                String desig = rs.getString("designation");
+
+                if (usname.equals(uname) && utyp.equals("Admin") && desig.equals("MD")) {
+                    jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
+                    jButton3.setEnabled(true);
+                    jButton4.setEnabled(true);
+                    jButton7.setEnabled(true);
+                    jButton8.setEnabled(true);
+
+                } else if (usname.equals(uname) && utyp.equals("User") && desig.equals("Printing")) {
+                    jButton3.setEnabled(true);
+                    jButton7.setEnabled(true);
+                    jButton8.setEnabled(true);
+
+                } else if (usname.equals(uname) && utyp.equals("User") && desig.equals("Stores")) {
+                    jButton1.setEnabled(true);
+
+                } else if (usname.equals(uname) && utyp.equals("Admin") && desig.equals("Publishing Manager")) {
+                    jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
+                    jButton3.setEnabled(true);
+                    jButton4.setEnabled(true);
+                    jButton7.setEnabled(true);
+                    jButton8.setEnabled(true);
+
+                } else if (usname.equals(uname) && utyp.equals("Admin") && desig.equals("IT")) {
+                    jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
+                    jButton3.setEnabled(true);
+                    jButton4.setEnabled(true);
+                    jButton7.setEnabled(true);
+                    jButton8.setEnabled(true);
+
+                } else if (usname.equals(uname) && utyp.equals("Admin") && desig.equals("Assistant Publishing Manager")) {
+                    jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
+                    jButton3.setEnabled(true);
+                    jButton4.setEnabled(true);
+                    jButton7.setEnabled(true);
+                    jButton8.setEnabled(true);
+
+                }
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_mnu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    void hiddenMenu() {
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton8.setEnabled(false);
     }
 
     /**
@@ -36,6 +116,14 @@ public class reprint_mnu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,7 +136,12 @@ public class reprint_mnu extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusable(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/store1.png"))); // NOI18N
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 90, 80));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 90, 80));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/pub.png"))); // NOI18N
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -57,7 +150,7 @@ public class reprint_mnu extends javax.swing.JFrame {
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusable(false);
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/pub1.png"))); // NOI18N
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 90, 80));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 90, 80));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Printing.png"))); // NOI18N
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -66,7 +159,7 @@ public class reprint_mnu extends javax.swing.JFrame {
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusable(false);
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Printing2.png"))); // NOI18N
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 90, 80));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 90, 80));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/director.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -75,23 +168,23 @@ public class reprint_mnu extends javax.swing.JFrame {
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setFocusable(false);
         jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/director1.png"))); // NOI18N
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 90, 80));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 90, 80));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Director");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 330, 60, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 60, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Printing");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 60, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 60, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Publishing");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 80, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 80, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Stores");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 50, 30));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 50, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("Reprint Process");
@@ -101,7 +194,49 @@ public class reprint_mnu extends javax.swing.JFrame {
         jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton12.setContentAreaFilled(false);
         jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/home1.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, 90, 70));
+
+        jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel17.setText("Loged As");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, 100, 30));
+
+        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 150, 30));
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/printshedul.png"))); // NOI18N
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.setFocusable(false);
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/printshedul1.png"))); // NOI18N
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 270, 90, -1));
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/print.png"))); // NOI18N
+        jButton8.setBorderPainted(false);
+        jButton8.setContentAreaFilled(false);
+        jButton8.setFocusable(false);
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/print1.png"))); // NOI18N
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 90, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Departmant");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 360, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("Printing");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Schedule");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 70, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Printing");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 340, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Background_Artboard 2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 900));
@@ -109,6 +244,43 @@ public class reprint_mnu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            // TODO add your handling code here:
+            String uname = jLabel7.getText();
+            String username = null;
+            String desig = null;
+            String typ = null;
+            //
+            ResultSet rs = ConnectionSet1.getInstance().getResult("select * from user where username='" + uname + "'");
+            if (rs.next()) {
+                desig = rs.getString("designation");
+                username = rs.getString("username");
+                typ = rs.getString("user_type");
+
+                if (username.equals(uname) && typ.equals("User") && desig.equals("Printing")) {
+                    
+                }
+
+            }
+
+//                if (username.equals(uname) && typ.equals("User") && desig.equals("Designer")) {
+//                System.out.println("2");
+//                new Menu("Designer", "User", uname).setVisible(true);
+//                dispose();
+//
+//            }
+
+
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_mnu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,11 +322,19 @@ public class reprint_mnu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

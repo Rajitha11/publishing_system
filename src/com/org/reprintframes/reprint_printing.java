@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -304,7 +305,7 @@ public class reprint_printing extends javax.swing.JFrame {
         jLabel67.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel67.setText("Job No ");
         jPanel1.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, -1, -1));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 80, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 120, 80, 20));
 
         jLabel7.setText("jLabel7");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 110, 40, 20));
@@ -357,6 +358,12 @@ public class reprint_printing extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1090, 140));
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         jPanel8.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 295, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -392,6 +399,12 @@ public class reprint_printing extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1050, 140));
+
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField12KeyReleased(evt);
+            }
+        });
         jPanel9.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 295, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -537,36 +550,48 @@ public class reprint_printing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //        save the data
-            String cverp = datechosser(jDateChooser2);
-            String insidp = datechosser(jDateChooser3);
-            String perrim = jTextField17.getText();
-            String qty = jTextField18.getText();
-            String cmplt = datechosser(jDateChooser1);
-            String atmpt = jTextField19.getText();
+        if (jLabel6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select The Reprint Details In The Table", "error", JOptionPane.WARNING_MESSAGE);
+        }else if(jTextField18.getText().isEmpty() || datechosser(jDateChooser1).isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Select The Date", "Error", JOptionPane.WARNING_MESSAGE);
+            
+        } else {
+            try {
+                // TODO add your handling code here:
+                //        save the data
+                String cverp = datechosser(jDateChooser2);
+                String insidp = datechosser(jDateChooser3);
+                String perrim = jTextField17.getText();
+                String qty = jTextField18.getText();
+                String cmplt = datechosser(jDateChooser1);
+                String atmpt = jTextField19.getText();
 
-            int repntshdulid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_prntshedul from reprint_prntshedul where idreprint_prntshedul='" + jLabel7.getText() + "'");
-            if (rs.next()) {
-                repntshdulid = rs.getInt("idreprint_prntshedul");
+                int repntshdulid = 0;
+                ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_prntshedul from reprint_prntshedul where idreprint_prntshedul='" + jLabel7.getText() + "'");
+                if (rs.next()) {
+                    repntshdulid = rs.getInt("idreprint_prntshedul");
+                }
+
+                System.out.println(repntshdulid);
+
+                ConnectionSet1.getInstance().setResult("insert into reprinting(rp_cver_print_dte,rp_insde_printed_dte,rp_paper_rim,rp_qty,rp_cmplt_date,reprint_prntshedul_idreprint_prntshedul,re_printing_step) "
+                        + "values('" + cverp + "','" + insidp + "','" + perrim + "','" + qty + "','" + cmplt + "','" + repntshdulid + "','" + atmpt + "')");
+
+                ConnectionSet1.getInstance().setResult("update reprint_prntshedul set rp_status_print='Yes' where idreprint_prntshedul='" + repntshdulid + "'");
+
+
+            ConnectionSet1.getInstance().setResult("update reprint_publishing set pub_status='Finished' where reprint_stores_idreprint_stores='"+jLabel14.getText()+"'");
+            ConnectionSet1.getInstance().setResult("update reprint_director set dir_status='Finished' where reprint_stores_idreprint_stores='"+jLabel14.getText()+"'");
+            ConnectionSet1.getInstance().setResult("update reprint_printingdep set status_prnt='Finished' where reprint_stores_idreprint_stores='"+jLabel14.getText()+"'");
+            ConnectionSet1.getInstance().setResult("update reprint_stores set reprntaply='Finished' where idreprint_stores='"+jLabel14.getText()+"'"); 
+
+                clear();
+                tableLoad();
+
+            } catch (Exception ex) {
+                Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            System.out.println(repntshdulid);
-
-            ConnectionSet1.getInstance().setResult("insert into reprinting(rp_cver_print_dte,rp_insde_printed_dte,rp_paper_rim,rp_qty,rp_cmplt_date,reprint_prntshedul_idreprint_prntshedul,re_printing_step) "
-                    + "values('" + cverp + "','" + insidp + "','" + perrim + "','" + qty + "','" + cmplt + "','" + repntshdulid + "','" + atmpt + "')");
-
-            ConnectionSet1.getInstance().setResult("update reprint_prntshedul set rp_status_print='Yes' where idreprint_prntshedul='" + repntshdulid + "'");
-
-            clear();
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -657,24 +682,59 @@ public class reprint_printing extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
             // TODO add your handling code here:
-    //        update the details
+            //        update the details
             String cverp = datechosser(jDateChooser2);
             String insidp = datechosser(jDateChooser3);
             String perrim = jTextField17.getText();
             String qty = jTextField18.getText();
             String cmplt = datechosser(jDateChooser1);
-    //        String atmpt = jTextField19.getText();
-            
-            ConnectionSet1.getInstance().setResult("update reprinting set rp_cver_print_dte='"+cverp+"',rp_insde_printed_dte='"+insidp+"',rp_paper_rim='"+perrim+"',rp_qty='"+qty+"',rp_cmplt_date='"+cmplt+"' where reprint_prntshedul_idreprint_prntshedul='"+jLabel7.getText()+"'");
-            
+            //        String atmpt = jTextField19.getText();
+
+            ConnectionSet1.getInstance().setResult("update reprinting set rp_cver_print_dte='" + cverp + "',rp_insde_printed_dte='" + insidp + "',rp_paper_rim='" + perrim + "',rp_qty='" + qty + "',rp_cmplt_date='" + cmplt + "' where reprint_prntshedul_idreprint_prntshedul='" + jLabel7.getText() + "'");
+
             clear();
             tableLoad();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        serch the data
+            new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn,pduct_sz,nm_pages,reprint_qty from reprint_prntshedul sh1 inner join reprint_director d1 on sh1.reprint_stores_idreprint_stores=d1.reprint_stores_idreprint_stores inner join reprint_stores rs1 "
+                    + "on d1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card inner join production_description dis1 on j1.idjob_card = dis1.job_card_idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm "
+                    + "inner join author a1 on m1.author_idauthor = a1.idauthor where rp_status_print='No' AND (fname like('" + jTextField8.getText() + "%%" + "') or manuscript_name like('" + jTextField8.getText() + "%%%" + "'))", jTable1);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyReleased
+        try {
+            // TODO add your handling code here:
+            //        search the data
+            new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn,rp_cver_print_dte,rp_qty,rp_insde_printed_dte,rp_paper_rim,rp_cmplt_date,re_printing_step from reprinting p1 "
+                    + "inner join reprint_prntshedul ph1 on p1.reprint_prntshedul_idreprint_prntshedul = ph1.idreprint_prntshedul inner join reprint_stores rs1 on ph1.reprint_stores_idreprint_stores = rs1.idreprint_stores "
+                    + "inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm inner join author a1 on m1.author_idauthor = a1.idauthor "
+                    + "where rp_status_print='Yes' AND (fname like('" + jTextField12.getText() + "%%" + "') or manuscript_name like('" + jTextField12.getText() + "%%%" + "'))", jTable2);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(reprint_printing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTextField12KeyReleased
 
     /**
      * @param args the command line arguments

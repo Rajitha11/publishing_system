@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -285,29 +286,35 @@ public class reprint_printing_shedul extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-            int i = jTable1.getSelectedRow();
+        if (jTextField3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter The Year", "error", JOptionPane.WARNING_MESSAGE);
+        } else if (jComboBox3.getSelectedItem().equals("--Choose Month--")) {
+            JOptionPane.showMessageDialog(this, "Please Select The month", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                int i = jTable1.getSelectedRow();
 
-            String shedulYear = jTextField3.getText();
-            String shedulMonth = jComboBox3.getSelectedItem().toString();
+                String shedulYear = jTextField3.getText();
+                String shedulMonth = jComboBox3.getSelectedItem().toString();
 
-            String reprintid = dtm.getValueAt(i, 0).toString();
-            System.out.println(reprintid);
+                String reprintid = dtm.getValueAt(i, 0).toString();
+                System.out.println(reprintid);
 
-            ConnectionSet1.getInstance().setResult("insert into reprint_prntshedul(rp_shedul_dte,rp_status_print,rp_shedul_year,reprint_stores_idreprint_stores) values('" + shedulMonth + "','No','" + shedulYear + "','" + reprintid + "')");
-            ConnectionSet1.getInstance().setResult("update reprint_director set dir_status='print' where reprint_stores_idreprint_stores='" + reprintid + "'");
+                ConnectionSet1.getInstance().setResult("insert into reprint_prntshedul(rp_shedul_dte,rp_status_print,rp_shedul_year,reprint_stores_idreprint_stores) values('" + shedulMonth + "','No','" + shedulYear + "','" + reprintid + "')");
+                ConnectionSet1.getInstance().setResult("update reprint_director set dir_status='print' where reprint_stores_idreprint_stores='" + reprintid + "'");
 
-            new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn from reprint_prntshedul sh1 inner join reprint_director d1 on sh1.reprint_stores_idreprint_stores=d1.reprint_stores_idreprint_stores inner join reprint_stores rs1 "
-                    + "on d1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm inner join author a1 on m1.author_idauthor = a1.idauthor where rp_status_print='No'", jTable4);
+                new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn from reprint_prntshedul sh1 inner join reprint_director d1 on sh1.reprint_stores_idreprint_stores=d1.reprint_stores_idreprint_stores inner join reprint_stores rs1 "
+                        + "on d1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm inner join author a1 on m1.author_idauthor = a1.idauthor where rp_status_print='No'", jTable4);
 
-            tableLoad();
+                tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+//                Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Please Select The Row In Table", "error", JOptionPane.WARNING_MESSAGE);
+            }
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -326,26 +333,32 @@ public class reprint_printing_shedul extends javax.swing.JFrame {
             tableLoad();
 
         } catch (Exception ex) {
-            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Please Select The Row In Table", "error", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //        search the details
-            new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn from reprint_prntshedul ps1 inner join reprint_director d1 on ps1.reprint_stores_idreprint_stores = d1.reprint_stores_idreprint_stores inner join reprint_stores s1 on d1.reprint_stores_idreprint_stores = s1.idreprint_stores "
-                    + "inner join job_card j1 on s1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm inner join author a1 on m1.author_idauthor = a1.idauthor where rp_shedul_dte='" + jComboBox2.getSelectedItem().toString() + "' AND rp_shedul_year='" + jTextField2.getText() + "'", jTable4);
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter The Year", "error", JOptionPane.WARNING_MESSAGE);
+        } else if (jComboBox2.getSelectedItem().equals("--Choose Month--")) {
+            JOptionPane.showMessageDialog(this, "Please Select The month", "error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                // TODO add your handling code here:
+                //        search the details
+                new tablemodel1().fillTable("select idreprint_stores,idjob_card,manuscript_name,fname,isbn from reprint_prntshedul ps1 inner join reprint_director d1 on ps1.reprint_stores_idreprint_stores = d1.reprint_stores_idreprint_stores inner join reprint_stores s1 on d1.reprint_stores_idreprint_stores = s1.idreprint_stores "
+                        + "inner join job_card j1 on s1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm inner join author a1 on m1.author_idauthor = a1.idauthor where rp_shedul_dte='" + jComboBox2.getSelectedItem().toString() + "' AND rp_shedul_year='" + jTextField2.getText() + "'", jTable4);
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(reprint_printing_shedul.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

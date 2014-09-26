@@ -45,7 +45,7 @@ public class reprint_stores extends javax.swing.JFrame {
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable2);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable7);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join reprint_publishing pub1 on rps1.idreprint_stores = pub1.reprint_stores_idreprint_stores inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable6);
-            
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -150,13 +150,13 @@ public class reprint_stores extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -395,31 +395,6 @@ public class reprint_stores extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 240, -1));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable4MouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(jTable4);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 430, 80));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel15.setText("Price");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 180, 20));
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 90, 30));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, 170, -1));
-
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -446,7 +421,40 @@ public class reprint_stores extends javax.swing.JFrame {
         jTable5.getColumnModel().getColumn(1).setHeaderValue("              Date");
         jTable5.getColumnModel().getColumn(2).setHeaderValue("             Quantity");
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 430, 50));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, 430, 50));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "", "", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable4);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 430, 80));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("Price");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 180, 20));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 90, 30));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, 170, -1));
 
         jTabbedPane1.addTab("Reprint Request Form", jPanel1);
 
@@ -583,11 +591,16 @@ public class reprint_stores extends javax.swing.JFrame {
                 if (rs2.next()) {
                     new tablemodel1().fillTable("select printing_step,cmplt_date,qty from printing p1 inner join prnting_shedul ps1 on p1.prnting_shedul_idprnting_shedul = ps1.idprnting_shedul inner join job_card j1 on ps1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel19.getText() + "'", jTable5);
                 }
-
+                System.out.println("111111");
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel19.getText() + "'");
+                System.out.println("222222");
                 if (rs1.next()) {
+                    String rep = rs1.getString("re_printing_step");
+                    System.out.println(rep);
+                    System.out.println("333333");
                     new tablemodel1().fillTable("select re_printing_step,rp_cmplt_date,rp_qty from reprinting rp1 inner join reprint_prntshedul rps1 on rp1.reprint_prntshedul_idreprint_prntshedul = rps1.idreprint_prntshedul inner join reprint_stores rs1 on rps1.reprint_stores_idreprint_stores = rs1.idreprint_stores inner join job_card j1 on rs1.job_card_idjob_card = j1.idjob_card where idjob_card='" + jLabel19.getText() + "'", jTable4);
                 }
+                System.out.println("4444444");
 
             }
 
@@ -647,44 +660,75 @@ public class reprint_stores extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (jTextField5.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "select the book first", "error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "select the book details first", "error", JOptionPane.WARNING_MESSAGE);
 
-        } //        else if(!jTextField5.getText().isEmpty()){
-        //            ResultSet rs = ConnectionSet1.getInstance().getResult("")
-        //            
-        //        } 
-        else {
+        } else if (jTextField11.getText().isEmpty() || jTextField13.getText().isEmpty() || jTextField10.getText().isEmpty() || datechosser(jDateChooser1).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Fill The Details", "error", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!jTextField10.getText().isEmpty()) {
             try {
-                // TODO add your handling code here:
-                //        apply for the reprint
-                String inhnd = jTextField11.getText();
-                String lstgrndte = datechosser(jDateChooser1);
-                String lstgrnqty = jTextField13.getText();
-                String prntatmp = jTextField10.getText();
-                String mve;
-                if (jRadioButton1.isSelected()) {
-                    mve = "Fast";
-                } else if (jRadioButton2.isSelected()) {
-                    mve = "Medium";
-                } else {
-                    mve = "Slow";
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select print_attempt,re_printing_step from reprinting rp1 inner join reprint_prntshedul sh1 on rp1.reprint_prntshedul_idreprint_prntshedul = sh1.idreprint_prntshedul inner join reprint_stores rs1 on sh1.reprint_stores_idreprint_stores = rs1.idreprint_stores where print_attempt='" + jTextField10.getText() + "' AND re_printing_step='" + jTextField10.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This reprint is allready Done", "error", JOptionPane.WARNING_MESSAGE);
+
+                } //                else if (!jLabel19.getText().isEmpty()) {
+                //                    try {
+                //                        ResultSet rs2 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,reprntaply from reprint_stores where job_card_idjob_card='" + jLabel19.getText() + "' AND reprntaply='apply'");
+                //                        if (rs2.next()) {
+                //                            JOptionPane.showMessageDialog(this, "This Book Is Allrady processing", "Error", JOptionPane.WARNING_MESSAGE);
+                //
+                //                        }
+                //
+                //                    } catch (Exception ex) {
+                //                        Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+                //                    }
+                //
+                //                }
+                else {
+                    ResultSet rs2 = ConnectionSet1.getInstance().getResult("select job_card_idjob_card,reprntaply from reprint_stores where job_card_idjob_card='" + jLabel19.getText() + "' AND reprntaply='apply'");
+                    if (rs2.next()) {
+                        JOptionPane.showMessageDialog(this, "This Book Is Allrady processing", "Error", JOptionPane.WARNING_MESSAGE);
+
+                    } else {
+                        try {
+                            // TODO add your handling code here:
+                            //        apply for the reprint
+                            String inhnd = jTextField11.getText();
+                            String lstgrndte = datechosser(jDateChooser1);
+                            String lstgrnqty = jTextField13.getText();
+                            String prntatmp = jTextField10.getText();
+                            String mve;
+                            if (jRadioButton1.isSelected()) {
+                                mve = "Fast";
+                            } else if (jRadioButton2.isSelected()) {
+                                mve = "Medium";
+                            } else {
+                                mve = "Slow";
+                            }
+
+                            int jobid = 0;
+                            ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel19.getText() + "'");
+                            if (rs.next()) {
+                                jobid = rs.getInt("idjob_card");
+                            }
+
+                            ConnectionSet1.getInstance().setResult("insert into reprint_stores(stock_nw,last_grn_dte,lst_grn_qty,print_attempt,mve,apply_dte,job_card_idjob_card,reprntaply) values('" + inhnd + "','" + lstgrndte + "','" + lstgrnqty + "','" + prntatmp + "','" + mve + "','" + new Date() + "','" + jobid + "','apply')");
+
+                            clear();
+                            tableLoad();
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
-
-                int jobid = 0;
-                ResultSet rs = ConnectionSet1.getInstance().getResult("select idjob_card from job_card where idjob_card='" + jLabel19.getText() + "'");
-                if (rs.next()) {
-                    jobid = rs.getInt("idjob_card");
-                }
-
-                ConnectionSet1.getInstance().setResult("insert into reprint_stores(stock_nw,last_grn_dte,lst_grn_qty,print_attempt,mve,apply_dte,job_card_idjob_card,reprntaply) values('" + inhnd + "','" + lstgrndte + "','" + lstgrnqty + "','" + prntatmp + "','" + mve + "','" + new Date() + "','" + jobid + "','apply')");
-
-                clear();
-                tableLoad();
-
             } catch (Exception ex) {
                 Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked

@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -779,36 +780,54 @@ public class reprint_director extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //        save the data
-            String prsntpriz = jTextField16.getText();
-            String reviedpriz = jTextField17.getText();
-            String qty = jTextField18.getText();
-            String reprintok;
-            if (jCheckBox1.isSelected()) {
-                reprintok = "Approv";
-            } else {
-                reprintok = "Reject";
+        if (jLabel14.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select The Reprint Details In The Tabel", "error", JOptionPane.WARNING_MESSAGE);
+        } else if (!jLabel14.getText().isEmpty()) {
+            try {
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reprint_stores_idreprint_stores from reprint_director where reprint_stores_idreprint_stores='" + jLabel14.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "this Reprint is Allready Apply", "error", JOptionPane.WARNING_MESSAGE);
+                }else if(!jCheckBox1.isSelected() && !jCheckBox2.isSelected()){
+                    JOptionPane.showMessageDialog(this, "Please Select Approv or Reject", "error", JOptionPane.WARNING_MESSAGE);
+                }else if(jTextField16.getText().isEmpty() || jTextField17.getText().isEmpty() || jTextField18.getText().isEmpty() || datechosser(jDateChooser1).isEmpty()){
+                    JOptionPane.showMessageDialog(this, "Please Fill Insert The Data", "Error", JOptionPane.WARNING_MESSAGE);
+                
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        //        save the data
+                        String prsntpriz = jTextField16.getText();
+                        String reviedpriz = jTextField17.getText();
+                        String qty = jTextField18.getText();
+                        String reprintok;
+                        if (jCheckBox1.isSelected()) {
+                            reprintok = "Approv";
+                        } else {
+                            reprintok = "Reject";
+                        }
+
+                        String aplydte = datechosser(jDateChooser1);
+
+                        int reprintid = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
+                        if (rs.next()) {
+                            reprintid = rs.getInt("idreprint_stores");
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into reprint_director(prasant_priz,revised_priz,reprint_qty,reprint_approv,reprint_approv_dte,reprint_stores_idreprint_stores,dir_status) values('" + prsntpriz + "','" + reviedpriz + "','" + qty + "','" + reprintok + "','" + aplydte + "','" + reprintid + "','dapprov')");
+
+                        clear();
+                        tableLoad();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(reprint_director.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(reprint_director.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            String aplydte = datechosser(jDateChooser1);
-
-            int reprintid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
-            if (rs.next()) {
-                reprintid = rs.getInt("idreprint_stores");
-            }
-
-            ConnectionSet1.getInstance().setResult("insert into reprint_director(prasant_priz,revised_priz,reprint_qty,reprint_approv,reprint_approv_dte,reprint_stores_idreprint_stores,dir_status) values('" + prsntpriz + "','" + reviedpriz + "','" + qty + "','" + reprintok + "','" + aplydte + "','" + reprintid + "','dapprov')");
-
-            clear();
-            tableLoad();
-
-        } catch (Exception ex) {
-            Logger.getLogger(reprint_director.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField16KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyTyped

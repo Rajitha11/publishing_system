@@ -1,5 +1,6 @@
 
 import com.org.DB.ConnectionSet1;
+import com.org.reprintframes.reprint_mnu;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,8 @@ public class Menu extends javax.swing.JFrame {
         jButton12.setEnabled(false);
         jButton7.setEnabled(false);
         jButton13.setEnabled(false);
+        jButton14.setEnabled(false);
+        
     }
 
     Menu(String desig, String userTyp, String uname) {
@@ -60,6 +63,7 @@ public class Menu extends javax.swing.JFrame {
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
             jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
 
         } else if (desig.equals("Head Of Grafic") && userTyp.equals("User")) {
             jButton10.setEnabled(true);
@@ -81,6 +85,7 @@ public class Menu extends javax.swing.JFrame {
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
             jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
 
         } else if (desig.equals("Designer") && userTyp.equals("User")) {
             jButton1.setEnabled(true);
@@ -103,6 +108,7 @@ public class Menu extends javax.swing.JFrame {
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton7.setEnabled(true);
+            jButton14.setEnabled(true);
 
         } else if (desig.equals("IT") && userTyp.equals("Admin")) {
             jButton8.setEnabled(true);
@@ -118,11 +124,16 @@ public class Menu extends javax.swing.JFrame {
             jButton12.setEnabled(true);
             jButton7.setEnabled(true);
             jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
 
         } else if (desig.equals("Printing") && userTyp.equals("User")) {
             jButton6.setEnabled(true);
             jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
 
+        }else if(desig.equals("Stores") && userTyp.equals("User")){
+            jButton14.setEnabled(true);
+            
         }
 
 
@@ -424,6 +435,11 @@ public class Menu extends javax.swing.JFrame {
         jButton14.setContentAreaFilled(false);
         jButton14.setFocusable(false);
         jButton14.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/reprint1.png"))); // NOI18N
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 180, 140, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pub/img/Background_Artboard 2.jpg"))); // NOI18N
@@ -534,6 +550,13 @@ public class Menu extends javax.swing.JFrame {
         new printing_shedul(uname).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        String uname = jLabel6.getText();
+        new reprint_mnu(uname).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments

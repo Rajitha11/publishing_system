@@ -17,6 +17,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,25 +30,23 @@ public class reprint_printingDep extends javax.swing.JFrame {
     /**
      * Creates new form reprint_printingDep
      */
-    
     SimpleDateFormat d1, d2;
     Timer t;
-    
+
     public reprint_printingDep() {
         initComponents();
-        
+
         dateMethod();
-        
+
         loadBoardtp();
         loadPaperTyp();
         loadGauge();
         bindingTyp();
-        
+
         tabelLaod();
-        
+
     }
-    
-    
+
     void dateMethod() {
         //set date & time
         d1 = new SimpleDateFormat("yyyy/ MMM/ dd/ EEEE");
@@ -64,78 +63,78 @@ public class reprint_printingDep extends javax.swing.JFrame {
         });
         t.start();
     }
-    
+
     void bindingTyp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from binding");
-                Vector v = new Vector();
-                while (rs.next()) {
-                    String bt = rs.getString("binding_typ");
-                    jComboBox1.addItem(bt);
-                }
+            Vector v = new Vector();
+            while (rs.next()) {
+                String bt = rs.getString("binding_typ");
+                jComboBox1.addItem(bt);
+            }
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
+
     void loadPaperTyp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from paper_type");
-                Vector v = new Vector();
-                while (rs.next()) {
-                    //v.add(rs.getString("ptname"));
-                    String s9 = rs.getString("ptname");
-                    jComboBox5.addItem(s9);
-    //                
-                }
+            Vector v = new Vector();
+            while (rs.next()) {
+                //v.add(rs.getString("ptname"));
+                String s9 = rs.getString("ptname");
+                jComboBox5.addItem(s9);
+                //                
+            }
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
+
     void loadBoardtp() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from board_type");
-    //            Vector v = new Vector();
-                while (rs.next()) {
-    //                v.add(rs.getString("btname"));
-                    String s9 = rs.getString("btname");
-                    jComboBox2.addItem(s9);
-    //                
-                }
+            //            Vector v = new Vector();
+            while (rs.next()) {
+                //                v.add(rs.getString("btname"));
+                String s9 = rs.getString("btname");
+                jComboBox2.addItem(s9);
+                //                
+            }
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
+
     void loadGauge() {
         try {
             ResultSet rs = ConnectionSet1.getInstance().getResult("select * from gauge");
-    //            Vector v = new Vector();
-                while (rs.next()) {
-    //                v.add(rs.getString("gtyp"));
-                    String s9 = rs.getString("gtyp");
-                    jComboBox3.addItem(s9);
-                    jComboBox4.addItem(s9);
-    //                
-                }
+            //            Vector v = new Vector();
+            while (rs.next()) {
+                //                v.add(rs.getString("gtyp"));
+                String s9 = rs.getString("gtyp");
+                jComboBox3.addItem(s9);
+                jComboBox4.addItem(s9);
+                //                
+            }
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
-    void tabelLaod(){
+
+    void tabelLaod() {
         try {
-            
+
             new tablemodel1().fillTable("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable3);
             new tablemodel1().fillTable("select idreprint_stores,manuscript_name,isbn,printer,paper_type,bordr_typ,estimte_qty,estimte_cost,estimte_unit from reprint_printingdep pd1 inner join reprint_stores s1 on pd1.reprint_stores_idreprint_stores = s1.idreprint_stores inner join reprint_publishing p1 on s1.idreprint_stores = p1.reprint_stores_idreprint_stores inner join job_card j1 on s1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript m1 on j1.reseving_manuscript_idrm = m1.idrm where status_prnt='approv print'", jTable2);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable7);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join reprint_publishing pub1 on rps1.idreprint_stores = pub1.reprint_stores_idreprint_stores inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable6);
-            
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -143,11 +142,11 @@ public class reprint_printingDep extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    void clearall(){
-    
+
+    void clearall() {
+
         jLabel14.setText("");
         jTextField9.setText("");
         jTextField10.setText("");
@@ -170,6 +169,8 @@ public class reprint_printingDep extends javax.swing.JFrame {
         jTextField8.setText("");
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
+        DefaultTableModel dtm1 = (DefaultTableModel) jTable4.getModel();
+        dtm1.setRowCount(0);
         
     }
 
@@ -519,12 +520,20 @@ public class reprint_printingDep extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "", "", "", "", ""
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTable4);
 
-        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 520, 60));
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 520, 70));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 1120, 390));
 
@@ -556,7 +565,7 @@ public class reprint_printingDep extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1120, 160));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1130, 160));
 
         jTextField12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField12.setToolTipText("ISBN or Book Name");
@@ -704,120 +713,139 @@ public class reprint_printingDep extends javax.swing.JFrame {
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         try {
             // TODO add your handling code here:
-    //        set data to the fields
+            //        set data to the fields
             DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();
             int i = jTable3.getSelectedRow();
             String reprintNo = dtm.getValueAt(i, 0).toString();
-            
+
             ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores,manuscript_name,fname,pduct_sz,nm_pages,innr_paper_typ,innr_paper_gauge,cver_brd_typ,cver_brd_gauge,isbn,idjob_card,binding_typ from reprint_publishing repd1 inner join reprint_stores res1 on repd1.reprint_stores_idreprint_stores = res1.idreprint_stores inner join job_card j1 "
                     + "on res1.job_card_idjob_card = j1.idjob_card inner join costing c1 on j1.idjob_card = c1.job_card_idjob_card inner join production_description pd1 on c1.job_card_idjob_card = pd1.job_card_idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'");
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 String repID = rs.getString("idreprint_stores");
                 jLabel14.setText(repID);
-                
+
                 String titel = rs.getString("manuscript_name");
                 jTextField9.setText(titel);
-                
+
                 String author = rs.getString("fname");
                 jTextField10.setText(author);
-                
+
                 String psiz = rs.getString("pduct_sz");
                 jTextField6.setText(psiz);
-                
+
                 String nop = rs.getString("nm_pages");
                 jTextField4.setText(nop);
-                
+
                 String inerpaprtyp = rs.getString("innr_paper_typ");
                 Vector v = new Vector();
                 v.add(inerpaprtyp);
                 jComboBox5.setModel(new DefaultComboBoxModel(v));
-                
+
                 String inerpaprgage = rs.getString("innr_paper_gauge");
                 Vector v1 = new Vector();
                 v1.add(inerpaprgage);
                 jComboBox3.setModel(new DefaultComboBoxModel(v1));
-                
+
                 String cvrbrdrtyp = rs.getString("cver_brd_typ");
                 Vector v2 = new Vector();
                 v2.add(cvrbrdrtyp);
                 jComboBox2.setModel(new DefaultComboBoxModel(v2));
-                
+
                 String cvrbrdrgage = rs.getString("cver_brd_gauge");
                 Vector v3 = new Vector();
                 v3.add(cvrbrdrgage);
                 jComboBox4.setModel(new DefaultComboBoxModel(v3));
-                
+
                 String isbn = rs.getString("isbn");
                 jTextField11.setText(isbn);
-                
+
                 String jobno = rs.getString("idjob_card");
                 jLabel5.setText(jobno);
-                
+
                 String bindintyp = rs.getString("binding_typ");
                 Vector v4 = new Vector();
                 v4.add(bindintyp);
                 jComboBox1.setModel(new DefaultComboBoxModel(v4));
-                
+
                 ResultSet rs1 = ConnectionSet1.getInstance().getResult("select shedul_year,shedul_dte,qty,total_cost,unit_price from printing p1 inner join prnting_shedul ph1 on p1.prnting_shedul_idprnting_shedul = ph1.idprnting_shedul inner join job_card j1 on ph1.job_card_idjob_card = j1.idjob_card inner join costing c1 on j1.idjob_card = c1.job_card_idjob_card");
-                if(rs1.next()){
-                    new tablemodel1().fillTable("select shedul_year,shedul_dte,qty,total_cost,unit_price from printing p1 inner join prnting_shedul ph1 on p1.prnting_shedul_idprnting_shedul = ph1.idprnting_shedul inner join job_card j1 on ph1.job_card_idjob_card = j1.idjob_card inner join costing c1 on j1.idjob_card = c1.job_card_idjob_card where idjob_card='"+jLabel5.getText()+"'", jTable1);
+                if (rs1.next()) {
+                    new tablemodel1().fillTable("select shedul_year,shedul_dte,qty,total_cost,unit_price from printing p1 inner join prnting_shedul ph1 on p1.prnting_shedul_idprnting_shedul = ph1.idprnting_shedul inner join job_card j1 on ph1.job_card_idjob_card = j1.idjob_card inner join costing c1 on j1.idjob_card = c1.job_card_idjob_card where idjob_card='" + jLabel5.getText() + "'", jTable1);
                 }
-                
+
                 ResultSet rs2 = ConnectionSet1.getInstance().getResult("select rp_shedul_year,rp_shedul_dte,rp_qty,estimte_cost,estimte_unit from reprinting rp1 inner join reprint_prntshedul resh1 on rp1.reprint_prntshedul_idreprint_prntshedul = resh1.idreprint_prntshedul inner join reprint_stores res1 on resh1.reprint_stores_idreprint_stores = res1.idreprint_stores inner join reprint_printingdep rprd1 on res1.idreprint_stores = rprd1.reprint_stores_idreprint_stores inner join job_card j1 on res1.job_card_idjob_card = j1.idjob_card");
-                if(rs2.next()){
+                if (rs2.next()) {
                     new tablemodel1().fillTable("select rp_shedul_year,rp_shedul_dte,rp_qty,estimte_cost,estimte_unit from reprinting rp1 inner join reprint_prntshedul resh1 on rp1.reprint_prntshedul_idreprint_prntshedul = resh1.idreprint_prntshedul inner join reprint_stores res1 on resh1.reprint_stores_idreprint_stores = res1.idreprint_stores inner join reprint_printingdep rprd1 on res1.idreprint_stores = rprd1.reprint_stores_idreprint_stores inner join job_card j1 on res1.job_card_idjob_card = j1.idjob_card", jTable4);
                 }
-                
+
             }
             loadPaperTyp();
             loadBoardtp();
             loadGauge();
             bindingTyp();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-    //        save the data
-            String bind = jComboBox1.getSelectedItem().toString();
-            String ptyp = jComboBox5.getSelectedItem().toString();
-            String pgage = jComboBox3.getSelectedItem().toString();
-            String btyp = jComboBox2.getSelectedItem().toString();
-            String bgage = jComboBox4.getSelectedItem().toString();
-            String remrk = jTextArea1.getText();
-            String qty = jTextField3.getText();
-            String cost = jTextField5.getText();
-            String unitcost = jTextField8.getText();
+        if (jLabel14.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Plase Select The Reprint Detail In The Table", "error", JOptionPane.WARNING_MESSAGE);
             
-            int reprintid = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
-            if (rs.next()) {
-                reprintid = rs.getInt("idreprint_stores");
-            }
-            
-            ConnectionSet1.getInstance().setResult("insert into reprint_printingdep(binding,paper_type,paper_gauge,bordr_typ,bordr_gauge,remark_reprint,estimte_qty,estimte_cost,estimte_unit,reprint_stores_idreprint_stores,status_prnt) values('"+bind+"','"+ptyp+"','"+pgage+"','"+btyp+"','"+bgage+"','"+remrk+"','"+qty+"','"+cost+"','"+unitcost+"','"+reprintid+"','approv print')");
-            
-//            ConnectionSet1.getInstance().setResult("update reprint_stores set reprntaply='approv print' where idreprint_stores='" + reprintid + "'");
-            
-            clearall();
-            tabelLaod();
-            
-        } catch (Exception ex) {
-            Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }else if(jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField8.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Insert The Estimate Printing Values", "Error", JOptionPane.WARNING_MESSAGE);
         
+        } else if (!jLabel14.getText().isEmpty()) {
+
+            try {
+
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reprint_stores_idreprint_stores from reprint_printingdep where reprint_stores_idreprint_stores='" + jLabel14.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "this Reprint is Allready Assinged", "error", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        //        save the data
+                        String bind = jComboBox1.getSelectedItem().toString();
+                        String ptyp = jComboBox5.getSelectedItem().toString();
+                        String pgage = jComboBox3.getSelectedItem().toString();
+                        String btyp = jComboBox2.getSelectedItem().toString();
+                        String bgage = jComboBox4.getSelectedItem().toString();
+                        String remrk = jTextArea1.getText();
+                        String qty = jTextField3.getText();
+                        String cost = jTextField5.getText();
+                        String unitcost = jTextField8.getText();
+
+                        int reprintid = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
+                        if (rs.next()) {
+                            reprintid = rs.getInt("idreprint_stores");
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into reprint_printingdep(binding,paper_type,paper_gauge,bordr_typ,bordr_gauge,remark_reprint,estimte_qty,estimte_cost,estimte_unit,reprint_stores_idreprint_stores,status_prnt) values('" + bind + "','" + ptyp + "','" + pgage + "','" + btyp + "','" + bgage + "','" + remrk + "','" + qty + "','" + cost + "','" + unitcost + "','" + reprintid + "','approv print')");
+
+                        //            ConnectionSet1.getInstance().setResult("update reprint_stores set reprntaply='approv print' where idreprint_stores='" + reprintid + "'");
+
+                        clearall();
+                        tabelLaod();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         try {
             // TODO add your handling code here:
-    //        search the data
+            //        search the data
             new tablemodel1().fillTable("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'approv' AND (fname like('" + jTextField2.getText() + "%%" + "') or manuscript_name like('" + jTextField2.getText() + "%%%" + "') or isbn like('" + jTextField2.getText() + "%%%" + "'))", jTable3);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
@@ -839,7 +867,7 @@ public class reprint_printingDep extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }//GEN-LAST:event_jTextField12KeyReleased
 
     private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
@@ -853,7 +881,7 @@ public class reprint_printingDep extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jTextField7KeyReleased
 
     private void jTextField13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField13KeyReleased
@@ -867,7 +895,7 @@ public class reprint_printingDep extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(reprint_printingDep.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jTextField13KeyReleased
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped

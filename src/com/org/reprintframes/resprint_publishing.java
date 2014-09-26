@@ -42,7 +42,7 @@ public class resprint_publishing extends javax.swing.JFrame {
 
     void tableLoad() {
         try {
-            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable4);
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve,stock_nw from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable4);
             new tablemodel1().fillTable("select idreprint_stores,deliver_printing,isbn,manuscript_name,printer,paper_typ,qty_sagest,smpl_cpy,book_cver from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join job_card j1 on rps1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable2);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply'", jTable7);
             new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_publishing rpp1 inner join reprint_stores rps1 on rpp1.reprint_stores_idreprint_stores = rps1.idreprint_stores inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where pub_status = 'approv'", jTable6);
@@ -127,10 +127,10 @@ public class resprint_publishing extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         Printer = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
@@ -244,18 +244,6 @@ public class resprint_publishing extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 40, 540, 110));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 470, 100));
-
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -278,6 +266,26 @@ public class resprint_publishing extends javax.swing.JFrame {
         jTable5.getColumnModel().getColumn(2).setHeaderValue("             Quantity");
 
         jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 470, 50));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "", "", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 470, 110));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 500, 190));
 
@@ -385,11 +393,11 @@ public class resprint_publishing extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reprint No", "Added Date", "ISBN", "Book Title", "Author Name", "Price", "Print Attempt", "Move"
+                "Reprint No", "Added Date", "ISBN", "Book Title", "Author Name", "Price", "Print Attempt", "Move", "Stock In Hand"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -616,7 +624,7 @@ public class resprint_publishing extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //        search the applied books
-            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply' AND (fname like('" + jTextField2.getText() + "%%" + "') or manuscript_name like('" + jTextField2.getText() + "%%%" + "') or isbn like('" + jTextField2.getText() + "%%%" + "'))", jTable4);
+            new tablemodel1().fillTable("select idreprint_stores,apply_dte,isbn,manuscript_name,fname,recomd_price,print_attempt,mve,stock_nw from reprint_stores rps1 inner join costing c1 on rps1.job_card_idjob_card = c1.job_card_idjob_card inner join job_card j1 on c1.job_card_idjob_card = j1.idjob_card inner join reseving_manuscript r1 on j1.reseving_manuscript_idrm = r1.idrm inner join author a1 on r1.author_idauthor = a1.idauthor where reprntaply = 'apply' AND (fname like('" + jTextField2.getText() + "%%" + "') or manuscript_name like('" + jTextField2.getText() + "%%%" + "') or isbn like('" + jTextField2.getText() + "%%%" + "'))", jTable4);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(reprint_stores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -633,49 +641,69 @@ public class resprint_publishing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            //        save the approve data
-            String printer = Printer.getSelectedItem().toString();
-            String papertyp = jComboBox1.getSelectedItem().toString();
-            String dlivrprint = datechosser(jDateChooser1);
-            String qtysuject = jTextField1.getText();
-            String infrmauthr;
-            if (jCheckBox1.isSelected()) {
-                infrmauthr = "Yes";
-            } else {
-                infrmauthr = "No";
-                //            JOptionPane.showMessageDialog(this, "please infrom The author", "error", JOptionPane.WARNING_MESSAGE);
-            }
+        if (jLabel14.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select The Book", "Error", JOptionPane.WARNING_MESSAGE);
 
-            String alterdpage = jTextField3.getText();
-            String smpl = jTextField4.getText();
-            String alterdtrcin = jTextField5.getText();
+        } else if (jTextField1.getText().isEmpty() || datechosser(jDateChooser1).isEmpty() || !jCheckBox1.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Please Fill The Data", "Error", JOptionPane.WARNING_MESSAGE);
 
-            String bokcvr;
-            if (jCheckBox2.isSelected()) {
-                bokcvr = "Same Cover";
-            } else {
-                bokcvr = "New Cover";
-            }
+        } else if (!jLabel14.getText().isEmpty()) {
+            try {
+                ResultSet rs1 = ConnectionSet1.getInstance().getResult("select reprint_stores_idreprint_stores from reprint_publishing where reprint_stores_idreprint_stores='" + jLabel14.getText() + "'");
+                if (rs1.next()) {
+                    JOptionPane.showMessageDialog(this, "This Book Is Added", "Error", JOptionPane.WARNING_MESSAGE);
 
-            int reprintId = 0;
-            ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
-            if (rs.next()) {
-                reprintId = rs.getInt("idreprint_stores");
-            }
+                } else {
+                    try {
+                        // TODO add your handling code here:
+                        //        save the approve data
+                        String printer = Printer.getSelectedItem().toString();
+                        String papertyp = jComboBox1.getSelectedItem().toString();
+                        String dlivrprint = datechosser(jDateChooser1);
+                        String qtysuject = jTextField1.getText();
+                        String infrmauthr;
+                        if (jCheckBox1.isSelected()) {
+                            infrmauthr = "Yes";
+                        } else {
+                            infrmauthr = "No";
+                            //            JOptionPane.showMessageDialog(this, "please infrom The author", "error", JOptionPane.WARNING_MESSAGE);
+                        }
 
-            ConnectionSet1.getInstance().setResult("insert into reprint_publishing(infrom_authr,printer,paper_typ,deliver_printing,qty_sagest,accepted_dte,alter_pge_num,smpl_cpy,alter_trcin,book_cver,reprint_stores_idreprint_stores,pub_status) values('" + infrmauthr + "','" + printer + "','" + papertyp + "','" + dlivrprint + "','" + qtysuject + "','" + new Date() + "','" + alterdpage + "','" + smpl + "','" + alterdtrcin + "','" + bokcvr + "','" + reprintId + "','approv')");
+                        String alterdpage = jTextField3.getText();
+                        String smpl = jTextField4.getText();
+                        String alterdtrcin = jTextField5.getText();
+
+                        String bokcvr;
+                        if (jCheckBox2.isSelected()) {
+                            bokcvr = "Same Cover";
+                        } else {
+                            bokcvr = "New Cover";
+                        }
+
+                        int reprintId = 0;
+                        ResultSet rs = ConnectionSet1.getInstance().getResult("select idreprint_stores from reprint_stores where idreprint_stores='" + jLabel14.getText() + "'");
+                        if (rs.next()) {
+                            reprintId = rs.getInt("idreprint_stores");
+                        }
+
+                        ConnectionSet1.getInstance().setResult("insert into reprint_publishing(infrom_authr,printer,paper_typ,deliver_printing,qty_sagest,accepted_dte,alter_pge_num,smpl_cpy,alter_trcin,book_cver,reprint_stores_idreprint_stores,pub_status) values('" + infrmauthr + "','" + printer + "','" + papertyp + "','" + dlivrprint + "','" + qtysuject + "','" + new Date() + "','" + alterdpage + "','" + smpl + "','" + alterdtrcin + "','" + bokcvr + "','" + reprintId + "','approv')");
 // = 
 //            ConnectionSet1.getInstance().setResult("update reprint_stores set reprntaply='approv' where idreprint_stores='" + reprintId + "'");
 
-            clear();
-            tableLoad();
+                        clear();
+                        tableLoad();
 
-        } catch (Exception ex) {
-            Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -785,7 +813,7 @@ public class resprint_publishing extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
             // TODO add your handling code here:
-    //        update the data
+            //        update the data
             String printer = Printer.getSelectedItem().toString();
             String papertyp = jComboBox1.getSelectedItem().toString();
             String dlivrprint = datechosser(jDateChooser1);
@@ -809,16 +837,16 @@ public class resprint_publishing extends javax.swing.JFrame {
                 bokcvr = "New Cover";
             }
 
-            ConnectionSet1.getInstance().setResult("update reprint_publishing set infrom_authr='"+infrmauthr+"',printer='"+printer+"',paper_typ='"+papertyp+"',deliver_printing='"+dlivrprint+"',qty_sagest='"+qtysuject+"',alter_pge_num='"+alterdpage+"',smpl_cpy='"+smpl+"',alter_trcin='"+alterdtrcin+"',book_cver='"+bokcvr+"' where idreprint_publishing='"+jLabel14.getText()+"'");
-            
+            ConnectionSet1.getInstance().setResult("update reprint_publishing set infrom_authr='" + infrmauthr + "',printer='" + printer + "',paper_typ='" + papertyp + "',deliver_printing='" + dlivrprint + "',qty_sagest='" + qtysuject + "',alter_pge_num='" + alterdpage + "',smpl_cpy='" + smpl + "',alter_trcin='" + alterdtrcin + "',book_cver='" + bokcvr + "' where idreprint_publishing='" + jLabel14.getText() + "'");
+
             clear();
             tableLoad();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(resprint_publishing.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
